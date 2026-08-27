@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title> دبیرخانه میلیتاریسم</title>
+  <title>دبیرخانه میلیتاریسم</title>
 
   <style>
     :root {
@@ -53,9 +53,159 @@
       line-height: 1.8;
     }
 
+    button,
+    input {
+      font-family: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
     a {
       color: inherit;
       text-decoration: none;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* =========================
+       LOGIN
+    ========================== */
+
+    #loginScreen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 25px;
+    }
+
+    .login-shell {
+      width: 100%;
+      max-width: 430px;
+    }
+
+    .login-header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .login-eyebrow {
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      direction: ltr;
+      margin-bottom: 8px;
+    }
+
+    .login-header h1 {
+      font-size: 29px;
+      margin-bottom: 5px;
+    }
+
+    .login-header p {
+      color: var(--muted);
+      font-size: 13px;
+      direction: ltr;
+    }
+
+    .login-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .login-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 3px;
+      background: var(--gold);
+    }
+
+    .login-title {
+      color: var(--gold);
+      margin-bottom: 22px;
+      font-size: 15px;
+    }
+
+    .form-group {
+      margin-bottom: 17px;
+    }
+
+    .form-group label {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+
+    .form-group input {
+      width: 100%;
+      background: #090d12;
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 13px;
+      outline: none;
+      font-size: 14px;
+      direction: ltr;
+      text-align: left;
+    }
+
+    .form-group input:focus {
+      border-color: var(--gold);
+    }
+
+    .login-button {
+      width: 100%;
+      border: 1px solid #c6a664;
+      background: var(--gold);
+      color: #080b0f;
+      font-weight: bold;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 14px;
+      transition: 0.2s ease;
+    }
+
+    .login-button:hover {
+      background: var(--gold-light);
+    }
+
+    .login-button:disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    #loginMessage {
+      margin-top: 14px;
+      text-align: center;
+      font-size: 12px;
+      min-height: 22px;
+    }
+
+    .login-error {
+      color: #ec8885;
+    }
+
+    .login-success {
+      color: #75d89e;
+    }
+
+    .login-security {
+      text-align: center;
+      color: #5f6871;
+      font-size: 10px;
+      margin-top: 14px;
     }
 
     /* =========================
@@ -67,6 +217,7 @@
       border-bottom: 1px solid #383838;
       background: rgba(13, 17, 23, 0.96);
       text-align: center;
+      position: relative;
     }
 
     .eyebrow {
@@ -87,6 +238,67 @@
       font-size: 14px;
       letter-spacing: 2px;
       direction: ltr;
+    }
+
+    .account-box {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 12px 20px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+
+      border-bottom: 1px solid var(--border);
+      background: #090d12;
+    }
+
+    .account-info {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      min-width: 0;
+    }
+
+    .account-avatar {
+      width: 37px;
+      height: 37px;
+      border-radius: 50%;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    .account-name {
+      font-weight: bold;
+      font-size: 13px;
+      direction: ltr;
+      text-align: right;
+    }
+
+    .account-role {
+      color: var(--gold);
+      font-size: 10px;
+    }
+
+    .logout-button {
+      background: transparent;
+      color: #cf7773;
+      border: 1px solid rgba(217, 83, 79, 0.35);
+      border-radius: 7px;
+      padding: 7px 12px;
+      font-size: 11px;
+    }
+
+    .logout-button:hover {
+      background: rgba(217, 83, 79, 0.1);
     }
 
     /* =========================
@@ -124,7 +336,6 @@
       padding: 7px 12px;
       border: 1px solid transparent;
       border-radius: 7px;
-
       transition: 0.2s ease;
     }
 
@@ -171,6 +382,7 @@
       color: var(--muted);
       font-size: 11px;
       font-weight: normal;
+      direction: ltr;
     }
 
     .panel {
@@ -181,7 +393,7 @@
     }
 
     /* =========================
-       SYSTEM STATUS
+       STATUS
     ========================== */
 
     .status {
@@ -209,7 +421,6 @@
       background: var(--green);
       border-radius: 50%;
       flex-shrink: 0;
-
       box-shadow: 0 0 12px rgba(56, 193, 114, 0.45);
     }
 
@@ -220,6 +431,7 @@
     .last-update {
       color: var(--muted);
       font-size: 12px;
+      direction: ltr;
     }
 
     /* =========================
@@ -286,10 +498,8 @@
       position: absolute;
       top: 0;
       right: 0;
-
       width: 4px;
       height: 100%;
-
       background: var(--gold);
     }
 
@@ -334,13 +544,6 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-
-      transition: 0.2s ease;
-    }
-
-    .objective:hover {
-      border-color: #3b454f;
-      background: #11171e;
     }
 
     .objective-text {
@@ -349,10 +552,8 @@
 
     .objective-status {
       flex-shrink: 0;
-
       font-size: 11px;
       border-radius: 20px;
-
       padding: 3px 9px;
     }
 
@@ -382,15 +583,7 @@
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 10px;
-
       padding: 18px;
-
-      transition: 0.2s ease;
-    }
-
-    .member-card:hover {
-      transform: translateY(-2px);
-      border-color: var(--gold);
     }
 
     .member-top {
@@ -440,26 +633,14 @@
       font-weight: normal;
 
       text-align: right;
-
       padding: 13px 15px;
-
       border-bottom: 1px solid var(--border);
     }
 
     td {
       padding: 14px 15px;
-
       font-size: 13px;
-
       border-bottom: 1px solid #1d242b;
-    }
-
-    tbody tr {
-      transition: 0.2s ease;
-    }
-
-    tbody tr:hover {
-      background: #11171e;
     }
 
     tbody tr:last-child td {
@@ -468,10 +649,8 @@
 
     .badge {
       display: inline-block;
-
       border-radius: 20px;
       padding: 3px 9px;
-
       font-size: 10px;
       white-space: nowrap;
     }
@@ -494,12 +673,6 @@
       background: rgba(56, 193, 114, 0.12);
     }
 
-    .badge-yellow {
-      color: #ebc36f;
-      border: 1px solid rgba(224, 173, 79, 0.3);
-      background: rgba(224, 173, 79, 0.12);
-    }
-
     /* =========================
        CAPACITY
     ========================== */
@@ -514,7 +687,6 @@
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 10px;
-
       padding: 18px;
     }
 
@@ -528,15 +700,9 @@
       margin-bottom: 14px;
     }
 
-    .capacity-row:last-child {
-      margin-bottom: 0;
-    }
-
     .capacity-info {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-
       font-size: 12px;
       margin-bottom: 6px;
     }
@@ -549,24 +715,18 @@
       height: 7px;
       background: #080c10;
       border: 1px solid #202830;
-
       border-radius: 10px;
       overflow: hidden;
     }
 
     .bar-fill {
       height: 100%;
-      background: linear-gradient(
-        90deg,
-        #856c3c,
-        var(--gold-light)
-      );
-
+      background: linear-gradient(90deg, #856c3c, var(--gold-light));
       border-radius: 10px;
     }
 
     /* =========================
-       NOTICE
+       NOTICES
     ========================== */
 
     .notice-list {
@@ -583,10 +743,6 @@
       font-size: 13px;
     }
 
-    .notice-list li:last-child {
-      margin-bottom: 0;
-    }
-
     /* =========================
        FOOTER
     ========================== */
@@ -594,9 +750,7 @@
     footer {
       border-top: 1px solid var(--border);
       background: #090d11;
-
       text-align: center;
-
       padding: 25px 20px;
     }
 
@@ -611,6 +765,21 @@
       color: #656d75;
       font-size: 11px;
       margin-top: 6px;
+    }
+
+    /* =========================
+       LOADING SCREEN
+    ========================== */
+
+    #loadingScreen {
+      min-height: 100vh;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color: var(--gold);
+      font-size: 14px;
     }
 
     /* =========================
@@ -645,10 +814,6 @@
         letter-spacing: 2px;
       }
 
-      .subtitle {
-        font-size: 12px;
-      }
-
       main {
         padding: 25px 14px 50px;
       }
@@ -656,7 +821,6 @@
       .status {
         flex-direction: column;
         align-items: flex-start;
-        gap: 8px;
       }
 
       .command-grid {
@@ -675,1178 +839,1415 @@
         grid-template-columns: 1fr;
       }
 
-      .section-title {
-        font-size: 15px;
+      .account-box {
+        padding: 10px 14px;
       }
     }
   </style>
 </head>
 
-
 <body>
 
-  <!-- =========================
-       HEADER
-  ========================== -->
+  <!-- =====================================
+       INITIAL LOADING
+  ====================================== -->
 
-  <header>
+  <div id="loadingScreen">
+    در حال برقراری ارتباط با ستاد...
+  </div>
 
-    <div class="eyebrow">
-      NIGP's MILITARISM HEADQUARTERS OFFICE
+
+  <!-- =====================================
+       LOGIN SCREEN
+  ====================================== -->
+
+  <section id="loginScreen" class="hidden">
+
+    <div class="login-shell">
+
+      <div class="login-header">
+
+        <div class="login-eyebrow">
+          NIGP's MILITARISM HEADQUARTERS OFFICE
+        </div>
+
+        <h1>
+          🏛 دبیرخانه میلیتاریسم
+        </h1>
+
+        <p>
+          SECURE ACCESS
+        </p>
+
+      </div>
+
+
+      <div class="login-card">
+
+        <div class="login-title">
+          ورود به سامانه
+        </div>
+
+
+        <form id="loginForm">
+
+          <div class="form-group">
+
+            <label for="email">
+              ایمیل
+            </label>
+
+            <input
+              id="email"
+              type="email"
+              autocomplete="email"
+              placeholder="name@example.com"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="password">
+              رمز عبور
+            </label>
+
+            <input
+              id="password"
+              type="password"
+              autocomplete="current-password"
+              placeholder="••••••••"
+              required
+            >
+
+          </div>
+
+
+          <button
+            id="loginButton"
+            class="login-button"
+            type="submit"
+          >
+            ورود به ستاد
+          </button>
+
+        </form>
+
+
+        <div
+          id="loginMessage"
+          aria-live="polite"
+        ></div>
+
+
+        <div class="login-security">
+          AUTHENTICATION VIA SUPABASE
+        </div>
+
+      </div>
+
     </div>
 
-    <h1>
-      🏛 دبیرخانه میلیتاریسم
-    </h1>
+  </section>
 
-    <div class="subtitle">
-      STATUS BOARD
+
+  <!-- =====================================
+       HEADQUARTERS
+  ====================================== -->
+
+  <div id="headquarters" class="hidden">
+
+    <header>
+
+      <div class="eyebrow">
+        NIGP's MILITARISM HEADQUARTERS OFFICE
+      </div>
+
+      <h1>
+        🏛 دبیرخانه میلیتاریسم
+      </h1>
+
+      <div class="subtitle">
+        STATUS BOARD
+      </div>
+
+    </header>
+
+
+    <!-- ACCOUNT -->
+
+    <div class="account-box">
+
+      <div class="account-info">
+
+        <div
+          id="accountAvatar"
+          class="account-avatar"
+        >
+          S
+        </div>
+
+
+        <div>
+
+          <div
+            id="accountName"
+            class="account-name"
+          >
+            SPOOKY
+          </div>
+
+          <div
+            id="accountRole"
+            class="account-role"
+          >
+            دبیر
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <button
+        id="logoutButton"
+        class="logout-button"
+        type="button"
+      >
+        خروج از سامانه
+      </button>
+
     </div>
 
-  </header>
+
+    <!-- NAVIGATION -->
+
+    <div class="nav-wrapper">
+
+      <nav class="nav">
+
+        <a href="#command">
+          فرماندهی
+        </a>
+
+        <a href="#objectives">
+          اهداف جاری
+        </a>
+
+        <a href="#members">
+          اعضا
+        </a>
+
+        <a href="#projects">
+          پروژه‌ها
+        </a>
+
+        <a href="#capacity">
+          ظرفیت
+        </a>
+
+        <a href="#operational">
+          استعداد عملیاتی
+        </a>
+
+        <a href="#notices">
+          تذکرات
+        </a>
+
+      </nav>
+
+    </div>
 
 
-  <!-- =========================
-       NAV
-  ========================== -->
+    <main>
 
-  <div class="nav-wrapper">
+      <!-- STATUS -->
 
-    <nav class="nav">
+      <div class="status">
 
-      <a href="#command">فرماندهی</a>
+        <div class="status-left">
 
-      <a href="#objectives">اهداف جاری</a>
+          <span class="dot"></span>
 
-      <a href="#members">اعضا</a>
+          <div>
 
-      <a href="#projects">پروژه‌ها</a>
+            <strong>
+              وضعیت سامانه:
+            </strong>
 
-      <a href="#capacity">ظرفیت</a>
+            ستاد آنلاین و فعال است
 
-      <a href="#operational">استعداد عملیاتی</a>
+          </div>
 
-      <a href="#notices">تذکرات</a>
+        </div>
 
-    </nav>
+        <div class="last-update">
+          STATUS: OPERATIONAL
+        </div>
+
+      </div>
+
+
+      <!-- SUMMARY -->
+
+      <div class="summary-grid">
+
+        <div class="summary-card">
+
+          <div class="summary-number">
+            4
+          </div>
+
+          <div class="summary-label">
+            اعضای دبیرخانه
+          </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+          <div class="summary-number">
+            5
+          </div>
+
+          <div class="summary-label">
+            پروژه‌های فعال
+          </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+          <div class="summary-number">
+            2
+          </div>
+
+          <div class="summary-label">
+            پروژه با تأخیر
+          </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+          <div class="summary-number">
+            16H
+          </div>
+
+          <div class="summary-label">
+            ظرفیت هفتگی
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- COMMAND -->
+
+      <section
+        class="section"
+        id="command"
+      >
+
+        <div class="section-title">
+
+          <span>
+            فرماندهی دبیرخانه
+          </span>
+
+          <small>
+            COMMAND
+          </small>
+
+        </div>
+
+
+        <div class="command-grid">
+
+          <div class="command-card">
+
+            <div class="command-label">
+              دبیر
+            </div>
+
+            <div class="command-name">
+              SPOOKY
+            </div>
+
+            <div class="command-role">
+              دبیر دبیرخانه میلیتاریسم
+            </div>
+
+          </div>
+
+
+          <div class="command-card">
+
+            <div class="command-label">
+              معاونت
+            </div>
+
+            <div class="command-name">
+              —
+            </div>
+
+            <div class="command-role">
+              معاون دبیرخانه
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- OBJECTIVES -->
+
+      <section
+        class="section"
+        id="objectives"
+      >
+
+        <div class="section-title">
+
+          <span>
+            اهداف جاری دبیرخانه
+          </span>
+
+          <small>
+            CURRENT OBJECTIVES
+          </small>
+
+        </div>
+
+
+        <div class="panel">
+
+          <div class="objectives">
+
+            <div class="objective">
+              <div class="objective-text">
+                پلتفرم‌های ISR
+              </div>
+
+              <span class="objective-status completed">
+                ✓ تکمیل
+              </span>
+            </div>
+
+
+            <div class="objective">
+              <div class="objective-text">
+                انواع روش‌های SIGINT و اهمیت آنها
+              </div>
+
+              <span class="objective-status completed">
+                ✓ تکمیل
+              </span>
+            </div>
+
+
+            <div class="objective">
+              <div class="objective-text">
+                تحقیق و بررسی سامانه LINK-16
+              </div>
+
+              <span class="objective-status completed">
+                ✓ تکمیل
+              </span>
+            </div>
+
+
+            <div class="objective">
+              <div class="objective-text">
+                عوامل مؤثر در کاهش لگد و افزایش نفوذ و برد سلاح‌های تک‌تیرانداز
+              </div>
+
+              <span class="objective-status active">
+                در حال بررسی
+              </span>
+            </div>
+
+
+            <div class="objective">
+              <div class="objective-text">
+                ماهواره‌های جاسوسی و اطلاعاتی در دستان دشمن آمریکایی صهیونیستی
+              </div>
+
+              <span class="objective-status completed">
+                ✓ تکمیل
+              </span>
+            </div>
+
+
+            <div class="objective">
+              <div class="objective-text">
+                Frequency Hopping
+              </div>
+
+              <span class="objective-status completed">
+                ✓ تکمیل
+              </span>
+            </div>
+
+
+            <div class="objective">
+              <div class="objective-text">
+                بانک اهداف
+              </div>
+
+              <span class="objective-status active">
+                فعال
+              </span>
+            </div>
+
+
+            <div class="objective">
+              <div class="objective-text">
+                تأثیر و نقش Intel Sharing توسط روس‌ها و چینی‌ها
+              </div>
+
+              <span class="objective-status active">
+                فعال
+              </span>
+            </div>
+
+
+            <div class="objective">
+              <div class="objective-text">
+                GPS Spoofing و Jamming و اثر آن بر بعد نظامی و غیرنظامی منطقه خلیج فارس
+              </div>
+
+              <span class="objective-status completed">
+                ✓ تکمیل
+              </span>
+            </div>
+
+
+            <div class="objective">
+              <div class="objective-text">
+                نفوذ اطلاعاتی از بعد HUMINT
+              </div>
+
+              <span class="objective-status active">
+                فعال
+              </span>
+            </div>
+
+
+            <div class="objective">
+              <div class="objective-text">
+                هدف قرارگرفتن AN/FPS-132
+              </div>
+
+              <span class="objective-status active">
+                در حال بررسی
+              </span>
+            </div>
+
+
+            <div class="objective">
+              <div class="objective-text">
+                هک زیرساخت‌های غیرنظامی
+              </div>
+
+              <span class="objective-status active">
+                فعال
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- MEMBERS -->
+
+      <section
+        class="section"
+        id="members"
+      >
+
+        <div class="section-title">
+
+          <span>
+            اعضای دبیرخانه
+          </span>
+
+          <small>
+            PERSONNEL
+          </small>
+
+        </div>
+
+
+        <div class="members-grid">
+
+          <div class="member-card">
+
+            <div class="member-top">
+
+              <div class="member-name">
+                SPOOKY
+              </div>
+
+              <div class="online-badge">
+                ● ACTIVE
+              </div>
+
+            </div>
+
+            <div class="member-role">
+              دبیر / تحلیل
+            </div>
+
+          </div>
+
+
+          <div class="member-card">
+
+            <div class="member-top">
+
+              <div class="member-name">
+                KOUROSH
+              </div>
+
+              <div class="online-badge">
+                ● ACTIVE
+              </div>
+
+            </div>
+
+            <div class="member-role">
+              عضو / تحلیل
+            </div>
+
+          </div>
+
+
+          <div class="member-card">
+
+            <div class="member-top">
+
+              <div class="member-name">
+                JULIDEHMU
+              </div>
+
+              <div class="online-badge">
+                ● ACTIVE
+              </div>
+
+            </div>
+
+            <div class="member-role">
+              عضو / تحلیل
+            </div>
+
+          </div>
+
+
+          <div class="member-card">
+
+            <div class="member-top">
+
+              <div class="member-name">
+                WERNER
+              </div>
+
+              <div class="online-badge">
+                ● ACTIVE
+              </div>
+
+            </div>
+
+            <div class="member-role">
+              عضو / تحلیل
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- PROJECTS -->
+
+      <section
+        class="section"
+        id="projects"
+      >
+
+        <div class="section-title">
+
+          <span>
+            پروژه‌های در حال اجرا
+          </span>
+
+          <small>
+            ACTIVE PROJECTS
+          </small>
+
+        </div>
+
+
+        <div class="panel">
+
+          <div class="table-wrapper">
+
+            <table>
+
+              <thead>
+                <tr>
+                  <th>پروژه</th>
+                  <th>مسئول</th>
+                  <th>مهلت</th>
+                  <th>وضعیت</th>
+                </tr>
+              </thead>
+
+
+              <tbody>
+
+                <tr>
+                  <td>زیرساخت</td>
+                  <td>احمد</td>
+                  <td>جمعه</td>
+                  <td>
+                    <span class="badge badge-blue">
+                      ابلاغ شده
+                    </span>
+                  </td>
+                </tr>
+
+
+                <tr>
+                  <td>نفوذ</td>
+                  <td>ژولیده مو</td>
+                  <td>جمعه</td>
+                  <td>
+                    <span class="badge badge-blue">
+                      ابلاغ شده
+                    </span>
+                  </td>
+                </tr>
+
+
+                <tr>
+                  <td>شیر اطلاعات</td>
+                  <td>ورنر</td>
+                  <td>جمعه</td>
+                  <td>
+                    <span class="badge badge-blue">
+                      ابلاغ شده
+                    </span>
+                  </td>
+                </tr>
+
+
+                <tr>
+                  <td>تک‌تیرانداز</td>
+                  <td>اسپوکی</td>
+                  <td>چهارشنبه</td>
+                  <td>
+                    <span class="badge badge-red">
+                      تأخیر
+                    </span>
+                  </td>
+                </tr>
+
+
+                <tr>
+                  <td>بانک اهداف</td>
+                  <td>ورنر</td>
+                  <td>یکشنبه</td>
+                  <td>
+                    <span class="badge badge-red">
+                      تأخیر
+                    </span>
+                  </td>
+                </tr>
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- MEMBER CAPACITY -->
+
+      <section
+        class="section"
+        id="capacity"
+      >
+
+        <div class="section-title">
+
+          <span>
+            ظرفیت اعضا
+          </span>
+
+          <small>
+            PERSONNEL CAPACITY
+          </small>
+
+        </div>
+
+
+        <div class="panel">
+
+          <div class="table-wrapper">
+
+            <table>
+
+              <thead>
+                <tr>
+                  <th>عضو</th>
+                  <th>حوزه فعالیت</th>
+                  <th>روزهای فعالیت</th>
+                  <th>ظرفیت هر روز</th>
+                </tr>
+              </thead>
+
+
+              <tbody>
+
+                <tr>
+                  <td>اسپوکی</td>
+                  <td>تحلیل</td>
+                  <td>شنبه تا سه‌شنبه</td>
+                  <td>۱ ساعت</td>
+                </tr>
+
+
+                <tr>
+                  <td>کوروش</td>
+                  <td>تحلیل</td>
+                  <td>شنبه تا چهارشنبه</td>
+                  <td>۲ ساعت</td>
+                </tr>
+
+
+                <tr>
+                  <td>ژولیده مو</td>
+                  <td>تحلیل</td>
+                  <td>پنجشنبه</td>
+                  <td>۲ ساعت</td>
+                </tr>
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- OPERATIONAL CAPACITY -->
+
+      <section
+        class="section"
+        id="operational"
+      >
+
+        <div class="section-title">
+
+          <span>
+            استعداد عملیاتی دبیرخانه
+          </span>
+
+          <small>
+            OPERATIONAL CAPACITY
+          </small>
+
+        </div>
+
+
+        <div class="capacity-grid">
+
+          <div class="capacity-box">
+
+            <h3>
+              ظرفیت روزانه
+            </h3>
+
+
+            <div class="capacity-row">
+              <div class="capacity-info">
+                <span>شنبه</span>
+                <span>۳ ساعت</span>
+              </div>
+
+              <div class="bar">
+                <div class="bar-fill" style="width:100%;"></div>
+              </div>
+            </div>
+
+
+            <div class="capacity-row">
+              <div class="capacity-info">
+                <span>یکشنبه</span>
+                <span>۳ ساعت</span>
+              </div>
+
+              <div class="bar">
+                <div class="bar-fill" style="width:100%;"></div>
+              </div>
+            </div>
+
+
+            <div class="capacity-row">
+              <div class="capacity-info">
+                <span>دوشنبه</span>
+                <span>۳ ساعت</span>
+              </div>
+
+              <div class="bar">
+                <div class="bar-fill" style="width:100%;"></div>
+              </div>
+            </div>
+
+
+            <div class="capacity-row">
+              <div class="capacity-info">
+                <span>سه‌شنبه</span>
+                <span>۳ ساعت</span>
+              </div>
+
+              <div class="bar">
+                <div class="bar-fill" style="width:100%;"></div>
+              </div>
+            </div>
+
+
+            <div class="capacity-row">
+              <div class="capacity-info">
+                <span>چهارشنبه</span>
+                <span>۲ ساعت</span>
+              </div>
+
+              <div class="bar">
+                <div class="bar-fill" style="width:67%;"></div>
+              </div>
+            </div>
+
+
+            <div class="capacity-row">
+              <div class="capacity-info">
+                <span>پنجشنبه</span>
+                <span>۲ ساعت</span>
+              </div>
+
+              <div class="bar">
+                <div class="bar-fill" style="width:67%;"></div>
+              </div>
+            </div>
+
+
+            <div class="capacity-row">
+              <div class="capacity-info">
+                <span>جمعه</span>
+                <span>۰ ساعت</span>
+              </div>
+
+              <div class="bar">
+                <div class="bar-fill" style="width:0%;"></div>
+              </div>
+            </div>
+
+          </div>
+
+
+          <div class="capacity-box">
+
+            <h3>
+              وضعیت کلی هفتگی
+            </h3>
+
+            <div
+              style="
+                min-height:270px;
+                display:flex;
+                flex-direction:column;
+                justify-content:center;
+                align-items:center;
+                text-align:center;
+              "
+            >
+
+              <div
+                style="
+                  color:#8f969e;
+                  font-size:12px;
+                  margin-bottom:10px;
+                "
+              >
+                مجموع استعداد عملیاتی
+              </div>
+
+
+              <div
+                style="
+                  font-size:50px;
+                  font-weight:bold;
+                  color:#d0b170;
+                  direction:ltr;
+                  line-height:1;
+                "
+              >
+                16H
+              </div>
+
+
+              <div
+                style="
+                  color:#8f969e;
+                  font-size:12px;
+                  margin-top:10px;
+                "
+              >
+                ظرفیت ثبت‌شده در هفته
+              </div>
+
+
+              <div
+                style="
+                  width:100%;
+                  border-top:1px solid #242b33;
+                  margin-top:24px;
+                  padding-top:18px;
+                "
+              >
+
+                <span class="badge badge-green">
+                  ● OPERATIONAL
+                </span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- NOTICES -->
+
+      <section
+        class="section"
+        id="notices"
+      >
+
+        <div class="section-title">
+
+          <span>
+            تذکرات
+          </span>
+
+          <small>
+            DIRECTIVES
+          </small>
+
+        </div>
+
+
+        <div class="panel notice-list">
+
+          <ol>
+
+            <li>
+              ظرفیت هر عضو بر اساس تعهد واقعی ثبت می‌شود.
+            </li>
+
+            <li>
+              هرگونه تغییر در برنامه باید به دبیر یا معاونت اطلاع داده شود.
+            </li>
+
+            <li>
+              تقسیم مأموریت‌ها بر اساس استعداد عملیاتی ثبت‌شده انجام خواهد شد.
+            </li>
+
+            <li>
+              این برد به‌صورت مستمر به‌روزرسانی و مبنای برنامه‌ریزی دبیرخانه خواهد بود.
+            </li>
+
+          </ol>
+
+        </div>
+
+      </section>
+
+    </main>
+
+
+    <footer>
+
+      <div class="footer-title">
+        NIGP • MILITARISM HEADQUARTERS OFFICE
+      </div>
+
+      <div class="footer-sub">
+        INTERNAL STATUS BOARD
+      </div>
+
+    </footer>
 
   </div>
 
 
-  <main>
+  <!-- =====================================
+       SUPABASE AUTH
+  ====================================== -->
 
-    <!-- =========================
-         SYSTEM STATUS
-    ========================== -->
+  <script type="module">
 
-    <div class="status">
+    import {
+      createClient
+    } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
-      <div class="status-left">
 
-        <span class="dot"></span>
+    const SUPABASE_URL =
+      "https://xhwyhwlgxbzcmzutcsqb.supabase.co";
 
-        <div>
 
-          <strong>
-            وضعیت سامانه:
-          </strong>
+    const SUPABASE_PUBLISHABLE_KEY =
+      "sb_publishable_jpC_quL4SdXrAaqtiSshWQ_pefkeMwh";
 
-          ستاد آنلاین و فعال است
 
-        </div>
+    const supabase = createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY
+    );
 
-      </div>
 
-      <div class="last-update">
-        STATUS: OPERATIONAL
-      </div>
+    const loadingScreen =
+      document.getElementById("loadingScreen");
 
-    </div>
+    const loginScreen =
+      document.getElementById("loginScreen");
 
+    const headquarters =
+      document.getElementById("headquarters");
 
-    <!-- =========================
-         SUMMARY
-    ========================== -->
+    const loginForm =
+      document.getElementById("loginForm");
 
-    <div class="summary-grid">
+    const loginButton =
+      document.getElementById("loginButton");
 
-      <div class="summary-card">
+    const loginMessage =
+      document.getElementById("loginMessage");
 
-        <div class="summary-number">
-          4
-        </div>
+    const logoutButton =
+      document.getElementById("logoutButton");
 
-        <div class="summary-label">
-          اعضای دبیرخانه
-        </div>
+    const accountName =
+      document.getElementById("accountName");
 
-      </div>
+    const accountRole =
+      document.getElementById("accountRole");
 
+    const accountAvatar =
+      document.getElementById("accountAvatar");
 
-      <div class="summary-card">
 
-        <div class="summary-number">
-          5
-        </div>
+    function showLogin() {
 
-        <div class="summary-label">
-          پروژه‌های فعال
-        </div>
+      loadingScreen.classList.add("hidden");
 
-      </div>
+      headquarters.classList.add("hidden");
 
+      loginScreen.classList.remove("hidden");
 
-      <div class="summary-card">
+    }
 
-        <div class="summary-number">
-          2
-        </div>
 
-        <div class="summary-label">
-          پروژه با تأخیر
-        </div>
+    function showHeadquarters() {
 
-      </div>
+      loadingScreen.classList.add("hidden");
 
+      loginScreen.classList.add("hidden");
 
-      <div class="summary-card">
+      headquarters.classList.remove("hidden");
 
-        <div class="summary-number">
-          16H
-        </div>
+    }
 
-        <div class="summary-label">
-          ظرفیت هفتگی
-        </div>
 
-      </div>
+    function translateRole(role) {
 
-    </div>
+      if (role === "secretary") {
+        return "دبیر";
+      }
 
+      if (role === "deputy") {
+        return "معاون";
+      }
 
-    <!-- =========================
-         COMMAND
-    ========================== -->
+      return "عضو";
+    }
 
-    <section
-      class="section"
-      id="command"
-    >
 
-      <div class="section-title">
+    async function loadProfile(user) {
 
-        <span>
-          فرماندهی دبیرخانه
-        </span>
+      const {
+        data,
+        error
+      } = await supabase
+        .from("profiles")
+        .select(`
+          username,
+          display_name,
+          role,
+          activity_area,
+          is_active
+        `)
+        .eq("id", user.id)
+        .single();
 
-        <small>
-          COMMAND
-        </small>
 
-      </div>
+      if (error) {
 
+        console.error(
+          "Profile load error:",
+          error
+        );
 
-      <div class="command-grid">
+        accountName.textContent =
+          user.email;
 
-        <div class="command-card">
+        accountRole.textContent =
+          "کاربر";
 
-          <div class="command-label">
-            دبیر
-          </div>
+        accountAvatar.textContent =
+          "?";
 
-          <div class="command-name">
-            SPOOKY
-          </div>
+        showHeadquarters();
 
-          <div class="command-role">
-            دبیر دبیرخانه میلیتاریسم
-          </div>
+        return;
+      }
 
-        </div>
 
+      const name =
+        data.display_name ||
+        data.username ||
+        user.email;
 
-        <div class="command-card">
 
-          <div class="command-label">
-            معاونت
-          </div>
+      accountName.textContent =
+        name;
 
-          <div class="command-name">
-            —
-          </div>
 
-          <div class="command-role">
-            معاون دبیرخانه
-          </div>
+      accountRole.textContent =
+        translateRole(data.role);
 
-        </div>
 
-      </div>
+      accountAvatar.textContent =
+        name
+          .trim()
+          .charAt(0)
+          .toUpperCase();
 
-    </section>
 
+      showHeadquarters();
 
-    <!-- =========================
-         OBJECTIVES
-    ========================== -->
+    }
 
-    <section
-      class="section"
-      id="objectives"
-    >
 
-      <div class="section-title">
+    async function checkSession() {
 
-        <span>
-          اهداف جاری دبیرخانه
-        </span>
+      const {
+        data,
+        error
+      } =
+        await supabase.auth.getSession();
 
-        <small>
-          CURRENT OBJECTIVES
-        </small>
 
-      </div>
+      if (error) {
 
+        console.error(error);
 
-      <div class="panel">
+        showLogin();
 
-        <div class="objectives">
+        return;
+      }
 
 
-          <div class="objective">
+      const session =
+        data.session;
 
-            <div class="objective-text">
-              پلتفرم‌های ISR
-            </div>
 
-            <span class="objective-status completed">
-              ✓ تکمیل
-            </span>
+      if (!session) {
 
-          </div>
+        showLogin();
 
+        return;
+      }
 
-          <div class="objective">
 
-            <div class="objective-text">
-              انواع روش‌های SIGINT و اهمیت آنها
-            </div>
+      await loadProfile(
+        session.user
+      );
 
-            <span class="objective-status completed">
-              ✓ تکمیل
-            </span>
+    }
 
-          </div>
 
+    loginForm.addEventListener(
+      "submit",
+      async function(event) {
 
-          <div class="objective">
+        event.preventDefault();
 
-            <div class="objective-text">
-              تحقیق و بررسی سامانه LINK-16
-            </div>
 
-            <span class="objective-status completed">
-              ✓ تکمیل
-            </span>
+        const email =
+          document
+            .getElementById("email")
+            .value
+            .trim();
 
-          </div>
 
+        const password =
+          document
+            .getElementById("password")
+            .value;
 
-          <div class="objective">
 
-            <div class="objective-text">
-              عوامل مؤثر در کاهش لگد و افزایش برد و نفوذ سلاح‌های تک‌تیرانداز
-            </div>
+        loginMessage.textContent =
+          "در حال ورود...";
 
-            <span class="objective-status active">
-              در حال بررسی
-            </span>
+        loginMessage.className =
+          "";
 
-          </div>
+        loginButton.disabled =
+          true;
 
 
-          <div class="objective">
+        const {
+          data,
+          error
+        } =
+          await supabase.auth.signInWithPassword({
 
-            <div class="objective-text">
-              ماهواره‌های جاسوسی و اطلاعاتی آمریکا و اسرائیل
-            </div>
+            email: email,
 
-            <span class="objective-status completed">
-              ✓ تکمیل
-            </span>
+            password: password
 
-          </div>
+          });
 
 
-          <div class="objective">
+        loginButton.disabled =
+          false;
 
-            <div class="objective-text">
-              Frequency Hopping
-            </div>
 
-            <span class="objective-status completed">
-              ✓ تکمیل
-            </span>
+        if (error) {
 
-          </div>
+          loginMessage.textContent =
+            "ایمیل یا رمز عبور صحیح نیست.";
 
+          loginMessage.className =
+            "login-error";
 
-          <div class="objective">
+          console.error(
+            "Login error:",
+            error
+          );
 
-            <div class="objective-text">
-              بانک اهداف
-            </div>
+          return;
+        }
 
-            <span class="objective-status active">
-              فعال
-            </span>
 
-          </div>
+        loginMessage.textContent =
+          "ورود موفقیت‌آمیز بود.";
 
+        loginMessage.className =
+          "login-success";
 
-          <div class="objective">
 
-            <div class="objective-text">
-              تأثیر و نقش Intel Sharing توسط روس‌ها و چینی‌ها
-            </div>
+        await loadProfile(
+          data.user
+        );
 
-            <span class="objective-status active">
-              فعال
-            </span>
+      }
+    );
 
-          </div>
 
+    logoutButton.addEventListener(
+      "click",
+      async function() {
 
-          <div class="objective">
+        logoutButton.disabled =
+          true;
 
-            <div class="objective-text">
-              GPS Spoofing و Jamming و اثر آن بر منطقه خلیج فارس
-            </div>
 
-            <span class="objective-status completed">
-              ✓ تکمیل
-            </span>
+        await supabase.auth.signOut();
 
-          </div>
 
+        logoutButton.disabled =
+          false;
 
-          <div class="objective">
 
-            <div class="objective-text">
-              نفوذ اطلاعاتی از بعد HUMINT
-            </div>
+        loginForm.reset();
 
-            <span class="objective-status active">
-              فعال
-            </span>
+        loginMessage.textContent =
+          "";
 
-          </div>
+        showLogin();
 
+      }
+    );
 
-          <div class="objective">
 
-            <div class="objective-text">
-              بررسی هدف قرارگرفتن AN/FPS-132
-            </div>
+    supabase.auth.onAuthStateChange(
+      async function(event, session) {
 
-            <span class="objective-status active">
-              در حال بررسی
-            </span>
+        if (
+          event === "SIGNED_OUT"
+        ) {
 
-          </div>
+          showLogin();
 
+          return;
 
-          <div class="objective">
+        }
 
-            <div class="objective-text">
-              امنیت و تهدیدات سایبری زیرساخت‌های غیرنظامی
-            </div>
 
-            <span class="objective-status active">
-              فعال
-            </span>
+        if (
+          session &&
+          event === "SIGNED_IN"
+        ) {
 
-          </div>
+          await loadProfile(
+            session.user
+          );
 
+        }
 
-        </div>
+      }
+    );
 
-      </div>
 
-    </section>
+    checkSession();
 
-
-    <!-- =========================
-         MEMBERS
-    ========================== -->
-
-    <section
-      class="section"
-      id="members"
-    >
-
-      <div class="section-title">
-
-        <span>
-          اعضای دبیرخانه
-        </span>
-
-        <small>
-          PERSONNEL
-        </small>
-
-      </div>
-
-
-      <div class="members-grid">
-
-
-        <div class="member-card">
-
-          <div class="member-top">
-
-            <div class="member-name">
-              SPOOKY
-            </div>
-
-            <div class="online-badge">
-              ● ACTIVE
-            </div>
-
-          </div>
-
-          <div class="member-role">
-            دبیر / تحلیل
-          </div>
-
-        </div>
-
-
-        <div class="member-card">
-
-          <div class="member-top">
-
-            <div class="member-name">
-              KOUROSH
-            </div>
-
-            <div class="online-badge">
-              ● ACTIVE
-            </div>
-
-          </div>
-
-          <div class="member-role">
-            عضو / تحلیل
-          </div>
-
-        </div>
-
-
-        <div class="member-card">
-
-          <div class="member-top">
-
-            <div class="member-name">
-              JULIDEHMU
-            </div>
-
-            <div class="online-badge">
-              ● ACTIVE
-            </div>
-
-          </div>
-
-          <div class="member-role">
-            عضو / تحلیل
-          </div>
-
-        </div>
-
-
-        <div class="member-card">
-
-          <div class="member-top">
-
-            <div class="member-name">
-              WERNER
-            </div>
-
-            <div class="online-badge">
-              ● ACTIVE
-            </div>
-
-          </div>
-
-          <div class="member-role">
-            عضو / تحلیل
-          </div>
-
-        </div>
-
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         PROJECTS
-    ========================== -->
-
-    <section
-      class="section"
-      id="projects"
-    >
-
-      <div class="section-title">
-
-        <span>
-          پروژه‌های در حال اجرا
-        </span>
-
-        <small>
-          ACTIVE PROJECTS
-        </small>
-
-      </div>
-
-
-      <div class="panel">
-
-        <div class="table-wrapper">
-
-          <table>
-
-            <thead>
-
-              <tr>
-
-                <th>
-                  پروژه
-                </th>
-
-                <th>
-                  مسئول
-                </th>
-
-                <th>
-                  مهلت
-                </th>
-
-                <th>
-                  وضعیت
-                </th>
-
-              </tr>
-
-            </thead>
-
-
-            <tbody>
-
-
-              <tr>
-
-                <td>
-                  زیرساخت
-                </td>
-
-                <td>
-                  احمد
-                </td>
-
-                <td>
-                  جمعه
-                </td>
-
-                <td>
-                  <span class="badge badge-blue">
-                    ابلاغ شده
-                  </span>
-                </td>
-
-              </tr>
-
-
-              <tr>
-
-                <td>
-                  نفوذ
-                </td>
-
-                <td>
-                  ژولیده مو
-                </td>
-
-                <td>
-                  جمعه
-                </td>
-
-                <td>
-                  <span class="badge badge-blue">
-                    ابلاغ شده
-                  </span>
-                </td>
-
-              </tr>
-
-
-              <tr>
-
-                <td>
-                  شیر اطلاعات
-                </td>
-
-                <td>
-                  ورنر
-                </td>
-
-                <td>
-                  جمعه
-                </td>
-
-                <td>
-                  <span class="badge badge-blue">
-                    ابلاغ شده
-                  </span>
-                </td>
-
-              </tr>
-
-
-              <tr>
-
-                <td>
-                  تک‌تیرانداز
-                </td>
-
-                <td>
-                  اسپوکی
-                </td>
-
-                <td>
-                  چهارشنبه
-                </td>
-
-                <td>
-                  <span class="badge badge-red">
-                    تأخیر
-                  </span>
-                </td>
-
-              </tr>
-
-
-              <tr>
-
-                <td>
-                  بانک اهداف
-                </td>
-
-                <td>
-                  ورنر
-                </td>
-
-                <td>
-                  یکشنبه
-                </td>
-
-                <td>
-                  <span class="badge badge-red">
-                    تأخیر
-                  </span>
-                </td>
-
-              </tr>
-
-
-            </tbody>
-
-          </table>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         MEMBER CAPACITY
-    ========================== -->
-
-    <section
-      class="section"
-      id="capacity"
-    >
-
-      <div class="section-title">
-
-        <span>
-          ظرفیت اعضا
-        </span>
-
-        <small>
-          PERSONNEL CAPACITY
-        </small>
-
-      </div>
-
-
-      <div class="panel">
-
-        <div class="table-wrapper">
-
-          <table>
-
-            <thead>
-
-              <tr>
-
-                <th>
-                  عضو
-                </th>
-
-                <th>
-                  حوزه فعالیت
-                </th>
-
-                <th>
-                  روزهای فعالیت
-                </th>
-
-                <th>
-                  ظرفیت روزانه
-                </th>
-
-              </tr>
-
-            </thead>
-
-
-            <tbody>
-
-
-              <tr>
-
-                <td>
-                  اسپوکی
-                </td>
-
-                <td>
-                  تحلیل
-                </td>
-
-                <td>
-                  شنبه تا سه‌شنبه
-                </td>
-
-                <td>
-                  ۱ ساعت
-                </td>
-
-              </tr>
-
-
-              <tr>
-
-                <td>
-                  کوروش
-                </td>
-
-                <td>
-                  تحلیل
-                </td>
-
-                <td>
-                  شنبه تا چهارشنبه
-                </td>
-
-                <td>
-                  ۲ ساعت
-                </td>
-
-              </tr>
-
-
-              <tr>
-
-                <td>
-                  ژولیده مو
-                </td>
-
-                <td>
-                  تحلیل
-                </td>
-
-                <td>
-                  پنجشنبه
-                </td>
-
-                <td>
-                  ۲ ساعت
-                </td>
-
-              </tr>
-
-
-            </tbody>
-
-          </table>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         OPERATIONAL CAPACITY
-    ========================== -->
-
-    <section
-      class="section"
-      id="operational"
-    >
-
-      <div class="section-title">
-
-        <span>
-          استعداد عملیاتی دبیرخانه
-        </span>
-
-        <small>
-          OPERATIONAL CAPACITY
-        </small>
-
-      </div>
-
-
-      <div class="capacity-grid">
-
-
-        <div class="capacity-box">
-
-          <h3>
-            ظرفیت روزانه
-          </h3>
-
-
-          <div class="capacity-row">
-
-            <div class="capacity-info">
-
-              <span>
-                شنبه
-              </span>
-
-              <span>
-                ۳ ساعت
-              </span>
-
-            </div>
-
-            <div class="bar">
-              <div
-                class="bar-fill"
-                style="width: 100%;"
-              ></div>
-            </div>
-
-          </div>
-
-
-          <div class="capacity-row">
-
-            <div class="capacity-info">
-
-              <span>
-                یکشنبه
-              </span>
-
-              <span>
-                ۳ ساعت
-              </span>
-
-            </div>
-
-            <div class="bar">
-              <div
-                class="bar-fill"
-                style="width: 100%;"
-              ></div>
-            </div>
-
-          </div>
-
-
-          <div class="capacity-row">
-
-            <div class="capacity-info">
-
-              <span>
-                دوشنبه
-              </span>
-
-              <span>
-                ۳ ساعت
-              </span>
-
-            </div>
-
-            <div class="bar">
-              <div
-                class="bar-fill"
-                style="width: 100%;"
-              ></div>
-            </div>
-
-          </div>
-
-
-          <div class="capacity-row">
-
-            <div class="capacity-info">
-
-              <span>
-                سه‌شنبه
-              </span>
-
-              <span>
-                ۳ ساعت
-              </span>
-
-            </div>
-
-            <div class="bar">
-              <div
-                class="bar-fill"
-                style="width: 100%;"
-              ></div>
-            </div>
-
-          </div>
-
-
-          <div class="capacity-row">
-
-            <div class="capacity-info">
-
-              <span>
-                چهارشنبه
-              </span>
-
-              <span>
-                ۲ ساعت
-              </span>
-
-            </div>
-
-            <div class="bar">
-              <div
-                class="bar-fill"
-                style="width: 67%;"
-              ></div>
-            </div>
-
-          </div>
-
-
-          <div class="capacity-row">
-
-            <div class="capacity-info">
-
-              <span>
-                پنجشنبه
-              </span>
-
-              <span>
-                ۲ ساعت
-              </span>
-
-            </div>
-
-            <div class="bar">
-              <div
-                class="bar-fill"
-                style="width: 67%;"
-              ></div>
-            </div>
-
-          </div>
-
-
-          <div class="capacity-row">
-
-            <div class="capacity-info">
-
-              <span>
-                جمعه
-              </span>
-
-              <span>
-                ۰ ساعت
-              </span>
-
-            </div>
-
-            <div class="bar">
-              <div
-                class="bar-fill"
-                style="width: 0%;"
-              ></div>
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div class="capacity-box">
-
-          <h3>
-            وضعیت کلی هفتگی
-          </h3>
-
-
-          <div
-            style="
-              min-height: 270px;
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-              align-items: center;
-              text-align: center;
-            "
-          >
-
-            <div
-              style="
-                color: #8f969e;
-                font-size: 12px;
-                margin-bottom: 10px;
-              "
-            >
-              مجموع استعداد عملیاتی
-            </div>
-
-            <div
-              style="
-                font-size: 50px;
-                font-weight: bold;
-                color: #d0b170;
-                direction: ltr;
-                line-height: 1;
-              "
-            >
-              16H
-            </div>
-
-            <div
-              style="
-                color: #8f969e;
-                font-size: 12px;
-                margin-top: 10px;
-              "
-            >
-              ظرفیت ثبت‌شده در هفته
-            </div>
-
-            <div
-              style="
-                width: 100%;
-                border-top: 1px solid #242b33;
-                margin-top: 24px;
-                padding-top: 18px;
-              "
-            >
-
-              <span class="badge badge-green">
-                ● OPERATIONAL
-              </span>
-
-            </div>
-
-          </div>
-
-        </div>
-
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         NOTICES
-    ========================== -->
-
-    <section
-      class="section"
-      id="notices"
-    >
-
-      <div class="section-title">
-
-        <span>
-          تذکرات
-        </span>
-
-        <small>
-          DIRECTIVES
-        </small>
-
-      </div>
-
-
-      <div class="panel notice-list">
-
-        <ol>
-
-          <li>
-            ظرفیت هر عضو بر اساس تعهد واقعی ثبت می‌شود.
-          </li>
-
-          <li>
-            هرگونه تغییر در برنامه باید به دبیر یا معاونت اطلاع داده شود.
-          </li>
-
-          <li>
-            تقسیم مأموریت‌ها بر اساس استعداد عملیاتی ثبت‌شده انجام خواهد شد.
-          </li>
-
-          <li>
-            این برد به‌صورت مستمر به‌روزرسانی و مبنای برنامه‌ریزی دبیرخانه خواهد بود.
-          </li>
-
-        </ol>
-
-      </div>
-
-    </section>
-
-
-  </main>
-
-
-  <!-- =========================
-       FOOTER
-  ========================== -->
-
-  <footer>
-
-    <div class="footer-title">
-      NIGP • MILITARISM HEADQUARTERS OFFICE
-    </div>
-
-    <div class="footer-sub">
-      INTERNAL STATUS BOARD
-    </div>
-
-  </footer>
-
+  </script>
 
 </body>
 </html>
