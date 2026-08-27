@@ -12,16 +12,12 @@
       --bg-soft: #0d1117;
       --card: #10151b;
       --card-hover: #131a22;
-
       --border: #242b33;
       --border-light: #343d47;
-
       --gold: #b9985a;
       --gold-light: #d0b170;
-
       --text: #f1f1f1;
       --muted: #8f969e;
-
       --green: #38c172;
       --yellow: #e0ad4f;
       --red: #d9534f;
@@ -54,7 +50,9 @@
     }
 
     button,
-    input {
+    input,
+    textarea,
+    select {
       font-family: inherit;
     }
 
@@ -148,7 +146,9 @@
       margin-bottom: 6px;
     }
 
-    .form-group input {
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
       width: 100%;
       background: #090d12;
       color: var(--text);
@@ -157,33 +157,80 @@
       padding: 12px 13px;
       outline: none;
       font-size: 14px;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--gold);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .ltr-input {
       direction: ltr;
       text-align: left;
     }
 
-    .form-group input:focus {
-      border-color: var(--gold);
-    }
-
-    .login-button {
-      width: 100%;
+    .login-button,
+    .primary-button {
       border: 1px solid #c6a664;
       background: var(--gold);
       color: #080b0f;
       font-weight: bold;
       border-radius: 8px;
-      padding: 12px;
-      font-size: 14px;
+      padding: 11px 15px;
+      font-size: 13px;
       transition: 0.2s ease;
     }
 
-    .login-button:hover {
+    .login-button {
+      width: 100%;
+    }
+
+    .login-button:hover,
+    .primary-button:hover {
       background: var(--gold-light);
     }
 
-    .login-button:disabled {
+    .login-button:disabled,
+    .primary-button:disabled {
       cursor: not-allowed;
       opacity: 0.6;
+    }
+
+    .secondary-button {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 12px;
+    }
+
+    .secondary-button:hover {
+      border-color: var(--gold);
+    }
+
+    .danger-button {
+      background: rgba(217, 83, 79, 0.1);
+      color: #ec8885;
+      border: 1px solid rgba(217, 83, 79, 0.35);
+      border-radius: 7px;
+      padding: 7px 10px;
+      font-size: 11px;
+    }
+
+    .edit-button {
+      background: rgba(185, 152, 90, 0.1);
+      color: var(--gold-light);
+      border: 1px solid rgba(185, 152, 90, 0.35);
+      border-radius: 7px;
+      padding: 7px 10px;
+      font-size: 11px;
     }
 
     #loginMessage {
@@ -217,7 +264,6 @@
       border-bottom: 1px solid #383838;
       background: rgba(13, 17, 23, 0.96);
       text-align: center;
-      position: relative;
     }
 
     .eyebrow {
@@ -258,7 +304,6 @@
       display: flex;
       align-items: center;
       gap: 11px;
-      min-width: 0;
     }
 
     .account-avatar {
@@ -273,7 +318,6 @@
       justify-content: center;
 
       font-weight: bold;
-      flex-shrink: 0;
     }
 
     .account-name {
@@ -297,12 +341,8 @@
       font-size: 11px;
     }
 
-    .logout-button:hover {
-      background: rgba(217, 83, 79, 0.1);
-    }
-
     /* =========================
-       NAVIGATION
+       NAV
     ========================== */
 
     .nav-wrapper {
@@ -317,26 +357,18 @@
       max-width: 1100px;
       margin: auto;
       padding: 10px 20px;
-
       display: flex;
       gap: 8px;
       overflow-x: auto;
-      scrollbar-width: none;
-    }
-
-    .nav::-webkit-scrollbar {
-      display: none;
     }
 
     .nav a {
       white-space: nowrap;
       font-size: 13px;
       color: var(--muted);
-
       padding: 7px 12px;
       border: 1px solid transparent;
       border-radius: 7px;
-      transition: 0.2s ease;
     }
 
     .nav a:hover {
@@ -385,6 +417,12 @@
       direction: ltr;
     }
 
+    .section-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
     .panel {
       background: var(--card);
       border: 1px solid var(--border);
@@ -420,7 +458,6 @@
       height: 10px;
       background: var(--green);
       border-radius: 50%;
-      flex-shrink: 0;
       box-shadow: 0 0 12px rgba(56, 193, 114, 0.45);
     }
 
@@ -462,7 +499,6 @@
     .summary-label {
       color: var(--muted);
       font-size: 12px;
-      margin-top: 3px;
     }
 
     /* =========================
@@ -479,18 +515,8 @@
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 10px;
-
       padding: 22px;
       position: relative;
-      overflow: hidden;
-
-      transition: 0.2s ease;
-    }
-
-    .command-card:hover {
-      border-color: var(--gold);
-      background: var(--card-hover);
-      transform: translateY(-2px);
     }
 
     .command-card::before {
@@ -506,7 +532,6 @@
     .command-label {
       color: var(--muted);
       font-size: 12px;
-      margin-bottom: 6px;
     }
 
     .command-name {
@@ -519,7 +544,6 @@
     .command-role {
       color: var(--gold);
       font-size: 12px;
-      margin-top: 6px;
     }
 
     /* =========================
@@ -537,11 +561,9 @@
       background: #0c1117;
       border: 1px solid var(--border);
       border-radius: 8px;
-
       padding: 13px 14px;
 
       display: flex;
-      align-items: center;
       justify-content: space-between;
       gap: 12px;
     }
@@ -588,7 +610,6 @@
 
     .member-top {
       display: flex;
-      align-items: center;
       justify-content: space-between;
       gap: 10px;
     }
@@ -602,7 +623,6 @@
     .member-role {
       font-size: 11px;
       color: var(--muted);
-      margin-top: 5px;
     }
 
     .online-badge {
@@ -611,7 +631,38 @@
     }
 
     /* =========================
-       TABLES
+       PROJECTS
+    ========================== */
+
+    .project-cards {
+      display: none;
+    }
+
+    .progress-wrapper {
+      min-width: 120px;
+    }
+
+    .progress-number {
+      font-size: 10px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .project-actions {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .empty-state {
+      padding: 35px 20px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* =========================
+       TABLE
     ========================== */
 
     .table-wrapper {
@@ -622,16 +673,14 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 700px;
+      min-width: 850px;
     }
 
     th {
       background: #0c1117;
       color: var(--gold);
-
       font-size: 12px;
       font-weight: normal;
-
       text-align: right;
       padding: 13px 15px;
       border-bottom: 1px solid var(--border);
@@ -641,10 +690,6 @@
       padding: 14px 15px;
       font-size: 13px;
       border-bottom: 1px solid #1d242b;
-    }
-
-    tbody tr:last-child td {
-      border-bottom: none;
     }
 
     .badge {
@@ -673,6 +718,12 @@
       background: rgba(56, 193, 114, 0.12);
     }
 
+    .badge-yellow {
+      color: #ebc36f;
+      border: 1px solid rgba(224, 173, 79, 0.3);
+      background: rgba(224, 173, 79, 0.12);
+    }
+
     /* =========================
        CAPACITY
     ========================== */
@@ -691,13 +742,12 @@
     }
 
     .capacity-box h3 {
-      font-size: 14px;
       color: var(--gold);
-      margin-bottom: 14px;
+      font-size: 14px;
     }
 
     .capacity-row {
-      margin-bottom: 14px;
+      margin: 14px 0;
     }
 
     .capacity-info {
@@ -705,10 +755,6 @@
       justify-content: space-between;
       font-size: 12px;
       margin-bottom: 6px;
-    }
-
-    .capacity-info span:last-child {
-      color: var(--muted);
     }
 
     .bar {
@@ -722,11 +768,10 @@
     .bar-fill {
       height: 100%;
       background: linear-gradient(90deg, #856c3c, var(--gold-light));
-      border-radius: 10px;
     }
 
     /* =========================
-       NOTICES
+       NOTICE
     ========================== */
 
     .notice-list {
@@ -744,6 +789,67 @@
     }
 
     /* =========================
+       MODAL
+    ========================== */
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+
+      background: rgba(0, 0, 0, 0.78);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 20px;
+    }
+
+    .modal {
+      width: 100%;
+      max-width: 650px;
+      max-height: 90vh;
+      overflow-y: auto;
+
+      background: #0d1218;
+      border: 1px solid var(--border-light);
+      border-radius: 14px;
+      padding: 24px;
+
+      position: relative;
+    }
+
+    .modal-title {
+      color: var(--gold);
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .modal-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .modal-full {
+      grid-column: 1 / -1;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    #projectFormMessage {
+      margin-top: 12px;
+      font-size: 12px;
+      min-height: 20px;
+    }
+
+    /* =========================
        FOOTER
     ========================== */
 
@@ -757,34 +863,21 @@
     .footer-title {
       color: var(--gold);
       font-size: 12px;
-      letter-spacing: 2px;
       direction: ltr;
     }
 
     .footer-sub {
       color: #656d75;
       font-size: 11px;
-      margin-top: 6px;
     }
-
-    /* =========================
-       LOADING SCREEN
-    ========================== */
 
     #loadingScreen {
       min-height: 100vh;
-
       display: flex;
       align-items: center;
       justify-content: center;
-
       color: var(--gold);
-      font-size: 14px;
     }
-
-    /* =========================
-       RESPONSIVE
-    ========================== */
 
     @media (max-width: 900px) {
       .summary-grid {
@@ -801,17 +894,8 @@
     }
 
     @media (max-width: 650px) {
-      header {
-        padding: 25px 15px;
-      }
-
       h1 {
         font-size: 25px;
-      }
-
-      .eyebrow {
-        font-size: 10px;
-        letter-spacing: 2px;
       }
 
       main {
@@ -823,24 +907,24 @@
         align-items: flex-start;
       }
 
-      .command-grid {
+      .command-grid,
+      .objectives,
+      .members-grid,
+      .modal-grid {
         grid-template-columns: 1fr;
       }
 
-      .summary-grid {
-        grid-template-columns: repeat(2, 1fr);
+      .modal-full {
+        grid-column: auto;
       }
 
-      .objectives {
-        grid-template-columns: 1fr;
+      .section-title {
+        align-items: flex-start;
       }
 
-      .members-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .account-box {
-        padding: 10px 14px;
+      .section-actions {
+        flex-direction: column;
+        align-items: flex-end;
       }
     }
   </style>
@@ -848,1261 +932,2157 @@
 
 <body>
 
-  <!-- =====================================
-       INITIAL LOADING
-  ====================================== -->
+<div id="loadingScreen">
+  در حال برقراری ارتباط با ستاد...
+</div>
 
-  <div id="loadingScreen">
-    در حال برقراری ارتباط با ستاد...
-  </div>
+<!-- LOGIN -->
 
+<section id="loginScreen" class="hidden">
 
-  <!-- =====================================
-       LOGIN SCREEN
-  ====================================== -->
+  <div class="login-shell">
 
-  <section id="loginScreen" class="hidden">
+    <div class="login-header">
 
-    <div class="login-shell">
-
-      <div class="login-header">
-
-        <div class="login-eyebrow">
-          NIGP's MILITARISM HEADQUARTERS OFFICE
-        </div>
-
-        <h1>
-          🏛 دبیرخانه میلیتاریسم
-        </h1>
-
-        <p>
-          SECURE ACCESS
-        </p>
-
+      <div class="login-eyebrow">
+        NIGP's MILITARISM HEADQUARTERS OFFICE
       </div>
 
+      <h1>🏛 دبیرخانه میلیتاریسم</h1>
 
-      <div class="login-card">
+      <p>SECURE ACCESS</p>
 
-        <div class="login-title">
-          ورود به سامانه
-        </div>
+    </div>
 
+    <div class="login-card">
 
-        <form id="loginForm">
+      <div class="login-title">
+        ورود به سامانه
+      </div>
 
-          <div class="form-group">
+      <form id="loginForm">
 
-            <label for="email">
-              ایمیل
-            </label>
+        <div class="form-group">
 
-            <input
-              id="email"
-              type="email"
-              autocomplete="email"
-              placeholder="name@example.com"
-              required
-            >
+          <label for="email">ایمیل</label>
 
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="password">
-              رمز عبور
-            </label>
-
-            <input
-              id="password"
-              type="password"
-              autocomplete="current-password"
-              placeholder="••••••••"
-              required
-            >
-
-          </div>
-
-
-          <button
-            id="loginButton"
-            class="login-button"
-            type="submit"
+          <input
+            id="email"
+            class="ltr-input"
+            type="email"
+            autocomplete="email"
+            required
           >
-            ورود به ستاد
-          </button>
 
-        </form>
-
-
-        <div
-          id="loginMessage"
-          aria-live="polite"
-        ></div>
-
-
-        <div class="login-security">
-          AUTHENTICATION VIA SUPABASE
         </div>
 
+        <div class="form-group">
+
+          <label for="password">رمز عبور</label>
+
+          <input
+            id="password"
+            class="ltr-input"
+            type="password"
+            autocomplete="current-password"
+            required
+          >
+
+        </div>
+
+        <button
+          id="loginButton"
+          class="login-button"
+          type="submit"
+        >
+          ورود به ستاد
+        </button>
+
+      </form>
+
+      <div id="loginMessage"></div>
+
+      <div class="login-security">
+        AUTHENTICATION VIA SUPABASE
       </div>
 
     </div>
 
-  </section>
+  </div>
 
+</section>
 
-  <!-- =====================================
-       HEADQUARTERS
-  ====================================== -->
+<!-- HQ -->
 
-  <div id="headquarters" class="hidden">
+<div id="headquarters" class="hidden">
 
-    <header>
+<header>
 
-      <div class="eyebrow">
-        NIGP's MILITARISM HEADQUARTERS OFFICE
+  <div class="eyebrow">
+    NIGP's MILITARISM HEADQUARTERS OFFICE
+  </div>
+
+  <h1>🏛 دبیرخانه میلیتاریسم</h1>
+
+  <div class="subtitle">
+    STATUS BOARD
+  </div>
+
+</header>
+
+<div class="account-box">
+
+  <div class="account-info">
+
+    <div
+      id="accountAvatar"
+      class="account-avatar"
+    >
+      S
+    </div>
+
+    <div>
+
+      <div
+        id="accountName"
+        class="account-name"
+      >
+        SPOOKY
       </div>
 
-      <h1>
-        🏛 دبیرخانه میلیتاریسم
-      </h1>
-
-      <div class="subtitle">
-        STATUS BOARD
+      <div
+        id="accountRole"
+        class="account-role"
+      >
+        دبیر
       </div>
 
-    </header>
+    </div>
 
+  </div>
 
-    <!-- ACCOUNT -->
+  <button
+    id="logoutButton"
+    class="logout-button"
+    type="button"
+  >
+    خروج از سامانه
+  </button>
 
-    <div class="account-box">
+</div>
 
-      <div class="account-info">
+<div class="nav-wrapper">
 
-        <div
-          id="accountAvatar"
-          class="account-avatar"
-        >
-          S
+<nav class="nav">
+
+  <a href="#command">فرماندهی</a>
+  <a href="#objectives">اهداف جاری</a>
+  <a href="#members">اعضا</a>
+  <a href="#projects">پروژه‌ها</a>
+  <a href="#capacity">ظرفیت</a>
+  <a href="#operational">استعداد عملیاتی</a>
+  <a href="#notices">تذکرات</a>
+
+</nav>
+
+</div>
+
+<main>
+
+<!-- STATUS -->
+
+<div class="status">
+
+  <div class="status-left">
+
+    <span class="dot"></span>
+
+    <div>
+      <strong>وضعیت سامانه:</strong>
+      ستاد آنلاین و فعال است
+    </div>
+
+  </div>
+
+  <div class="last-update">
+    STATUS: OPERATIONAL
+  </div>
+
+</div>
+
+<!-- SUMMARY -->
+
+<div class="summary-grid">
+
+  <div class="summary-card">
+    <div class="summary-number">4</div>
+    <div class="summary-label">اعضای دبیرخانه</div>
+  </div>
+
+  <div class="summary-card">
+    <div
+      id="activeProjectsCount"
+      class="summary-number"
+    >
+      0
+    </div>
+
+    <div class="summary-label">
+      پروژه‌های فعال
+    </div>
+  </div>
+
+  <div class="summary-card">
+
+    <div
+      id="delayedProjectsCount"
+      class="summary-number"
+    >
+      0
+    </div>
+
+    <div class="summary-label">
+      پروژه با تأخیر
+    </div>
+
+  </div>
+
+  <div class="summary-card">
+    <div class="summary-number">16H</div>
+    <div class="summary-label">ظرفیت هفتگی</div>
+  </div>
+
+</div>
+
+<!-- COMMAND -->
+
+<section class="section" id="command">
+
+  <div class="section-title">
+    <span>فرماندهی دبیرخانه</span>
+    <small>COMMAND</small>
+  </div>
+
+  <div class="command-grid">
+
+    <div class="command-card">
+      <div class="command-label">دبیر</div>
+      <div class="command-name">SPOOKY</div>
+      <div class="command-role">
+        دبیر دبیرخانه میلیتاریسم
+      </div>
+    </div>
+
+    <div class="command-card">
+      <div class="command-label">معاونت</div>
+      <div class="command-name">—</div>
+      <div class="command-role">
+        معاون دبیرخانه
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- OBJECTIVES -->
+
+<section class="section" id="objectives">
+
+  <div class="section-title">
+    <span>اهداف جاری دبیرخانه</span>
+    <small>CURRENT OBJECTIVES</small>
+  </div>
+
+  <div class="panel">
+
+    <div class="objectives">
+
+      <div class="objective">
+        <div class="objective-text">پلتفرم‌های ISR</div>
+        <span class="objective-status completed">✓ تکمیل</span>
+      </div>
+
+      <div class="objective">
+        <div class="objective-text">
+          انواع روش‌های SIGINT و اهمیت آنها
         </div>
-
-
-        <div>
-
-          <div
-            id="accountName"
-            class="account-name"
-          >
-            SPOOKY
-          </div>
-
-          <div
-            id="accountRole"
-            class="account-role"
-          >
-            دبیر
-          </div>
-
-        </div>
-
+        <span class="objective-status completed">✓ تکمیل</span>
       </div>
 
+      <div class="objective">
+        <div class="objective-text">
+          تحقیق و بررسی سامانه LINK-16
+        </div>
+        <span class="objective-status completed">✓ تکمیل</span>
+      </div>
+
+      <div class="objective">
+        <div class="objective-text">
+          عوامل مؤثر در کاهش لگد و افزایش نفوذ و برد سلاح‌های تک‌تیرانداز
+        </div>
+        <span class="objective-status active">
+          در حال بررسی
+        </span>
+      </div>
+
+      <div class="objective">
+        <div class="objective-text">
+          ماهواره‌های جاسوسی و اطلاعاتی در دستان دشمن آمریکایی صهیونیستی
+        </div>
+        <span class="objective-status completed">✓ تکمیل</span>
+      </div>
+
+      <div class="objective">
+        <div class="objective-text">
+          Frequency Hopping
+        </div>
+        <span class="objective-status completed">✓ تکمیل</span>
+      </div>
+
+      <div class="objective">
+        <div class="objective-text">بانک اهداف</div>
+        <span class="objective-status active">فعال</span>
+      </div>
+
+      <div class="objective">
+        <div class="objective-text">
+          تأثیر و نقش Intel Sharing توسط روس‌ها و چینی‌ها
+        </div>
+        <span class="objective-status active">فعال</span>
+      </div>
+
+      <div class="objective">
+        <div class="objective-text">
+          GPS Spoofing و Jamming و اثر آن بر بعد نظامی و غیرنظامی منطقه خلیج فارس
+        </div>
+        <span class="objective-status completed">✓ تکمیل</span>
+      </div>
+
+      <div class="objective">
+        <div class="objective-text">
+          نفوذ اطلاعاتی از بعد HUMINT
+        </div>
+        <span class="objective-status active">فعال</span>
+      </div>
+
+      <div class="objective">
+        <div class="objective-text">
+          هدف قرارگرفتن AN/FPS-132
+        </div>
+        <span class="objective-status active">
+          در حال بررسی
+        </span>
+      </div>
+
+      <div class="objective">
+        <div class="objective-text">
+          هک زیرساخت‌های غیرنظامی
+        </div>
+        <span class="objective-status active">فعال</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- MEMBERS -->
+
+<section class="section" id="members">
+
+  <div class="section-title">
+    <span>اعضای دبیرخانه</span>
+    <small>PERSONNEL</small>
+  </div>
+
+  <div class="members-grid">
+
+    <div class="member-card">
+      <div class="member-top">
+        <div class="member-name">SPOOKY</div>
+        <div class="online-badge">● ACTIVE</div>
+      </div>
+      <div class="member-role">دبیر / تحلیل</div>
+    </div>
+
+    <div class="member-card">
+      <div class="member-top">
+        <div class="member-name">KOUROSH</div>
+        <div class="online-badge">● ACTIVE</div>
+      </div>
+      <div class="member-role">عضو / تحلیل</div>
+    </div>
+
+    <div class="member-card">
+      <div class="member-top">
+        <div class="member-name">JULIDEHMU</div>
+        <div class="online-badge">● ACTIVE</div>
+      </div>
+      <div class="member-role">عضو / تحلیل</div>
+    </div>
+
+    <div class="member-card">
+      <div class="member-top">
+        <div class="member-name">WERNER</div>
+        <div class="online-badge">● ACTIVE</div>
+      </div>
+      <div class="member-role">عضو / تحلیل</div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- REAL PROJECTS -->
+
+<section class="section" id="projects">
+
+  <div class="section-title">
+
+    <span>پروژه‌های در حال اجرا</span>
+
+    <div class="section-actions">
+
+      <small>ACTIVE PROJECTS</small>
 
       <button
-        id="logoutButton"
-        class="logout-button"
+        id="newProjectButton"
+        class="primary-button hidden"
         type="button"
       >
-        خروج از سامانه
+        + پروژه جدید
       </button>
 
     </div>
 
+  </div>
 
-    <!-- NAVIGATION -->
+  <div class="panel">
 
-    <div class="nav-wrapper">
+    <div class="table-wrapper">
 
-      <nav class="nav">
+      <table>
 
-        <a href="#command">
-          فرماندهی
-        </a>
+        <thead>
+          <tr>
+            <th>پروژه</th>
+            <th>مسئول</th>
+            <th>مهلت</th>
+            <th>پیشرفت</th>
+            <th>وضعیت</th>
+            <th id="projectActionsHeader">مدیریت</th>
+          </tr>
+        </thead>
 
-        <a href="#objectives">
-          اهداف جاری
-        </a>
+        <tbody id="projectsTableBody">
 
-        <a href="#members">
-          اعضا
-        </a>
+          <tr>
+            <td colspan="6">
+              <div class="empty-state">
+                در حال دریافت پروژه‌ها...
+              </div>
+            </td>
+          </tr>
 
-        <a href="#projects">
-          پروژه‌ها
-        </a>
+        </tbody>
 
-        <a href="#capacity">
-          ظرفیت
-        </a>
-
-        <a href="#operational">
-          استعداد عملیاتی
-        </a>
-
-        <a href="#notices">
-          تذکرات
-        </a>
-
-      </nav>
+      </table>
 
     </div>
 
+  </div>
 
-    <main>
+</section>
 
-      <!-- STATUS -->
+<!-- MEMBER CAPACITY -->
 
-      <div class="status">
+<section class="section" id="capacity">
 
-        <div class="status-left">
+  <div class="section-title">
+    <span>ظرفیت اعضا</span>
+    <small>PERSONNEL CAPACITY</small>
+  </div>
 
-          <span class="dot"></span>
+  <div class="panel">
 
-          <div>
+    <div class="table-wrapper">
 
-            <strong>
-              وضعیت سامانه:
-            </strong>
+      <table>
 
-            ستاد آنلاین و فعال است
+        <thead>
+          <tr>
+            <th>عضو</th>
+            <th>حوزه فعالیت</th>
+            <th>روزهای فعالیت</th>
+            <th>ظرفیت هر روز</th>
+          </tr>
+        </thead>
 
-          </div>
+        <tbody>
 
-        </div>
+          <tr>
+            <td>اسپوکی</td>
+            <td>تحلیل</td>
+            <td>شنبه تا سه‌شنبه</td>
+            <td>۱ ساعت</td>
+          </tr>
 
-        <div class="last-update">
-          STATUS: OPERATIONAL
-        </div>
+          <tr>
+            <td>کوروش</td>
+            <td>تحلیل</td>
+            <td>شنبه تا چهارشنبه</td>
+            <td>۲ ساعت</td>
+          </tr>
 
-      </div>
+          <tr>
+            <td>ژولیده مو</td>
+            <td>تحلیل</td>
+            <td>پنجشنبه</td>
+            <td>۲ ساعت</td>
+          </tr>
 
+        </tbody>
 
-      <!-- SUMMARY -->
+      </table>
 
-      <div class="summary-grid">
-
-        <div class="summary-card">
-
-          <div class="summary-number">
-            4
-          </div>
-
-          <div class="summary-label">
-            اعضای دبیرخانه
-          </div>
-
-        </div>
-
-
-        <div class="summary-card">
-
-          <div class="summary-number">
-            5
-          </div>
-
-          <div class="summary-label">
-            پروژه‌های فعال
-          </div>
-
-        </div>
-
-
-        <div class="summary-card">
-
-          <div class="summary-number">
-            2
-          </div>
-
-          <div class="summary-label">
-            پروژه با تأخیر
-          </div>
-
-        </div>
-
-
-        <div class="summary-card">
-
-          <div class="summary-number">
-            16H
-          </div>
-
-          <div class="summary-label">
-            ظرفیت هفتگی
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <!-- COMMAND -->
-
-      <section
-        class="section"
-        id="command"
-      >
-
-        <div class="section-title">
-
-          <span>
-            فرماندهی دبیرخانه
-          </span>
-
-          <small>
-            COMMAND
-          </small>
-
-        </div>
-
-
-        <div class="command-grid">
-
-          <div class="command-card">
-
-            <div class="command-label">
-              دبیر
-            </div>
-
-            <div class="command-name">
-              SPOOKY
-            </div>
-
-            <div class="command-role">
-              دبیر دبیرخانه میلیتاریسم
-            </div>
-
-          </div>
-
-
-          <div class="command-card">
-
-            <div class="command-label">
-              معاونت
-            </div>
-
-            <div class="command-name">
-              —
-            </div>
-
-            <div class="command-role">
-              معاون دبیرخانه
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- OBJECTIVES -->
-
-      <section
-        class="section"
-        id="objectives"
-      >
-
-        <div class="section-title">
-
-          <span>
-            اهداف جاری دبیرخانه
-          </span>
-
-          <small>
-            CURRENT OBJECTIVES
-          </small>
-
-        </div>
-
-
-        <div class="panel">
-
-          <div class="objectives">
-
-            <div class="objective">
-              <div class="objective-text">
-                پلتفرم‌های ISR
-              </div>
-
-              <span class="objective-status completed">
-                ✓ تکمیل
-              </span>
-            </div>
-
-
-            <div class="objective">
-              <div class="objective-text">
-                انواع روش‌های SIGINT و اهمیت آنها
-              </div>
-
-              <span class="objective-status completed">
-                ✓ تکمیل
-              </span>
-            </div>
-
-
-            <div class="objective">
-              <div class="objective-text">
-                تحقیق و بررسی سامانه LINK-16
-              </div>
-
-              <span class="objective-status completed">
-                ✓ تکمیل
-              </span>
-            </div>
-
-
-            <div class="objective">
-              <div class="objective-text">
-                عوامل مؤثر در کاهش لگد و افزایش نفوذ و برد سلاح‌های تک‌تیرانداز
-              </div>
-
-              <span class="objective-status active">
-                در حال بررسی
-              </span>
-            </div>
-
-
-            <div class="objective">
-              <div class="objective-text">
-                ماهواره‌های جاسوسی و اطلاعاتی در دستان دشمن آمریکایی صهیونیستی
-              </div>
-
-              <span class="objective-status completed">
-                ✓ تکمیل
-              </span>
-            </div>
-
-
-            <div class="objective">
-              <div class="objective-text">
-                Frequency Hopping
-              </div>
-
-              <span class="objective-status completed">
-                ✓ تکمیل
-              </span>
-            </div>
-
-
-            <div class="objective">
-              <div class="objective-text">
-                بانک اهداف
-              </div>
-
-              <span class="objective-status active">
-                فعال
-              </span>
-            </div>
-
-
-            <div class="objective">
-              <div class="objective-text">
-                تأثیر و نقش Intel Sharing توسط روس‌ها و چینی‌ها
-              </div>
-
-              <span class="objective-status active">
-                فعال
-              </span>
-            </div>
-
-
-            <div class="objective">
-              <div class="objective-text">
-                GPS Spoofing و Jamming و اثر آن بر بعد نظامی و غیرنظامی منطقه خلیج فارس
-              </div>
-
-              <span class="objective-status completed">
-                ✓ تکمیل
-              </span>
-            </div>
-
-
-            <div class="objective">
-              <div class="objective-text">
-                نفوذ اطلاعاتی از بعد HUMINT
-              </div>
-
-              <span class="objective-status active">
-                فعال
-              </span>
-            </div>
-
-
-            <div class="objective">
-              <div class="objective-text">
-                هدف قرارگرفتن AN/FPS-132
-              </div>
-
-              <span class="objective-status active">
-                در حال بررسی
-              </span>
-            </div>
-
-
-            <div class="objective">
-              <div class="objective-text">
-                هک زیرساخت‌های غیرنظامی
-              </div>
-
-              <span class="objective-status active">
-                فعال
-              </span>
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- MEMBERS -->
-
-      <section
-        class="section"
-        id="members"
-      >
-
-        <div class="section-title">
-
-          <span>
-            اعضای دبیرخانه
-          </span>
-
-          <small>
-            PERSONNEL
-          </small>
-
-        </div>
-
-
-        <div class="members-grid">
-
-          <div class="member-card">
-
-            <div class="member-top">
-
-              <div class="member-name">
-                SPOOKY
-              </div>
-
-              <div class="online-badge">
-                ● ACTIVE
-              </div>
-
-            </div>
-
-            <div class="member-role">
-              دبیر / تحلیل
-            </div>
-
-          </div>
-
-
-          <div class="member-card">
-
-            <div class="member-top">
-
-              <div class="member-name">
-                KOUROSH
-              </div>
-
-              <div class="online-badge">
-                ● ACTIVE
-              </div>
-
-            </div>
-
-            <div class="member-role">
-              عضو / تحلیل
-            </div>
-
-          </div>
-
-
-          <div class="member-card">
-
-            <div class="member-top">
-
-              <div class="member-name">
-                JULIDEHMU
-              </div>
-
-              <div class="online-badge">
-                ● ACTIVE
-              </div>
-
-            </div>
-
-            <div class="member-role">
-              عضو / تحلیل
-            </div>
-
-          </div>
-
-
-          <div class="member-card">
-
-            <div class="member-top">
-
-              <div class="member-name">
-                WERNER
-              </div>
-
-              <div class="online-badge">
-                ● ACTIVE
-              </div>
-
-            </div>
-
-            <div class="member-role">
-              عضو / تحلیل
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- PROJECTS -->
-
-      <section
-        class="section"
-        id="projects"
-      >
-
-        <div class="section-title">
-
-          <span>
-            پروژه‌های در حال اجرا
-          </span>
-
-          <small>
-            ACTIVE PROJECTS
-          </small>
-
-        </div>
-
-
-        <div class="panel">
-
-          <div class="table-wrapper">
-
-            <table>
-
-              <thead>
-                <tr>
-                  <th>پروژه</th>
-                  <th>مسئول</th>
-                  <th>مهلت</th>
-                  <th>وضعیت</th>
-                </tr>
-              </thead>
-
-
-              <tbody>
-
-                <tr>
-                  <td>زیرساخت</td>
-                  <td>احمد</td>
-                  <td>جمعه</td>
-                  <td>
-                    <span class="badge badge-blue">
-                      ابلاغ شده
-                    </span>
-                  </td>
-                </tr>
-
-
-                <tr>
-                  <td>نفوذ</td>
-                  <td>ژولیده مو</td>
-                  <td>جمعه</td>
-                  <td>
-                    <span class="badge badge-blue">
-                      ابلاغ شده
-                    </span>
-                  </td>
-                </tr>
-
-
-                <tr>
-                  <td>شیر اطلاعات</td>
-                  <td>ورنر</td>
-                  <td>جمعه</td>
-                  <td>
-                    <span class="badge badge-blue">
-                      ابلاغ شده
-                    </span>
-                  </td>
-                </tr>
-
-
-                <tr>
-                  <td>تک‌تیرانداز</td>
-                  <td>اسپوکی</td>
-                  <td>چهارشنبه</td>
-                  <td>
-                    <span class="badge badge-red">
-                      تأخیر
-                    </span>
-                  </td>
-                </tr>
-
-
-                <tr>
-                  <td>بانک اهداف</td>
-                  <td>ورنر</td>
-                  <td>یکشنبه</td>
-                  <td>
-                    <span class="badge badge-red">
-                      تأخیر
-                    </span>
-                  </td>
-                </tr>
-
-              </tbody>
-
-            </table>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- MEMBER CAPACITY -->
-
-      <section
-        class="section"
-        id="capacity"
-      >
-
-        <div class="section-title">
-
-          <span>
-            ظرفیت اعضا
-          </span>
-
-          <small>
-            PERSONNEL CAPACITY
-          </small>
-
-        </div>
-
-
-        <div class="panel">
-
-          <div class="table-wrapper">
-
-            <table>
-
-              <thead>
-                <tr>
-                  <th>عضو</th>
-                  <th>حوزه فعالیت</th>
-                  <th>روزهای فعالیت</th>
-                  <th>ظرفیت هر روز</th>
-                </tr>
-              </thead>
-
-
-              <tbody>
-
-                <tr>
-                  <td>اسپوکی</td>
-                  <td>تحلیل</td>
-                  <td>شنبه تا سه‌شنبه</td>
-                  <td>۱ ساعت</td>
-                </tr>
-
-
-                <tr>
-                  <td>کوروش</td>
-                  <td>تحلیل</td>
-                  <td>شنبه تا چهارشنبه</td>
-                  <td>۲ ساعت</td>
-                </tr>
-
-
-                <tr>
-                  <td>ژولیده مو</td>
-                  <td>تحلیل</td>
-                  <td>پنجشنبه</td>
-                  <td>۲ ساعت</td>
-                </tr>
-
-              </tbody>
-
-            </table>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- OPERATIONAL CAPACITY -->
-
-      <section
-        class="section"
-        id="operational"
-      >
-
-        <div class="section-title">
-
-          <span>
-            استعداد عملیاتی دبیرخانه
-          </span>
-
-          <small>
-            OPERATIONAL CAPACITY
-          </small>
-
-        </div>
-
-
-        <div class="capacity-grid">
-
-          <div class="capacity-box">
-
-            <h3>
-              ظرفیت روزانه
-            </h3>
-
-
-            <div class="capacity-row">
-              <div class="capacity-info">
-                <span>شنبه</span>
-                <span>۳ ساعت</span>
-              </div>
-
-              <div class="bar">
-                <div class="bar-fill" style="width:100%;"></div>
-              </div>
-            </div>
-
-
-            <div class="capacity-row">
-              <div class="capacity-info">
-                <span>یکشنبه</span>
-                <span>۳ ساعت</span>
-              </div>
-
-              <div class="bar">
-                <div class="bar-fill" style="width:100%;"></div>
-              </div>
-            </div>
-
-
-            <div class="capacity-row">
-              <div class="capacity-info">
-                <span>دوشنبه</span>
-                <span>۳ ساعت</span>
-              </div>
-
-              <div class="bar">
-                <div class="bar-fill" style="width:100%;"></div>
-              </div>
-            </div>
-
-
-            <div class="capacity-row">
-              <div class="capacity-info">
-                <span>سه‌شنبه</span>
-                <span>۳ ساعت</span>
-              </div>
-
-              <div class="bar">
-                <div class="bar-fill" style="width:100%;"></div>
-              </div>
-            </div>
-
-
-            <div class="capacity-row">
-              <div class="capacity-info">
-                <span>چهارشنبه</span>
-                <span>۲ ساعت</span>
-              </div>
-
-              <div class="bar">
-                <div class="bar-fill" style="width:67%;"></div>
-              </div>
-            </div>
-
-
-            <div class="capacity-row">
-              <div class="capacity-info">
-                <span>پنجشنبه</span>
-                <span>۲ ساعت</span>
-              </div>
-
-              <div class="bar">
-                <div class="bar-fill" style="width:67%;"></div>
-              </div>
-            </div>
-
-
-            <div class="capacity-row">
-              <div class="capacity-info">
-                <span>جمعه</span>
-                <span>۰ ساعت</span>
-              </div>
-
-              <div class="bar">
-                <div class="bar-fill" style="width:0%;"></div>
-              </div>
-            </div>
-
-          </div>
-
-
-          <div class="capacity-box">
-
-            <h3>
-              وضعیت کلی هفتگی
-            </h3>
-
-            <div
-              style="
-                min-height:270px;
-                display:flex;
-                flex-direction:column;
-                justify-content:center;
-                align-items:center;
-                text-align:center;
-              "
-            >
-
-              <div
-                style="
-                  color:#8f969e;
-                  font-size:12px;
-                  margin-bottom:10px;
-                "
-              >
-                مجموع استعداد عملیاتی
-              </div>
-
-
-              <div
-                style="
-                  font-size:50px;
-                  font-weight:bold;
-                  color:#d0b170;
-                  direction:ltr;
-                  line-height:1;
-                "
-              >
-                16H
-              </div>
-
-
-              <div
-                style="
-                  color:#8f969e;
-                  font-size:12px;
-                  margin-top:10px;
-                "
-              >
-                ظرفیت ثبت‌شده در هفته
-              </div>
-
-
-              <div
-                style="
-                  width:100%;
-                  border-top:1px solid #242b33;
-                  margin-top:24px;
-                  padding-top:18px;
-                "
-              >
-
-                <span class="badge badge-green">
-                  ● OPERATIONAL
-                </span>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- NOTICES -->
-
-      <section
-        class="section"
-        id="notices"
-      >
-
-        <div class="section-title">
-
-          <span>
-            تذکرات
-          </span>
-
-          <small>
-            DIRECTIVES
-          </small>
-
-        </div>
-
-
-        <div class="panel notice-list">
-
-          <ol>
-
-            <li>
-              ظرفیت هر عضو بر اساس تعهد واقعی ثبت می‌شود.
-            </li>
-
-            <li>
-              هرگونه تغییر در برنامه باید به دبیر یا معاونت اطلاع داده شود.
-            </li>
-
-            <li>
-              تقسیم مأموریت‌ها بر اساس استعداد عملیاتی ثبت‌شده انجام خواهد شد.
-            </li>
-
-            <li>
-              این برد به‌صورت مستمر به‌روزرسانی و مبنای برنامه‌ریزی دبیرخانه خواهد بود.
-            </li>
-
-          </ol>
-
-        </div>
-
-      </section>
-
-    </main>
-
-
-    <footer>
-
-      <div class="footer-title">
-        NIGP • MILITARISM HEADQUARTERS OFFICE
-      </div>
-
-      <div class="footer-sub">
-        INTERNAL STATUS BOARD
-      </div>
-
-    </footer>
+    </div>
 
   </div>
 
+</section>
 
-  <!-- =====================================
-       SUPABASE AUTH
-  ====================================== -->
+<!-- OPERATIONAL -->
 
-  <script type="module">
+<section class="section" id="operational">
 
-    import {
-      createClient
-    } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+  <div class="section-title">
+    <span>استعداد عملیاتی دبیرخانه</span>
+    <small>OPERATIONAL CAPACITY</small>
+  </div>
+
+  <div class="capacity-grid">
+
+    <div class="capacity-box">
+
+      <h3>ظرفیت روزانه</h3>
+
+      <div class="capacity-row">
+        <div class="capacity-info">
+          <span>شنبه</span>
+          <span>۳ ساعت</span>
+        </div>
+        <div class="bar">
+          <div class="bar-fill" style="width:100%"></div>
+        </div>
+      </div>
+
+      <div class="capacity-row">
+        <div class="capacity-info">
+          <span>یکشنبه</span>
+          <span>۳ ساعت</span>
+        </div>
+        <div class="bar">
+          <div class="bar-fill" style="width:100%"></div>
+        </div>
+      </div>
+
+      <div class="capacity-row">
+        <div class="capacity-info">
+          <span>دوشنبه</span>
+          <span>۳ ساعت</span>
+        </div>
+        <div class="bar">
+          <div class="bar-fill" style="width:100%"></div>
+        </div>
+      </div>
+
+      <div class="capacity-row">
+        <div class="capacity-info">
+          <span>سه‌شنبه</span>
+          <span>۳ ساعت</span>
+        </div>
+        <div class="bar">
+          <div class="bar-fill" style="width:100%"></div>
+        </div>
+      </div>
+
+      <div class="capacity-row">
+        <div class="capacity-info">
+          <span>چهارشنبه</span>
+          <span>۲ ساعت</span>
+        </div>
+        <div class="bar">
+          <div class="bar-fill" style="width:67%"></div>
+        </div>
+      </div>
+
+      <div class="capacity-row">
+        <div class="capacity-info">
+          <span>پنجشنبه</span>
+          <span>۲ ساعت</span>
+        </div>
+        <div class="bar">
+          <div class="bar-fill" style="width:67%"></div>
+        </div>
+      </div>
+
+      <div class="capacity-row">
+        <div class="capacity-info">
+          <span>جمعه</span>
+          <span>۰ ساعت</span>
+        </div>
+        <div class="bar">
+          <div class="bar-fill" style="width:0%"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="capacity-box">
+
+      <h3>وضعیت کلی هفتگی</h3>
+
+      <div
+        style="
+          min-height:270px;
+          display:flex;
+          flex-direction:column;
+          justify-content:center;
+          align-items:center;
+          text-align:center;
+        "
+      >
+
+        <div style="color:#8f969e;font-size:12px;">
+          مجموع استعداد عملیاتی
+        </div>
+
+        <div
+          style="
+            font-size:50px;
+            font-weight:bold;
+            color:#d0b170;
+            direction:ltr;
+          "
+        >
+          16H
+        </div>
+
+        <span class="badge badge-green">
+          ● OPERATIONAL
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- NOTICES -->
+
+<section class="section" id="notices">
+
+  <div class="section-title">
+    <span>تذکرات</span>
+    <small>DIRECTIVES</small>
+  </div>
+
+  <div class="panel notice-list">
+
+    <ol>
+      <li>
+        ظرفیت هر عضو بر اساس تعهد واقعی ثبت می‌شود.
+      </li>
+
+      <li>
+        هرگونه تغییر در برنامه باید به دبیر یا معاونت اطلاع داده شود.
+      </li>
+
+      <li>
+        تقسیم مأموریت‌ها بر اساس استعداد عملیاتی ثبت‌شده انجام خواهد شد.
+      </li>
+
+      <li>
+        این برد به‌صورت مستمر به‌روزرسانی و مبنای برنامه‌ریزی دبیرخانه خواهد بود.
+      </li>
+    </ol>
+
+  </div>
+
+</section>
+
+</main>
+
+<footer>
+
+  <div class="footer-title">
+    NIGP • MILITARISM HEADQUARTERS OFFICE
+  </div>
+
+  <div class="footer-sub">
+    INTERNAL STATUS BOARD
+  </div>
+
+</footer>
+
+</div>
+
+<!-- PROJECT MODAL -->
+
+<div
+  id="projectModal"
+  class="modal-overlay hidden"
+>
+
+  <div class="modal">
+
+    <div
+      id="projectModalTitle"
+      class="modal-title"
+    >
+      پروژه جدید
+    </div>
+
+    <form id="projectForm">
+
+      <input
+        type="hidden"
+        id="projectId"
+      >
+
+      <div class="modal-grid">
+
+        <div class="form-group modal-full">
+
+          <label for="projectTitle">
+            نام پروژه
+          </label>
+
+          <input
+            id="projectTitle"
+            type="text"
+            required
+          >
+
+        </div>
+
+        <div class="form-group modal-full">
+
+          <label for="projectDescription">
+            توضیحات
+          </label>
+
+          <textarea id="projectDescription"></textarea>
+
+        </div>
+
+        <div class="form-group">
+
+          <label for="projectAssignee">
+            مسئول
+          </label>
+
+          <select id="projectAssignee">
+
+            <option value="">
+              بدون مسئول
+            </option>
+
+          </select>
+
+        </div>
+
+        <div class="form-group">
+
+          <label for="projectDeadline">
+            مهلت
+          </label>
+
+          <input
+            id="projectDeadline"
+            class="ltr-input"
+            type="date"
+          >
+
+        </div>
+
+        <div class="form-group">
+
+          <label for="projectStatus">
+            وضعیت
+          </label>
+
+          <select id="projectStatus">
+
+            <option value="assigned">
+              ابلاغ شده
+            </option>
+
+            <option value="in_progress">
+              در حال اجرا
+            </option>
+
+            <option value="submitted">
+              گزارش ارسال شده
+            </option>
+
+            <option value="completed">
+              تکمیل شده
+            </option>
+
+            <option value="delayed">
+              تأخیر
+            </option>
+
+            <option value="cancelled">
+              لغو شده
+            </option>
+
+          </select>
+
+        </div>
+
+        <div class="form-group">
+
+          <label for="projectPriority">
+            اولویت
+          </label>
+
+          <select id="projectPriority">
+
+            <option value="low">
+              پایین
+            </option>
+
+            <option value="normal" selected>
+              عادی
+            </option>
+
+            <option value="high">
+              بالا
+            </option>
+
+            <option value="critical">
+              حیاتی
+            </option>
+
+          </select>
+
+        </div>
+
+        <div class="form-group modal-full">
+
+          <label for="projectProgress">
+            درصد پیشرفت
+          </label>
+
+          <input
+            id="projectProgress"
+            class="ltr-input"
+            type="number"
+            min="0"
+            max="100"
+            value="0"
+          >
+
+        </div>
+
+      </div>
+
+      <div
+        id="projectFormMessage"
+        aria-live="polite"
+      ></div>
+
+      <div class="modal-actions">
+
+        <button
+          id="cancelProjectButton"
+          type="button"
+          class="secondary-button"
+        >
+          انصراف
+        </button>
+
+        <button
+          id="saveProjectButton"
+          type="submit"
+          class="primary-button"
+        >
+          ذخیره پروژه
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+<script type="module">
+
+import {
+  createClient
+} from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
 
-    const SUPABASE_URL =
-      "https://xhwyhwlgxbzcmzutcsqb.supabase.co";
+const SUPABASE_URL =
+  "https://xhwyhwlgxbzcmzutcsqb.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+  "sb_publishable_jpC_quL4SdXrAaqtiSshWQ_pefkeMwh";
 
 
-    const SUPABASE_PUBLISHABLE_KEY =
-      "sb_publishable_jpC_quL4SdXrAaqtiSshWQ_pefkeMwh";
+const supabase = createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY
+);
 
 
-    const supabase = createClient(
-      SUPABASE_URL,
-      SUPABASE_PUBLISHABLE_KEY
+/* =========================
+   STATE
+========================= */
+
+let currentUser = null;
+let currentProfile = null;
+
+let profiles = [];
+let projects = [];
+
+
+/* =========================
+   ELEMENTS
+========================= */
+
+const loadingScreen =
+  document.getElementById("loadingScreen");
+
+const loginScreen =
+  document.getElementById("loginScreen");
+
+const headquarters =
+  document.getElementById("headquarters");
+
+const loginForm =
+  document.getElementById("loginForm");
+
+const loginButton =
+  document.getElementById("loginButton");
+
+const loginMessage =
+  document.getElementById("loginMessage");
+
+const logoutButton =
+  document.getElementById("logoutButton");
+
+const accountName =
+  document.getElementById("accountName");
+
+const accountRole =
+  document.getElementById("accountRole");
+
+const accountAvatar =
+  document.getElementById("accountAvatar");
+
+
+const newProjectButton =
+  document.getElementById("newProjectButton");
+
+const projectsTableBody =
+  document.getElementById("projectsTableBody");
+
+const projectActionsHeader =
+  document.getElementById("projectActionsHeader");
+
+const activeProjectsCount =
+  document.getElementById("activeProjectsCount");
+
+const delayedProjectsCount =
+  document.getElementById("delayedProjectsCount");
+
+
+const projectModal =
+  document.getElementById("projectModal");
+
+const projectModalTitle =
+  document.getElementById("projectModalTitle");
+
+const projectForm =
+  document.getElementById("projectForm");
+
+const projectId =
+  document.getElementById("projectId");
+
+const projectTitle =
+  document.getElementById("projectTitle");
+
+const projectDescription =
+  document.getElementById("projectDescription");
+
+const projectAssignee =
+  document.getElementById("projectAssignee");
+
+const projectDeadline =
+  document.getElementById("projectDeadline");
+
+const projectStatus =
+  document.getElementById("projectStatus");
+
+const projectPriority =
+  document.getElementById("projectPriority");
+
+const projectProgress =
+  document.getElementById("projectProgress");
+
+const saveProjectButton =
+  document.getElementById("saveProjectButton");
+
+const cancelProjectButton =
+  document.getElementById("cancelProjectButton");
+
+const projectFormMessage =
+  document.getElementById("projectFormMessage");
+
+
+/* =========================
+   GENERAL
+========================= */
+
+function isSecretary() {
+  return currentProfile?.role === "secretary";
+}
+
+
+function translateRole(role) {
+
+  if (role === "secretary") {
+    return "دبیر";
+  }
+
+  if (role === "deputy") {
+    return "معاون";
+  }
+
+  return "عضو";
+}
+
+
+function translateStatus(status) {
+
+  const labels = {
+    assigned: "ابلاغ شده",
+    in_progress: "در حال اجرا",
+    submitted: "گزارش ارسال شده",
+    completed: "تکمیل شده",
+    delayed: "تأخیر",
+    cancelled: "لغو شده"
+  };
+
+  return labels[status] || status;
+}
+
+
+function statusClass(status, overdue) {
+
+  if (overdue || status === "delayed") {
+    return "badge-red";
+  }
+
+  if (status === "completed") {
+    return "badge-green";
+  }
+
+  if (status === "submitted") {
+    return "badge-yellow";
+  }
+
+  return "badge-blue";
+}
+
+
+function getTodayDateString() {
+
+  const date = new Date();
+
+  const year = date.getFullYear();
+
+  const month =
+    String(date.getMonth() + 1).padStart(2, "0");
+
+  const day =
+    String(date.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+}
+
+
+function isProjectOverdue(project) {
+
+  if (!project.deadline) {
+    return false;
+  }
+
+  if (
+    project.status === "completed" ||
+    project.status === "cancelled"
+  ) {
+    return false;
+  }
+
+  return project.deadline < getTodayDateString();
+}
+
+
+function getProfileName(id) {
+
+  if (!id) {
+    return "—";
+  }
+
+  const profile =
+    profiles.find(
+      item => item.id === id
+    );
+
+  if (!profile) {
+    return "عضو";
+  }
+
+  return (
+    profile.display_name ||
+    profile.username ||
+    "عضو"
+  );
+}
+
+
+function showLogin() {
+
+  loadingScreen.classList.add("hidden");
+  headquarters.classList.add("hidden");
+  loginScreen.classList.remove("hidden");
+
+}
+
+
+function showHeadquarters() {
+
+  loadingScreen.classList.add("hidden");
+  loginScreen.classList.add("hidden");
+  headquarters.classList.remove("hidden");
+
+}
+
+
+/* =========================
+   PROFILE
+========================= */
+
+async function loadProfile(user) {
+
+  const {
+    data,
+    error
+  } =
+    await supabase
+      .from("profiles")
+      .select(`
+        id,
+        username,
+        display_name,
+        role,
+        activity_area,
+        is_active
+      `)
+      .eq("id", user.id)
+      .single();
+
+
+  if (error) {
+
+    console.error(
+      "Profile load error:",
+      error
+    );
+
+    await supabase.auth.signOut();
+
+    showLogin();
+
+    return;
+
+  }
+
+
+  currentUser = user;
+  currentProfile = data;
+
+
+  const name =
+    data.display_name ||
+    data.username ||
+    user.email;
+
+
+  accountName.textContent = name;
+
+  accountRole.textContent =
+    translateRole(data.role);
+
+  accountAvatar.textContent =
+    name
+      .trim()
+      .charAt(0)
+      .toUpperCase();
+
+
+  if (isSecretary()) {
+
+    newProjectButton.classList.remove("hidden");
+    projectActionsHeader.classList.remove("hidden");
+
+  } else {
+
+    newProjectButton.classList.add("hidden");
+    projectActionsHeader.classList.add("hidden");
+
+  }
+
+
+  await loadProfiles();
+
+  await loadProjects();
+
+  showHeadquarters();
+
+}
+
+
+/* =========================
+   PROFILES
+========================= */
+
+async function loadProfiles() {
+
+  const {
+    data,
+    error
+  } =
+    await supabase
+      .from("profiles")
+      .select(`
+        id,
+        username,
+        display_name,
+        role,
+        is_active
+      `)
+      .eq("is_active", true)
+      .order("display_name", {
+        ascending: true
+      });
+
+
+  if (error) {
+
+    console.error(
+      "Profiles error:",
+      error
+    );
+
+    profiles = [];
+
+    return;
+
+  }
+
+
+  profiles = data || [];
+
+  renderAssigneeOptions();
+
+}
+
+
+function renderAssigneeOptions() {
+
+  projectAssignee.innerHTML = "";
+
+  const emptyOption =
+    document.createElement("option");
+
+  emptyOption.value = "";
+  emptyOption.textContent = "بدون مسئول";
+
+  projectAssignee.appendChild(
+    emptyOption
+  );
+
+
+  profiles.forEach(profile => {
+
+    const option =
+      document.createElement("option");
+
+    option.value =
+      profile.id;
+
+    option.textContent =
+      profile.display_name ||
+      profile.username ||
+      "عضو";
+
+    projectAssignee.appendChild(
+      option
+    );
+
+  });
+
+}
+
+
+/* =========================
+   PROJECTS
+========================= */
+
+async function loadProjects() {
+
+  projectsTableBody.innerHTML = `
+    <tr>
+      <td colspan="6">
+        <div class="empty-state">
+          در حال دریافت پروژه‌ها...
+        </div>
+      </td>
+    </tr>
+  `;
+
+
+  const {
+    data,
+    error
+  } =
+    await supabase
+      .from("projects")
+      .select(`
+        id,
+        title,
+        description,
+        assigned_to,
+        created_by,
+        deadline,
+        status,
+        progress,
+        priority,
+        created_at,
+        updated_at
+      `)
+      .order("created_at", {
+        ascending: false
+      });
+
+
+  if (error) {
+
+    console.error(
+      "Projects error:",
+      error
+    );
+
+    projectsTableBody.innerHTML = `
+      <tr>
+        <td colspan="6">
+          <div class="empty-state">
+            دریافت پروژه‌ها با مشکل مواجه شد.
+          </div>
+        </td>
+      </tr>
+    `;
+
+    return;
+
+  }
+
+
+  projects = data || [];
+
+  renderProjects();
+
+  updateProjectCounters();
+
+}
+
+
+function renderProjects() {
+
+  projectsTableBody.innerHTML = "";
+
+
+  if (projects.length === 0) {
+
+    projectsTableBody.innerHTML = `
+      <tr>
+        <td colspan="6">
+          <div class="empty-state">
+            هنوز پروژه‌ای ثبت نشده است.
+          </div>
+        </td>
+      </tr>
+    `;
+
+    return;
+
+  }
+
+
+  projects.forEach(project => {
+
+    const overdue =
+      isProjectOverdue(project);
+
+
+    const row =
+      document.createElement("tr");
+
+
+    const titleCell =
+      document.createElement("td");
+
+    titleCell.textContent =
+      project.title;
+
+
+    const assigneeCell =
+      document.createElement("td");
+
+    assigneeCell.textContent =
+      getProfileName(
+        project.assigned_to
+      );
+
+
+    const deadlineCell =
+      document.createElement("td");
+
+    deadlineCell.textContent =
+      project.deadline || "—";
+
+
+    const progressCell =
+      document.createElement("td");
+
+    const progressWrapper =
+      document.createElement("div");
+
+    progressWrapper.className =
+      "progress-wrapper";
+
+
+    const progressNumber =
+      document.createElement("div");
+
+    progressNumber.className =
+      "progress-number";
+
+    progressNumber.textContent =
+      `${project.progress}%`;
+
+
+    const bar =
+      document.createElement("div");
+
+    bar.className = "bar";
+
+
+    const fill =
+      document.createElement("div");
+
+    fill.className =
+      "bar-fill";
+
+    fill.style.width =
+      `${Math.min(
+        100,
+        Math.max(
+          0,
+          project.progress
+        )
+      )}%`;
+
+
+    bar.appendChild(fill);
+
+    progressWrapper.appendChild(
+      progressNumber
+    );
+
+    progressWrapper.appendChild(bar);
+
+    progressCell.appendChild(
+      progressWrapper
     );
 
 
-    const loadingScreen =
-      document.getElementById("loadingScreen");
-
-    const loginScreen =
-      document.getElementById("loginScreen");
-
-    const headquarters =
-      document.getElementById("headquarters");
-
-    const loginForm =
-      document.getElementById("loginForm");
-
-    const loginButton =
-      document.getElementById("loginButton");
-
-    const loginMessage =
-      document.getElementById("loginMessage");
-
-    const logoutButton =
-      document.getElementById("logoutButton");
-
-    const accountName =
-      document.getElementById("accountName");
-
-    const accountRole =
-      document.getElementById("accountRole");
-
-    const accountAvatar =
-      document.getElementById("accountAvatar");
+    const statusCell =
+      document.createElement("td");
 
 
-    function showLogin() {
+    const badge =
+      document.createElement("span");
 
-      loadingScreen.classList.add("hidden");
-
-      headquarters.classList.add("hidden");
-
-      loginScreen.classList.remove("hidden");
-
-    }
-
-
-    function showHeadquarters() {
-
-      loadingScreen.classList.add("hidden");
-
-      loginScreen.classList.add("hidden");
-
-      headquarters.classList.remove("hidden");
-
-    }
+    badge.className =
+      `badge ${statusClass(
+        project.status,
+        overdue
+      )}`;
 
 
-    function translateRole(role) {
+    if (overdue) {
 
-      if (role === "secretary") {
-        return "دبیر";
-      }
+      badge.textContent =
+        "تأخیر";
 
-      if (role === "deputy") {
-        return "معاون";
-      }
+    } else {
 
-      return "عضو";
-    }
-
-
-    async function loadProfile(user) {
-
-      const {
-        data,
-        error
-      } = await supabase
-        .from("profiles")
-        .select(`
-          username,
-          display_name,
-          role,
-          activity_area,
-          is_active
-        `)
-        .eq("id", user.id)
-        .single();
-
-
-      if (error) {
-
-        console.error(
-          "Profile load error:",
-          error
+      badge.textContent =
+        translateStatus(
+          project.status
         );
 
-        accountName.textContent =
-          user.email;
-
-        accountRole.textContent =
-          "کاربر";
-
-        accountAvatar.textContent =
-          "?";
-
-        showHeadquarters();
-
-        return;
-      }
+    }
 
 
-      const name =
-        data.display_name ||
-        data.username ||
-        user.email;
+    statusCell.appendChild(
+      badge
+    );
 
 
-      accountName.textContent =
-        name;
+    const actionsCell =
+      document.createElement("td");
 
 
-      accountRole.textContent =
-        translateRole(data.role);
+    if (isSecretary()) {
+
+      const actions =
+        document.createElement("div");
+
+      actions.className =
+        "project-actions";
 
 
-      accountAvatar.textContent =
-        name
-          .trim()
-          .charAt(0)
-          .toUpperCase();
+      const edit =
+        document.createElement("button");
+
+      edit.type = "button";
+
+      edit.className =
+        "edit-button";
+
+      edit.textContent =
+        "✏️ ویرایش";
+
+      edit.addEventListener(
+        "click",
+        () => {
+          openEditProject(
+            project
+          );
+        }
+      );
 
 
-      showHeadquarters();
+      const remove =
+        document.createElement("button");
+
+      remove.type = "button";
+
+      remove.className =
+        "danger-button";
+
+      remove.textContent =
+        "🗑 حذف";
+
+      remove.addEventListener(
+        "click",
+        () => {
+          deleteProject(
+            project
+          );
+        }
+      );
+
+
+      actions.appendChild(edit);
+
+      actions.appendChild(remove);
+
+      actionsCell.appendChild(
+        actions
+      );
+
+    } else {
+
+      actionsCell.textContent = "—";
 
     }
 
 
-    async function checkSession() {
+    row.appendChild(titleCell);
 
-      const {
-        data,
+    row.appendChild(assigneeCell);
+
+    row.appendChild(deadlineCell);
+
+    row.appendChild(progressCell);
+
+    row.appendChild(statusCell);
+
+    row.appendChild(actionsCell);
+
+
+    projectsTableBody.appendChild(
+      row
+    );
+
+  });
+
+}
+
+
+function updateProjectCounters() {
+
+  const active =
+    projects.filter(project => {
+
+      return (
+        project.status !== "completed" &&
+        project.status !== "cancelled"
+      );
+
+    }).length;
+
+
+  const delayed =
+    projects.filter(project => {
+
+      return (
+        project.status === "delayed" ||
+        isProjectOverdue(project)
+      );
+
+    }).length;
+
+
+  activeProjectsCount.textContent =
+    active;
+
+  delayedProjectsCount.textContent =
+    delayed;
+
+}
+
+
+/* =========================
+   PROJECT MODAL
+========================= */
+
+function openNewProject() {
+
+  projectForm.reset();
+
+  projectId.value = "";
+
+  projectStatus.value =
+    "assigned";
+
+  projectPriority.value =
+    "normal";
+
+  projectProgress.value =
+    "0";
+
+  projectModalTitle.textContent =
+    "پروژه جدید";
+
+  projectFormMessage.textContent =
+    "";
+
+  projectModal.classList.remove(
+    "hidden"
+  );
+
+}
+
+
+function openEditProject(project) {
+
+  projectId.value =
+    project.id;
+
+  projectTitle.value =
+    project.title || "";
+
+  projectDescription.value =
+    project.description || "";
+
+  projectAssignee.value =
+    project.assigned_to || "";
+
+  projectDeadline.value =
+    project.deadline || "";
+
+  projectStatus.value =
+    project.status;
+
+  projectPriority.value =
+    project.priority;
+
+  projectProgress.value =
+    project.progress;
+
+
+  projectModalTitle.textContent =
+    "ویرایش پروژه";
+
+  projectFormMessage.textContent =
+    "";
+
+  projectModal.classList.remove(
+    "hidden"
+  );
+
+}
+
+
+function closeProjectModal() {
+
+  projectModal.classList.add(
+    "hidden"
+  );
+
+}
+
+
+/* =========================
+   SAVE PROJECT
+========================= */
+
+projectForm.addEventListener(
+  "submit",
+  async event => {
+
+    event.preventDefault();
+
+
+    if (!isSecretary()) {
+      return;
+    }
+
+
+    const title =
+      projectTitle.value.trim();
+
+
+    if (!title) {
+
+      projectFormMessage.textContent =
+        "نام پروژه الزامی است.";
+
+      projectFormMessage.className =
+        "login-error";
+
+      return;
+
+    }
+
+
+    let progress =
+      Number(
+        projectProgress.value
+      );
+
+
+    if (
+      Number.isNaN(progress)
+    ) {
+      progress = 0;
+    }
+
+
+    progress =
+      Math.max(
+        0,
+        Math.min(
+          100,
+          progress
+        )
+      );
+
+
+    const payload = {
+
+      title,
+
+      description:
+        projectDescription.value.trim()
+        || null,
+
+      assigned_to:
+        projectAssignee.value
+        || null,
+
+      deadline:
+        projectDeadline.value
+        || null,
+
+      status:
+        projectStatus.value,
+
+      priority:
+        projectPriority.value,
+
+      progress
+
+    };
+
+
+    saveProjectButton.disabled =
+      true;
+
+    projectFormMessage.textContent =
+      "در حال ذخیره...";
+
+    projectFormMessage.className =
+      "";
+
+
+    const editingId =
+      projectId.value;
+
+
+    let error;
+
+
+    if (editingId) {
+
+      const result =
+        await supabase
+          .from("projects")
+          .update(payload)
+          .eq(
+            "id",
+            editingId
+          );
+
+      error = result.error;
+
+    } else {
+
+      payload.created_by =
+        currentUser.id;
+
+
+      const result =
+        await supabase
+          .from("projects")
+          .insert(payload);
+
+      error = result.error;
+
+    }
+
+
+    saveProjectButton.disabled =
+      false;
+
+
+    if (error) {
+
+      console.error(
+        "Project save error:",
         error
-      } =
-        await supabase.auth.getSession();
+      );
+
+      projectFormMessage.textContent =
+        "ذخیره پروژه انجام نشد.";
+
+      projectFormMessage.className =
+        "login-error";
+
+      return;
+
+    }
 
 
-      if (error) {
+    projectFormMessage.textContent =
+      "پروژه با موفقیت ذخیره شد.";
 
-        console.error(error);
-
-        showLogin();
-
-        return;
-      }
+    projectFormMessage.className =
+      "login-success";
 
 
-      const session =
-        data.session;
+    await loadProjects();
 
 
-      if (!session) {
+    setTimeout(
+      closeProjectModal,
+      400
+    );
 
-        showLogin();
+  }
+);
 
-        return;
-      }
 
+/* =========================
+   DELETE PROJECT
+========================= */
+
+async function deleteProject(project) {
+
+  if (!isSecretary()) {
+    return;
+  }
+
+
+  const approved =
+    confirm(
+      `پروژه «${project.title}» حذف شود؟`
+    );
+
+
+  if (!approved) {
+    return;
+  }
+
+
+  const {
+    error
+  } =
+    await supabase
+      .from("projects")
+      .delete()
+      .eq(
+        "id",
+        project.id
+      );
+
+
+  if (error) {
+
+    console.error(
+      "Project delete error:",
+      error
+    );
+
+    alert(
+      "حذف پروژه انجام نشد."
+    );
+
+    return;
+
+  }
+
+
+  await loadProjects();
+
+}
+
+
+/* =========================
+   MODAL EVENTS
+========================= */
+
+newProjectButton.addEventListener(
+  "click",
+  openNewProject
+);
+
+
+cancelProjectButton.addEventListener(
+  "click",
+  closeProjectModal
+);
+
+
+projectModal.addEventListener(
+  "click",
+  event => {
+
+    if (
+      event.target === projectModal
+    ) {
+      closeProjectModal();
+    }
+
+  }
+);
+
+
+/* =========================
+   LOGIN
+========================= */
+
+loginForm.addEventListener(
+  "submit",
+  async event => {
+
+    event.preventDefault();
+
+
+    const email =
+      document
+        .getElementById("email")
+        .value
+        .trim();
+
+
+    const password =
+      document
+        .getElementById("password")
+        .value;
+
+
+    loginButton.disabled =
+      true;
+
+    loginMessage.textContent =
+      "در حال ورود...";
+
+    loginMessage.className = "";
+
+
+    const {
+      data,
+      error
+    } =
+      await supabase.auth
+        .signInWithPassword({
+          email,
+          password
+        });
+
+
+    loginButton.disabled =
+      false;
+
+
+    if (error) {
+
+      console.error(error);
+
+      loginMessage.textContent =
+        "ایمیل یا رمز عبور صحیح نیست.";
+
+      loginMessage.className =
+        "login-error";
+
+      return;
+
+    }
+
+
+    loginMessage.textContent =
+      "ورود موفقیت‌آمیز بود.";
+
+    loginMessage.className =
+      "login-success";
+
+
+    await loadProfile(
+      data.user
+    );
+
+  }
+);
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+logoutButton.addEventListener(
+  "click",
+  async () => {
+
+    await supabase.auth.signOut();
+
+    currentUser = null;
+    currentProfile = null;
+    profiles = [];
+    projects = [];
+
+    loginForm.reset();
+
+    showLogin();
+
+  }
+);
+
+
+/* =========================
+   SESSION
+========================= */
+
+async function checkSession() {
+
+  const {
+    data,
+    error
+  } =
+    await supabase.auth
+      .getSession();
+
+
+  if (error) {
+
+    console.error(error);
+
+    showLogin();
+
+    return;
+
+  }
+
+
+  if (!data.session) {
+
+    showLogin();
+
+    return;
+
+  }
+
+
+  await loadProfile(
+    data.session.user
+  );
+
+}
+
+
+supabase.auth.onAuthStateChange(
+  async (event, session) => {
+
+    if (
+      event === "SIGNED_OUT"
+    ) {
+
+      showLogin();
+
+      return;
+
+    }
+
+
+    if (
+      event === "SIGNED_IN" &&
+      session
+    ) {
 
       await loadProfile(
         session.user
@@ -2110,144 +3090,13 @@
 
     }
 
-
-    loginForm.addEventListener(
-      "submit",
-      async function(event) {
-
-        event.preventDefault();
+  }
+);
 
 
-        const email =
-          document
-            .getElementById("email")
-            .value
-            .trim();
+checkSession();
 
-
-        const password =
-          document
-            .getElementById("password")
-            .value;
-
-
-        loginMessage.textContent =
-          "در حال ورود...";
-
-        loginMessage.className =
-          "";
-
-        loginButton.disabled =
-          true;
-
-
-        const {
-          data,
-          error
-        } =
-          await supabase.auth.signInWithPassword({
-
-            email: email,
-
-            password: password
-
-          });
-
-
-        loginButton.disabled =
-          false;
-
-
-        if (error) {
-
-          loginMessage.textContent =
-            "ایمیل یا رمز عبور صحیح نیست.";
-
-          loginMessage.className =
-            "login-error";
-
-          console.error(
-            "Login error:",
-            error
-          );
-
-          return;
-        }
-
-
-        loginMessage.textContent =
-          "ورود موفقیت‌آمیز بود.";
-
-        loginMessage.className =
-          "login-success";
-
-
-        await loadProfile(
-          data.user
-        );
-
-      }
-    );
-
-
-    logoutButton.addEventListener(
-      "click",
-      async function() {
-
-        logoutButton.disabled =
-          true;
-
-
-        await supabase.auth.signOut();
-
-
-        logoutButton.disabled =
-          false;
-
-
-        loginForm.reset();
-
-        loginMessage.textContent =
-          "";
-
-        showLogin();
-
-      }
-    );
-
-
-    supabase.auth.onAuthStateChange(
-      async function(event, session) {
-
-        if (
-          event === "SIGNED_OUT"
-        ) {
-
-          showLogin();
-
-          return;
-
-        }
-
-
-        if (
-          session &&
-          event === "SIGNED_IN"
-        ) {
-
-          await loadProfile(
-            session.user
-          );
-
-        }
-
-      }
-    );
-
-
-    checkSession();
-
-  </script>
+</script>
 
 </body>
 </html>
