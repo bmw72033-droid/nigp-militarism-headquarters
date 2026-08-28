@@ -1,28 +1,41 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>دبیرخانه میلیتاریسم</title>
 
+
   <style>
+
     :root {
       --bg: #080b0f;
-      --bg-soft: #0d1117;
+      --bg2: #0b0f14;
       --card: #10151b;
-      --card-hover: #131a22;
+      --card2: #0d1218;
+
       --border: #242b33;
-      --border-light: #343d47;
+      --border-light: #38414c;
+
       --gold: #b9985a;
-      --gold-light: #d0b170;
+      --gold-light: #dbc17e;
+
       --text: #f1f1f1;
       --muted: #8f969e;
+
       --green: #38c172;
-      --yellow: #e0ad4f;
       --red: #d9534f;
       --blue: #4b8fd8;
+      --yellow: #e0ad4f;
     }
+
 
     * {
       box-sizing: border-box;
@@ -30,3073 +43,6042 @@
       padding: 0;
     }
 
+
     html {
       scroll-behavior: smooth;
     }
 
+
     body {
+
+      min-height: 100vh;
+
       background:
         radial-gradient(
-          circle at top,
-          rgba(185, 152, 90, 0.05),
-          transparent 32%
+          circle at 50% 0%,
+          rgba(185, 152, 90, 0.07),
+          transparent 33%
         ),
         var(--bg);
 
       color: var(--text);
-      font-family: Tahoma, Arial, sans-serif;
-      min-height: 100vh;
+
+      font-family:
+        Tahoma,
+        Arial,
+        sans-serif;
+
       line-height: 1.8;
+
     }
+
 
     button,
     input,
-    textarea,
-    select {
+    select,
+    textarea {
+
       font-family: inherit;
+
     }
+
 
     button {
+
       cursor: pointer;
+
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
 
     .hidden {
+
       display: none !important;
+
     }
 
-    /* =========================
-       LOGIN
-    ========================== */
 
-    #loginScreen {
+    /*
+    ==========================================
+    ANIMATIONS
+    ==========================================
+    */
+
+
+    @keyframes fadeUp {
+
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+    }
+
+
+    @keyframes pulse {
+
+      0% {
+        box-shadow:
+          0 0 0 0
+          rgba(56, 193, 114, 0.5);
+      }
+
+      70% {
+        box-shadow:
+          0 0 0 9px
+          rgba(56, 193, 114, 0);
+      }
+
+      100% {
+        box-shadow:
+          0 0 0 0
+          rgba(56, 193, 114, 0);
+      }
+
+    }
+
+
+    @keyframes goldSweep {
+
+      0% {
+        background-position: -200% center;
+      }
+
+      100% {
+        background-position: 200% center;
+      }
+
+    }
+
+
+    .fade-up {
+
+      animation:
+        fadeUp
+        0.45s
+        ease
+        both;
+
+    }
+
+
+    /*
+    ==========================================
+    LOADING
+    ==========================================
+    */
+
+
+    #loadingScreen {
+
       min-height: 100vh;
+
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 25px;
+
+      color: var(--gold);
+
+      letter-spacing: 1px;
+
     }
+
+
+    /*
+    ==========================================
+    LOGIN
+    ==========================================
+    */
+
+
+    #loginScreen {
+
+      min-height: 100vh;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 25px;
+
+    }
+
 
     .login-shell {
+
       width: 100%;
       max-width: 430px;
+
+      animation:
+        fadeUp
+        0.6s
+        ease;
+
     }
+
 
     .login-header {
+
       text-align: center;
+
       margin-bottom: 25px;
+
     }
+
 
     .login-eyebrow {
+
       color: var(--gold);
-      font-size: 11px;
-      letter-spacing: 2.5px;
+
       direction: ltr;
+
+      font-size: 11px;
+
+      letter-spacing: 2.5px;
+
       margin-bottom: 8px;
+
     }
+
 
     .login-header h1 {
+
       font-size: 29px;
-      margin-bottom: 5px;
+
+      margin-bottom: 4px;
+
     }
+
 
     .login-header p {
+
       color: var(--muted);
-      font-size: 13px;
+
       direction: ltr;
+
+      font-size: 12px;
+
+      letter-spacing: 2px;
+
     }
+
 
     .login-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 28px;
+
       position: relative;
+
       overflow: hidden;
+
+      background: var(--card);
+
+      border:
+        1px solid
+        var(--border);
+
+      border-radius: 14px;
+
+      padding: 27px;
+
     }
 
+
     .login-card::before {
+
       content: "";
+
       position: absolute;
+
       top: 0;
       right: 0;
       left: 0;
+
       height: 3px;
-      background: var(--gold);
+
+      background:
+        linear-gradient(
+          90deg,
+          #66532f,
+          var(--gold-light),
+          #66532f
+        );
+
+      background-size: 200% auto;
+
+      animation:
+        goldSweep
+        6s
+        linear
+        infinite;
+
     }
+
 
     .login-title {
+
       color: var(--gold);
-      margin-bottom: 22px;
+
       font-size: 15px;
+
+      margin-bottom: 20px;
+
     }
+
 
     .form-group {
-      margin-bottom: 17px;
+
+      margin-bottom: 16px;
+
     }
+
 
     .form-group label {
+
       display: block;
+
       color: var(--muted);
+
       font-size: 12px;
+
       margin-bottom: 6px;
+
     }
+
 
     .form-group input,
-    .form-group textarea,
-    .form-group select {
+    .form-group select,
+    .form-group textarea {
+
       width: 100%;
+
       background: #090d12;
+
       color: var(--text);
-      border: 1px solid var(--border);
+
+      border:
+        1px solid
+        var(--border);
+
       border-radius: 8px;
-      padding: 12px 13px;
+
       outline: none;
+
+      padding: 11px 12px;
+
       font-size: 14px;
+
+      transition:
+        border-color
+        .2s ease;
+
     }
 
-    .form-group input:focus,
-    .form-group textarea:focus,
-    .form-group select:focus {
-      border-color: var(--gold);
-    }
 
     .form-group textarea {
+
+      min-height: 95px;
+
       resize: vertical;
-      min-height: 100px;
+
     }
 
-    .ltr-input {
-      direction: ltr;
-      text-align: left;
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+
+      border-color: var(--gold);
+
     }
+
+
+    .ltr-input {
+
+      direction: ltr;
+
+      text-align: left;
+
+    }
+
 
     .login-button,
     .primary-button {
-      border: 1px solid #c6a664;
+
       background: var(--gold);
+
       color: #080b0f;
-      font-weight: bold;
+
+      border:
+        1px solid
+        var(--gold-light);
+
       border-radius: 8px;
-      padding: 11px 15px;
-      font-size: 13px;
-      transition: 0.2s ease;
+
+      padding: 10px 15px;
+
+      font-weight: bold;
+
+      transition:
+        .2s ease;
+
     }
 
+
     .login-button {
+
       width: 100%;
+
+      padding: 12px;
+
     }
+
 
     .login-button:hover,
     .primary-button:hover {
+
       background: var(--gold-light);
+
+      transform:
+        translateY(-1px);
+
     }
+
 
     .login-button:disabled,
     .primary-button:disabled {
+
+      opacity: .55;
+
       cursor: not-allowed;
-      opacity: 0.6;
+
     }
+
 
     .secondary-button {
+
       background: transparent;
+
       color: var(--text);
-      border: 1px solid var(--border-light);
-      border-radius: 8px;
-      padding: 10px 14px;
-      font-size: 12px;
+
+      border:
+        1px solid
+        var(--border-light);
+
+      border-radius: 7px;
+
+      padding: 9px 13px;
+
     }
 
-    .secondary-button:hover {
-      border-color: var(--gold);
-    }
 
     .danger-button {
-      background: rgba(217, 83, 79, 0.1);
+
+      background:
+        rgba(
+          217,
+          83,
+          79,
+          .09
+        );
+
       color: #ec8885;
-      border: 1px solid rgba(217, 83, 79, 0.35);
+
+      border:
+        1px solid
+        rgba(
+          217,
+          83,
+          79,
+          .32
+        );
+
       border-radius: 7px;
-      padding: 7px 10px;
+
+      padding: 6px 9px;
+
       font-size: 11px;
+
     }
+
 
     .edit-button {
-      background: rgba(185, 152, 90, 0.1);
+
+      background:
+        rgba(
+          185,
+          152,
+          90,
+          .09
+        );
+
       color: var(--gold-light);
-      border: 1px solid rgba(185, 152, 90, 0.35);
+
+      border:
+        1px solid
+        rgba(
+          185,
+          152,
+          90,
+          .35
+        );
+
       border-radius: 7px;
-      padding: 7px 10px;
+
+      padding: 6px 9px;
+
       font-size: 11px;
+
     }
+
 
     #loginMessage {
-      margin-top: 14px;
-      text-align: center;
-      font-size: 12px;
+
       min-height: 22px;
-    }
 
-    .login-error {
-      color: #ec8885;
-    }
+      margin-top: 12px;
 
-    .login-success {
-      color: #75d89e;
-    }
+      font-size: 12px;
 
-    .login-security {
       text-align: center;
-      color: #5f6871;
-      font-size: 10px;
-      margin-top: 14px;
+
     }
 
-    /* =========================
-       HEADER
-    ========================== */
+
+    .error {
+
+      color: #ed8682;
+
+    }
+
+
+    .success {
+
+      color: #75d89e;
+
+    }
+
+
+    .login-help {
+
+      margin-top: 13px;
+
+      color: #626a73;
+
+      font-size: 10px;
+
+      text-align: center;
+
+    }
+
+
+    /*
+    ==========================================
+    HEADER
+    ==========================================
+    */
+
 
     header {
-      padding: 32px 20px 28px;
-      border-bottom: 1px solid #383838;
-      background: rgba(13, 17, 23, 0.96);
+
+      padding:
+        32px
+        20px
+        28px;
+
       text-align: center;
+
+      background:
+        rgba(
+          13,
+          17,
+          23,
+          .97
+        );
+
+      border-bottom:
+        1px solid
+        #383838;
+
     }
+
 
     .eyebrow {
+
       color: var(--gold);
-      font-size: 13px;
-      letter-spacing: 3px;
-      margin-bottom: 10px;
+
       direction: ltr;
+
+      font-size: 13px;
+
+      letter-spacing: 3px;
+
+      margin-bottom: 10px;
+
     }
+
 
     h1 {
+
       font-size: 30px;
-      margin-bottom: 8px;
+
+      margin-bottom: 7px;
+
     }
+
 
     .subtitle {
+
       color: var(--muted);
-      font-size: 14px;
-      letter-spacing: 2px;
+
       direction: ltr;
+
+      letter-spacing: 2px;
+
+      font-size: 13px;
+
     }
+
+
+    /*
+    ==========================================
+    ACCOUNT BAR
+    ==========================================
+    */
+
 
     .account-box {
+
       max-width: 1100px;
-      margin: 0 auto;
-      padding: 12px 20px;
+
+      margin: auto;
+
+      padding:
+        11px
+        20px;
 
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
 
-      border-bottom: 1px solid var(--border);
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 12px;
+
       background: #090d12;
+
+      border-bottom:
+        1px solid
+        var(--border);
+
     }
+
 
     .account-info {
+
       display: flex;
+
       align-items: center;
-      gap: 11px;
+
+      gap: 10px;
+
     }
+
 
     .account-avatar {
-      width: 37px;
-      height: 37px;
-      border-radius: 50%;
-      border: 1px solid var(--gold);
-      color: var(--gold);
+
+      width: 38px;
+      height: 38px;
 
       display: flex;
+
       align-items: center;
+
       justify-content: center;
 
+      border:
+        1px solid
+        var(--gold);
+
+      border-radius: 50%;
+
+      color: var(--gold);
+
       font-weight: bold;
+
     }
+
 
     .account-name {
+
       font-weight: bold;
-      font-size: 13px;
+
       direction: ltr;
+
       text-align: right;
+
     }
+
 
     .account-role {
+
       color: var(--gold);
+
       font-size: 10px;
+
     }
+
 
     .logout-button {
+
       background: transparent;
-      color: #cf7773;
-      border: 1px solid rgba(217, 83, 79, 0.35);
+
+      color: #d47b77;
+
+      border:
+        1px solid
+        rgba(
+          217,
+          83,
+          79,
+          .35
+        );
+
       border-radius: 7px;
-      padding: 7px 12px;
-      font-size: 11px;
+
+      padding:
+        7px
+        11px;
+
     }
 
-    /* =========================
-       NAV
-    ========================== */
+
+    /*
+    ==========================================
+    NAV
+    ==========================================
+    */
+
 
     .nav-wrapper {
-      background: #0b0f14;
-      border-bottom: 1px solid var(--border);
+
       position: sticky;
+
       top: 0;
+
       z-index: 100;
+
+      background:
+        rgba(
+          11,
+          15,
+          20,
+          .96
+        );
+
+      border-bottom:
+        1px solid
+        var(--border);
+
     }
+
 
     .nav {
+
       max-width: 1100px;
+
       margin: auto;
-      padding: 10px 20px;
+
+      padding:
+        9px
+        20px;
+
       display: flex;
-      gap: 8px;
+
+      gap: 6px;
+
       overflow-x: auto;
+
     }
+
 
     .nav a {
+
       white-space: nowrap;
-      font-size: 13px;
+
       color: var(--muted);
-      padding: 7px 12px;
-      border: 1px solid transparent;
+
+      padding:
+        6px
+        10px;
+
       border-radius: 7px;
+
+      font-size: 12px;
+
+      text-decoration: none;
+
     }
+
 
     .nav a:hover {
+
       color: var(--gold-light);
-      border-color: var(--border-light);
-      background: #11171e;
+
+      background: #121820;
+
     }
 
-    /* =========================
-       GENERAL
-    ========================== */
+
+    /*
+    ==========================================
+    GENERAL
+    ==========================================
+    */
+
 
     main {
+
       max-width: 1100px;
+
       margin: auto;
-      padding: 35px 20px 60px;
+
+      padding:
+        34px
+        20px
+        60px;
+
     }
 
-    section {
-      scroll-margin-top: 70px;
-    }
 
     .section {
+
       margin-top: 34px;
+
+      scroll-margin-top: 70px;
+
     }
+
 
     .section-title {
-      margin-bottom: 15px;
 
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
+      margin-bottom: 14px;
 
-      font-size: 17px;
+      padding-right: 10px;
+
+      border-right:
+        3px solid
+        var(--gold);
+
       color: var(--gold);
 
-      border-right: 3px solid var(--gold);
-      padding-right: 10px;
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      gap: 12px;
+
     }
+
 
     .section-title small {
+
       color: var(--muted);
-      font-size: 11px;
-      font-weight: normal;
+
       direction: ltr;
+
+      font-size: 10px;
+
+      font-weight: normal;
+
     }
+
 
     .section-actions {
+
       display: flex;
-      gap: 8px;
+
       align-items: center;
+
+      gap: 8px;
+
     }
+
 
     .panel {
+
       background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 11px;
+
+      border:
+        1px solid
+        var(--border);
+
+      border-radius: 10px;
+
       overflow: hidden;
+
     }
 
-    /* =========================
-       STATUS
-    ========================== */
+
+    /*
+    ==========================================
+    STATUS
+    ==========================================
+    */
+
 
     .status {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
 
       background: var(--card);
-      border: 1px solid var(--border);
+
+      border:
+        1px solid
+        var(--border);
+
       border-radius: 10px;
 
-      padding: 18px;
+      padding: 17px;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      gap: 15px;
+
+      animation:
+        fadeUp
+        .4s
+        ease;
+
     }
+
 
     .status-left {
+
       display: flex;
+
       align-items: center;
+
       gap: 10px;
+
     }
+
 
     .dot {
+
       width: 10px;
       height: 10px;
-      background: var(--green);
+
       border-radius: 50%;
-      box-shadow: 0 0 12px rgba(56, 193, 114, 0.45);
+
+      background: var(--green);
+
+      animation:
+        pulse
+        2.2s
+        infinite;
+
     }
+
 
     .status strong {
+
       color: var(--gold);
+
     }
+
 
     .last-update {
+
       color: var(--muted);
-      font-size: 12px;
+
+      font-size: 11px;
+
       direction: ltr;
+
     }
 
-    /* =========================
-       SUMMARY
-    ========================== */
+
+    /*
+    ==========================================
+    SUMMARY
+    ==========================================
+    */
+
 
     .summary-grid {
+
+      margin-top: 14px;
+
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-top: 15px;
+
+      grid-template-columns:
+        repeat(
+          4,
+          1fr
+        );
+
+      gap: 11px;
+
     }
+
 
     .summary-card {
-      background: #0d1218;
-      border: 1px solid var(--border);
+
+      background: var(--card2);
+
+      border:
+        1px solid
+        var(--border);
+
       border-radius: 9px;
-      padding: 17px;
+
+      padding: 16px;
+
+      transition:
+        .2s ease;
+
+      animation:
+        fadeUp
+        .5s
+        ease
+        both;
+
     }
+
+
+    .summary-card:hover {
+
+      border-color:
+        var(--border-light);
+
+      transform:
+        translateY(-2px);
+
+    }
+
 
     .summary-number {
-      font-size: 25px;
-      font-weight: bold;
-      direction: ltr;
+
       color: var(--gold-light);
+
+      direction: ltr;
+
+      font-size: 24px;
+
+      font-weight: bold;
+
     }
+
 
     .summary-label {
+
       color: var(--muted);
-      font-size: 12px;
+
+      font-size: 11px;
+
     }
 
-    /* =========================
-       COMMAND
-    ========================== */
+
+    /*
+    ==========================================
+    COMMAND
+    ==========================================
+    */
+
 
     .command-grid {
+
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
+
+      grid-template-columns:
+        repeat(
+          2,
+          1fr
+        );
+
+      gap: 14px;
+
     }
+
 
     .command-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 22px;
+
       position: relative;
-    }
 
-    .command-card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 4px;
-      height: 100%;
-      background: var(--gold);
-    }
-
-    .command-label {
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .command-name {
-      font-size: 23px;
-      font-weight: bold;
-      direction: ltr;
-      text-align: right;
-    }
-
-    .command-role {
-      color: var(--gold);
-      font-size: 12px;
-    }
-
-    /* =========================
-       OBJECTIVES
-    ========================== */
-
-    .objectives {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-      padding: 14px;
-    }
-
-    .objective {
-      background: #0c1117;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 13px 14px;
-
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .objective-text {
-      font-size: 13px;
-    }
-
-    .objective-status {
-      flex-shrink: 0;
-      font-size: 11px;
-      border-radius: 20px;
-      padding: 3px 9px;
-    }
-
-    .completed {
-      background: rgba(56, 193, 114, 0.12);
-      color: #72d59c;
-      border: 1px solid rgba(56, 193, 114, 0.25);
-    }
-
-    .active {
-      background: rgba(75, 143, 216, 0.12);
-      color: #78aee5;
-      border: 1px solid rgba(75, 143, 216, 0.25);
-    }
-
-    /* =========================
-       MEMBERS
-    ========================== */
-
-    .members-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-    }
-
-    .member-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 18px;
-    }
-
-    .member-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-    }
-
-    .member-name {
-      direction: ltr;
-      font-weight: bold;
-      font-size: 17px;
-    }
-
-    .member-role {
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    .online-badge {
-      color: #7bdaa3;
-      font-size: 10px;
-    }
-
-    /* =========================
-       PROJECTS
-    ========================== */
-
-    .project-cards {
-      display: none;
-    }
-
-    .progress-wrapper {
-      min-width: 120px;
-    }
-
-    .progress-number {
-      font-size: 10px;
-      color: var(--muted);
-      margin-bottom: 4px;
-    }
-
-    .project-actions {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-    }
-
-    .empty-state {
-      padding: 35px 20px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    /* =========================
-       TABLE
-    ========================== */
-
-    .table-wrapper {
-      width: 100%;
-      overflow-x: auto;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 850px;
-    }
-
-    th {
-      background: #0c1117;
-      color: var(--gold);
-      font-size: 12px;
-      font-weight: normal;
-      text-align: right;
-      padding: 13px 15px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    td {
-      padding: 14px 15px;
-      font-size: 13px;
-      border-bottom: 1px solid #1d242b;
-    }
-
-    .badge {
-      display: inline-block;
-      border-radius: 20px;
-      padding: 3px 9px;
-      font-size: 10px;
-      white-space: nowrap;
-    }
-
-    .badge-blue {
-      color: #7fb1e9;
-      border: 1px solid rgba(75, 143, 216, 0.3);
-      background: rgba(75, 143, 216, 0.12);
-    }
-
-    .badge-red {
-      color: #ec8885;
-      border: 1px solid rgba(217, 83, 79, 0.3);
-      background: rgba(217, 83, 79, 0.12);
-    }
-
-    .badge-green {
-      color: #75d89e;
-      border: 1px solid rgba(56, 193, 114, 0.3);
-      background: rgba(56, 193, 114, 0.12);
-    }
-
-    .badge-yellow {
-      color: #ebc36f;
-      border: 1px solid rgba(224, 173, 79, 0.3);
-      background: rgba(224, 173, 79, 0.12);
-    }
-
-    /* =========================
-       CAPACITY
-    ========================== */
-
-    .capacity-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-
-    .capacity-box {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 18px;
-    }
-
-    .capacity-box h3 {
-      color: var(--gold);
-      font-size: 14px;
-    }
-
-    .capacity-row {
-      margin: 14px 0;
-    }
-
-    .capacity-info {
-      display: flex;
-      justify-content: space-between;
-      font-size: 12px;
-      margin-bottom: 6px;
-    }
-
-    .bar {
-      height: 7px;
-      background: #080c10;
-      border: 1px solid #202830;
-      border-radius: 10px;
       overflow: hidden;
-    }
 
-    .bar-fill {
-      height: 100%;
-      background: linear-gradient(90deg, #856c3c, var(--gold-light));
-    }
+      background: var(--card);
 
-    /* =========================
-       NOTICE
-    ========================== */
+      border:
+        1px solid
+        var(--border);
 
-    .notice-list {
-      padding: 18px 22px;
-    }
-
-    .notice-list ol {
-      padding-right: 22px;
-    }
-
-    .notice-list li {
-      margin-bottom: 10px;
-      color: #d5d8dc;
-      font-size: 13px;
-    }
-
-    /* =========================
-       MODAL
-    ========================== */
-
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 1000;
-
-      background: rgba(0, 0, 0, 0.78);
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      border-radius: 10px;
 
       padding: 20px;
+
+      transition:
+        .2s ease;
+
     }
 
-    .modal {
-      width: 100%;
-      max-width: 650px;
-      max-height: 90vh;
-      overflow-y: auto;
 
-      background: #0d1218;
-      border: 1px solid var(--border-light);
-      border-radius: 14px;
-      padding: 24px;
+    .command-card:hover {
 
-      position: relative;
+      transform:
+        translateY(-2px);
+
+      border-color:
+        var(--gold);
+
     }
 
-    .modal-title {
-      color: var(--gold);
-      font-size: 18px;
-      margin-bottom: 20px;
+
+    .command-card::before {
+
+      content: "";
+
+      position: absolute;
+
+      top: 0;
+      right: 0;
+
+      width: 4px;
+      height: 100%;
+
+      background: var(--gold);
+
     }
 
-    .modal-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
 
-    .modal-full {
-      grid-column: 1 / -1;
-    }
+    .command-label {
 
-    .modal-actions {
-      display: flex;
-      justify-content: flex-end;
-      gap: 10px;
-      margin-top: 20px;
-    }
+      color: var(--muted);
 
-    #projectFormMessage {
-      margin-top: 12px;
-      font-size: 12px;
-      min-height: 20px;
-    }
-
-    /* =========================
-       FOOTER
-    ========================== */
-
-    footer {
-      border-top: 1px solid var(--border);
-      background: #090d11;
-      text-align: center;
-      padding: 25px 20px;
-    }
-
-    .footer-title {
-      color: var(--gold);
-      font-size: 12px;
-      direction: ltr;
-    }
-
-    .footer-sub {
-      color: #656d75;
       font-size: 11px;
+
     }
 
-    #loadingScreen {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+
+    .command-name {
+
+      direction: ltr;
+
+      text-align: right;
+
+      font-size: 22px;
+
+      font-weight: bold;
+
+    }
+
+
+    .command-role {
+
       color: var(--gold);
+
+      font-size: 11px;
+
     }
 
-    @media (max-width: 900px) {
-      .summary-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
 
-      .members-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
+    /*
+    ==========================================
+    OBJECTIVES
+    ==========================================
+    */
 
-      .capacity-grid {
-        grid-template-columns: 1fr;
-      }
+
+    .objectives {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(
+          2,
+          1fr
+        );
+
+      gap: 9px;
+
+      padding: 13px;
+
     }
 
-    @media (max-width: 650px) {
-      h1 {
-        font-size: 25px;
-      }
 
-      main {
-        padding: 25px 14px 50px;
-      }
+    .objective {
 
-      .status {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+      padding:
+        12px
+        13px;
 
-      .command-grid,
-      .objectives,
-      .members-grid,
-      .modal-grid {
-        grid-template-columns: 1fr;
-      }
+      background: #0c1117;
 
-      .modal-full {
-        grid-column: auto;
-      }
+      border:
+        1px solid
+        var(--border);
 
-      .section-title {
-        align-items: flex-start;
-      }
+      border-radius: 8px;
 
-      .section-actions {
-        flex-direction: column;
-        align-items: flex-end;
-      }
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 10px;
+
+      transition:
+        .2s ease;
+
     }
-  </style>
-</head>
 
-<body>
 
-<div id="loadingScreen">
-  در حال برقراری ارتباط با ستاد...
-</div>
+    .objective:hover {
 
-<!-- LOGIN -->
+      background: #111820;
 
-<section id="loginScreen" class="hidden">
+    }
 
-  <div class="login-shell">
 
-    <div class="login-header">
+    .objective-text {
 
-      <div class="login-eyebrow">
-        NIGP's MILITARISM HEADQUARTERS OFFICE
-      </div>
+      font-size: 12px;
 
-      <h1>🏛 دبیرخانه میلیتاریسم</h1>
+    }
 
-      <p>SECURE ACCESS</p>
 
-    </div>
+    .objective-status {
 
-    <div class="login-card">
+      flex-shrink: 0;
 
-      <div class="login-title">
-        ورود به سامانه
-      </div>
+      border-radius: 20px;
 
-      <form id="loginForm">
+      padding:
+        2px
+        8px;
 
-        <div class="form-group">
+      font-size: 10px;
 
-          <label for="email">ایمیل</label>
+    }
 
-          <input
-            id="email"
-            class="ltr-input"
-            type="email"
-            autocomplete="email"
-            required
-          >
 
-        </div>
+    .completed {
 
-        <div class="form-group">
+      color: #72d59c;
 
-          <label for="password">رمز عبور</label>
-
-          <input
-            id="password"
-            class="ltr-input"
-            type="password"
-            autocomplete="current-password"
-            required
-          >
-
-        </div>
-
-        <button
-          id="loginButton"
-          class="login-button"
-          type="submit"
-        >
-          ورود به ستاد
-        </button>
-
-      </form>
-
-      <div id="loginMessage"></div>
-
-      <div class="login-security">
-        AUTHENTICATION VIA SUPABASE
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- HQ -->
-
-<div id="headquarters" class="hidden">
-
-<header>
-
-  <div class="eyebrow">
-    NIGP's MILITARISM HEADQUARTERS OFFICE
-  </div>
-
-  <h1>🏛 دبیرخانه میلیتاریسم</h1>
-
-  <div class="subtitle">
-    STATUS BOARD
-  </div>
-
-</header>
-
-<div class="account-box">
-
-  <div class="account-info">
-
-    <div
-      id="accountAvatar"
-      class="account-avatar"
-    >
-      S
-    </div>
-
-    <div>
-
-      <div
-        id="accountName"
-        class="account-name"
-      >
-        SPOOKY
-      </div>
-
-      <div
-        id="accountRole"
-        class="account-role"
-      >
-        دبیر
-      </div>
-
-    </div>
-
-  </div>
-
-  <button
-    id="logoutButton"
-    class="logout-button"
-    type="button"
-  >
-    خروج از سامانه
-  </button>
-
-</div>
-
-<div class="nav-wrapper">
-
-<nav class="nav">
-
-  <a href="#command">فرماندهی</a>
-  <a href="#objectives">اهداف جاری</a>
-  <a href="#members">اعضا</a>
-  <a href="#projects">پروژه‌ها</a>
-  <a href="#capacity">ظرفیت</a>
-  <a href="#operational">استعداد عملیاتی</a>
-  <a href="#notices">تذکرات</a>
-
-</nav>
-
-</div>
-
-<main>
-
-<!-- STATUS -->
-
-<div class="status">
-
-  <div class="status-left">
-
-    <span class="dot"></span>
-
-    <div>
-      <strong>وضعیت سامانه:</strong>
-      ستاد آنلاین و فعال است
-    </div>
-
-  </div>
-
-  <div class="last-update">
-    STATUS: OPERATIONAL
-  </div>
-
-</div>
-
-<!-- SUMMARY -->
-
-<div class="summary-grid">
-
-  <div class="summary-card">
-    <div class="summary-number">4</div>
-    <div class="summary-label">اعضای دبیرخانه</div>
-  </div>
-
-  <div class="summary-card">
-    <div
-      id="activeProjectsCount"
-      class="summary-number"
-    >
-      0
-    </div>
-
-    <div class="summary-label">
-      پروژه‌های فعال
-    </div>
-  </div>
-
-  <div class="summary-card">
-
-    <div
-      id="delayedProjectsCount"
-      class="summary-number"
-    >
-      0
-    </div>
-
-    <div class="summary-label">
-      پروژه با تأخیر
-    </div>
-
-  </div>
-
-  <div class="summary-card">
-    <div class="summary-number">16H</div>
-    <div class="summary-label">ظرفیت هفتگی</div>
-  </div>
-
-</div>
-
-<!-- COMMAND -->
-
-<section class="section" id="command">
-
-  <div class="section-title">
-    <span>فرماندهی دبیرخانه</span>
-    <small>COMMAND</small>
-  </div>
-
-  <div class="command-grid">
-
-    <div class="command-card">
-      <div class="command-label">دبیر</div>
-      <div class="command-name">SPOOKY</div>
-      <div class="command-role">
-        دبیر دبیرخانه میلیتاریسم
-      </div>
-    </div>
-
-    <div class="command-card">
-      <div class="command-label">معاونت</div>
-      <div class="command-name">—</div>
-      <div class="command-role">
-        معاون دبیرخانه
-      </div>
-    </div>
-
-  </div>
-
-</section>
-
-<!-- OBJECTIVES -->
-
-<section class="section" id="objectives">
-
-  <div class="section-title">
-    <span>اهداف جاری دبیرخانه</span>
-    <small>CURRENT OBJECTIVES</small>
-  </div>
-
-  <div class="panel">
-
-    <div class="objectives">
-
-      <div class="objective">
-        <div class="objective-text">پلتفرم‌های ISR</div>
-        <span class="objective-status completed">✓ تکمیل</span>
-      </div>
-
-      <div class="objective">
-        <div class="objective-text">
-          انواع روش‌های SIGINT و اهمیت آنها
-        </div>
-        <span class="objective-status completed">✓ تکمیل</span>
-      </div>
-
-      <div class="objective">
-        <div class="objective-text">
-          تحقیق و بررسی سامانه LINK-16
-        </div>
-        <span class="objective-status completed">✓ تکمیل</span>
-      </div>
-
-      <div class="objective">
-        <div class="objective-text">
-          عوامل مؤثر در کاهش لگد و افزایش نفوذ و برد سلاح‌های تک‌تیرانداز
-        </div>
-        <span class="objective-status active">
-          در حال بررسی
-        </span>
-      </div>
-
-      <div class="objective">
-        <div class="objective-text">
-          ماهواره‌های جاسوسی و اطلاعاتی در دستان دشمن آمریکایی صهیونیستی
-        </div>
-        <span class="objective-status completed">✓ تکمیل</span>
-      </div>
-
-      <div class="objective">
-        <div class="objective-text">
-          Frequency Hopping
-        </div>
-        <span class="objective-status completed">✓ تکمیل</span>
-      </div>
-
-      <div class="objective">
-        <div class="objective-text">بانک اهداف</div>
-        <span class="objective-status active">فعال</span>
-      </div>
-
-      <div class="objective">
-        <div class="objective-text">
-          تأثیر و نقش Intel Sharing توسط روس‌ها و چینی‌ها
-        </div>
-        <span class="objective-status active">فعال</span>
-      </div>
-
-      <div class="objective">
-        <div class="objective-text">
-          GPS Spoofing و Jamming و اثر آن بر بعد نظامی و غیرنظامی منطقه خلیج فارس
-        </div>
-        <span class="objective-status completed">✓ تکمیل</span>
-      </div>
-
-      <div class="objective">
-        <div class="objective-text">
-          نفوذ اطلاعاتی از بعد HUMINT
-        </div>
-        <span class="objective-status active">فعال</span>
-      </div>
-
-      <div class="objective">
-        <div class="objective-text">
-          هدف قرارگرفتن AN/FPS-132
-        </div>
-        <span class="objective-status active">
-          در حال بررسی
-        </span>
-      </div>
-
-      <div class="objective">
-        <div class="objective-text">
-          هک زیرساخت‌های غیرنظامی
-        </div>
-        <span class="objective-status active">فعال</span>
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- MEMBERS -->
-
-<section class="section" id="members">
-
-  <div class="section-title">
-    <span>اعضای دبیرخانه</span>
-    <small>PERSONNEL</small>
-  </div>
-
-  <div class="members-grid">
-
-    <div class="member-card">
-      <div class="member-top">
-        <div class="member-name">SPOOKY</div>
-        <div class="online-badge">● ACTIVE</div>
-      </div>
-      <div class="member-role">دبیر / تحلیل</div>
-    </div>
-
-    <div class="member-card">
-      <div class="member-top">
-        <div class="member-name">KOUROSH</div>
-        <div class="online-badge">● ACTIVE</div>
-      </div>
-      <div class="member-role">عضو / تحلیل</div>
-    </div>
-
-    <div class="member-card">
-      <div class="member-top">
-        <div class="member-name">JULIDEHMU</div>
-        <div class="online-badge">● ACTIVE</div>
-      </div>
-      <div class="member-role">عضو / تحلیل</div>
-    </div>
-
-    <div class="member-card">
-      <div class="member-top">
-        <div class="member-name">WERNER</div>
-        <div class="online-badge">● ACTIVE</div>
-      </div>
-      <div class="member-role">عضو / تحلیل</div>
-    </div>
-
-  </div>
-
-</section>
-
-<!-- REAL PROJECTS -->
-
-<section class="section" id="projects">
-
-  <div class="section-title">
-
-    <span>پروژه‌های در حال اجرا</span>
-
-    <div class="section-actions">
-
-      <small>ACTIVE PROJECTS</small>
-
-      <button
-        id="newProjectButton"
-        class="primary-button hidden"
-        type="button"
-      >
-        + پروژه جدید
-      </button>
-
-    </div>
-
-  </div>
-
-  <div class="panel">
-
-    <div class="table-wrapper">
-
-      <table>
-
-        <thead>
-          <tr>
-            <th>پروژه</th>
-            <th>مسئول</th>
-            <th>مهلت</th>
-            <th>پیشرفت</th>
-            <th>وضعیت</th>
-            <th id="projectActionsHeader">مدیریت</th>
-          </tr>
-        </thead>
-
-        <tbody id="projectsTableBody">
-
-          <tr>
-            <td colspan="6">
-              <div class="empty-state">
-                در حال دریافت پروژه‌ها...
-              </div>
-            </td>
-          </tr>
-
-        </tbody>
-
-      </table>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- MEMBER CAPACITY -->
-
-<section class="section" id="capacity">
-
-  <div class="section-title">
-    <span>ظرفیت اعضا</span>
-    <small>PERSONNEL CAPACITY</small>
-  </div>
-
-  <div class="panel">
-
-    <div class="table-wrapper">
-
-      <table>
-
-        <thead>
-          <tr>
-            <th>عضو</th>
-            <th>حوزه فعالیت</th>
-            <th>روزهای فعالیت</th>
-            <th>ظرفیت هر روز</th>
-          </tr>
-        </thead>
-
-        <tbody>
-
-          <tr>
-            <td>اسپوکی</td>
-            <td>تحلیل</td>
-            <td>شنبه تا سه‌شنبه</td>
-            <td>۱ ساعت</td>
-          </tr>
-
-          <tr>
-            <td>کوروش</td>
-            <td>تحلیل</td>
-            <td>شنبه تا چهارشنبه</td>
-            <td>۲ ساعت</td>
-          </tr>
-
-          <tr>
-            <td>ژولیده مو</td>
-            <td>تحلیل</td>
-            <td>پنجشنبه</td>
-            <td>۲ ساعت</td>
-          </tr>
-
-        </tbody>
-
-      </table>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- OPERATIONAL -->
-
-<section class="section" id="operational">
-
-  <div class="section-title">
-    <span>استعداد عملیاتی دبیرخانه</span>
-    <small>OPERATIONAL CAPACITY</small>
-  </div>
-
-  <div class="capacity-grid">
-
-    <div class="capacity-box">
-
-      <h3>ظرفیت روزانه</h3>
-
-      <div class="capacity-row">
-        <div class="capacity-info">
-          <span>شنبه</span>
-          <span>۳ ساعت</span>
-        </div>
-        <div class="bar">
-          <div class="bar-fill" style="width:100%"></div>
-        </div>
-      </div>
-
-      <div class="capacity-row">
-        <div class="capacity-info">
-          <span>یکشنبه</span>
-          <span>۳ ساعت</span>
-        </div>
-        <div class="bar">
-          <div class="bar-fill" style="width:100%"></div>
-        </div>
-      </div>
-
-      <div class="capacity-row">
-        <div class="capacity-info">
-          <span>دوشنبه</span>
-          <span>۳ ساعت</span>
-        </div>
-        <div class="bar">
-          <div class="bar-fill" style="width:100%"></div>
-        </div>
-      </div>
-
-      <div class="capacity-row">
-        <div class="capacity-info">
-          <span>سه‌شنبه</span>
-          <span>۳ ساعت</span>
-        </div>
-        <div class="bar">
-          <div class="bar-fill" style="width:100%"></div>
-        </div>
-      </div>
-
-      <div class="capacity-row">
-        <div class="capacity-info">
-          <span>چهارشنبه</span>
-          <span>۲ ساعت</span>
-        </div>
-        <div class="bar">
-          <div class="bar-fill" style="width:67%"></div>
-        </div>
-      </div>
-
-      <div class="capacity-row">
-        <div class="capacity-info">
-          <span>پنجشنبه</span>
-          <span>۲ ساعت</span>
-        </div>
-        <div class="bar">
-          <div class="bar-fill" style="width:67%"></div>
-        </div>
-      </div>
-
-      <div class="capacity-row">
-        <div class="capacity-info">
-          <span>جمعه</span>
-          <span>۰ ساعت</span>
-        </div>
-        <div class="bar">
-          <div class="bar-fill" style="width:0%"></div>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="capacity-box">
-
-      <h3>وضعیت کلی هفتگی</h3>
-
-      <div
-        style="
-          min-height:270px;
-          display:flex;
-          flex-direction:column;
-          justify-content:center;
-          align-items:center;
-          text-align:center;
-        "
-      >
-
-        <div style="color:#8f969e;font-size:12px;">
-          مجموع استعداد عملیاتی
-        </div>
-
-        <div
-          style="
-            font-size:50px;
-            font-weight:bold;
-            color:#d0b170;
-            direction:ltr;
-          "
-        >
-          16H
-        </div>
-
-        <span class="badge badge-green">
-          ● OPERATIONAL
-        </span>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- NOTICES -->
-
-<section class="section" id="notices">
-
-  <div class="section-title">
-    <span>تذکرات</span>
-    <small>DIRECTIVES</small>
-  </div>
-
-  <div class="panel notice-list">
-
-    <ol>
-      <li>
-        ظرفیت هر عضو بر اساس تعهد واقعی ثبت می‌شود.
-      </li>
-
-      <li>
-        هرگونه تغییر در برنامه باید به دبیر یا معاونت اطلاع داده شود.
-      </li>
-
-      <li>
-        تقسیم مأموریت‌ها بر اساس استعداد عملیاتی ثبت‌شده انجام خواهد شد.
-      </li>
-
-      <li>
-        این برد به‌صورت مستمر به‌روزرسانی و مبنای برنامه‌ریزی دبیرخانه خواهد بود.
-      </li>
-    </ol>
-
-  </div>
-
-</section>
-
-</main>
-
-<footer>
-
-  <div class="footer-title">
-    NIGP • MILITARISM HEADQUARTERS OFFICE
-  </div>
-
-  <div class="footer-sub">
-    INTERNAL STATUS BOARD
-  </div>
-
-</footer>
-
-</div>
-
-<!-- PROJECT MODAL -->
-
-<div
-  id="projectModal"
-  class="modal-overlay hidden"
->
-
-  <div class="modal">
-
-    <div
-      id="projectModalTitle"
-      class="modal-title"
-    >
-      پروژه جدید
-    </div>
-
-    <form id="projectForm">
-
-      <input
-        type="hidden"
-        id="projectId"
-      >
-
-      <div class="modal-grid">
-
-        <div class="form-group modal-full">
-
-          <label for="projectTitle">
-            نام پروژه
-          </label>
-
-          <input
-            id="projectTitle"
-            type="text"
-            required
-          >
-
-        </div>
-
-        <div class="form-group modal-full">
-
-          <label for="projectDescription">
-            توضیحات
-          </label>
-
-          <textarea id="projectDescription"></textarea>
-
-        </div>
-
-        <div class="form-group">
-
-          <label for="projectAssignee">
-            مسئول
-          </label>
-
-          <select id="projectAssignee">
-
-            <option value="">
-              بدون مسئول
-            </option>
-
-          </select>
-
-        </div>
-
-        <div class="form-group">
-
-          <label for="projectDeadline">
-            مهلت
-          </label>
-
-          <input
-            id="projectDeadline"
-            class="ltr-input"
-            type="date"
-          >
-
-        </div>
-
-        <div class="form-group">
-
-          <label for="projectStatus">
-            وضعیت
-          </label>
-
-          <select id="projectStatus">
-
-            <option value="assigned">
-              ابلاغ شده
-            </option>
-
-            <option value="in_progress">
-              در حال اجرا
-            </option>
-
-            <option value="submitted">
-              گزارش ارسال شده
-            </option>
-
-            <option value="completed">
-              تکمیل شده
-            </option>
-
-            <option value="delayed">
-              تأخیر
-            </option>
-
-            <option value="cancelled">
-              لغو شده
-            </option>
-
-          </select>
-
-        </div>
-
-        <div class="form-group">
-
-          <label for="projectPriority">
-            اولویت
-          </label>
-
-          <select id="projectPriority">
-
-            <option value="low">
-              پایین
-            </option>
-
-            <option value="normal" selected>
-              عادی
-            </option>
-
-            <option value="high">
-              بالا
-            </option>
-
-            <option value="critical">
-              حیاتی
-            </option>
-
-          </select>
-
-        </div>
-
-        <div class="form-group modal-full">
-
-          <label for="projectProgress">
-            درصد پیشرفت
-          </label>
-
-          <input
-            id="projectProgress"
-            class="ltr-input"
-            type="number"
-            min="0"
-            max="100"
-            value="0"
-          >
-
-        </div>
-
-      </div>
-
-      <div
-        id="projectFormMessage"
-        aria-live="polite"
-      ></div>
-
-      <div class="modal-actions">
-
-        <button
-          id="cancelProjectButton"
-          type="button"
-          class="secondary-button"
-        >
-          انصراف
-        </button>
-
-        <button
-          id="saveProjectButton"
-          type="submit"
-          class="primary-button"
-        >
-          ذخیره پروژه
-        </button>
-
-      </div>
-
-    </form>
-
-  </div>
-
-</div>
-
-<script type="module">
-
-import {
-  createClient
-} from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
-
-
-const SUPABASE_URL =
-  "https://xhwyhwlgxbzcmzutcsqb.supabase.co";
-
-const SUPABASE_PUBLISHABLE_KEY =
-  "sb_publishable_jpC_quL4SdXrAaqtiSshWQ_pefkeMwh";
-
-
-const supabase = createClient(
-  SUPABASE_URL,
-  SUPABASE_PUBLISHABLE_KEY
-);
-
-
-/* =========================
-   STATE
-========================= */
-
-let currentUser = null;
-let currentProfile = null;
-
-let profiles = [];
-let projects = [];
-
-
-/* =========================
-   ELEMENTS
-========================= */
-
-const loadingScreen =
-  document.getElementById("loadingScreen");
-
-const loginScreen =
-  document.getElementById("loginScreen");
-
-const headquarters =
-  document.getElementById("headquarters");
-
-const loginForm =
-  document.getElementById("loginForm");
-
-const loginButton =
-  document.getElementById("loginButton");
-
-const loginMessage =
-  document.getElementById("loginMessage");
-
-const logoutButton =
-  document.getElementById("logoutButton");
-
-const accountName =
-  document.getElementById("accountName");
-
-const accountRole =
-  document.getElementById("accountRole");
-
-const accountAvatar =
-  document.getElementById("accountAvatar");
-
-
-const newProjectButton =
-  document.getElementById("newProjectButton");
-
-const projectsTableBody =
-  document.getElementById("projectsTableBody");
-
-const projectActionsHeader =
-  document.getElementById("projectActionsHeader");
-
-const activeProjectsCount =
-  document.getElementById("activeProjectsCount");
-
-const delayedProjectsCount =
-  document.getElementById("delayedProjectsCount");
-
-
-const projectModal =
-  document.getElementById("projectModal");
-
-const projectModalTitle =
-  document.getElementById("projectModalTitle");
-
-const projectForm =
-  document.getElementById("projectForm");
-
-const projectId =
-  document.getElementById("projectId");
-
-const projectTitle =
-  document.getElementById("projectTitle");
-
-const projectDescription =
-  document.getElementById("projectDescription");
-
-const projectAssignee =
-  document.getElementById("projectAssignee");
-
-const projectDeadline =
-  document.getElementById("projectDeadline");
-
-const projectStatus =
-  document.getElementById("projectStatus");
-
-const projectPriority =
-  document.getElementById("projectPriority");
-
-const projectProgress =
-  document.getElementById("projectProgress");
-
-const saveProjectButton =
-  document.getElementById("saveProjectButton");
-
-const cancelProjectButton =
-  document.getElementById("cancelProjectButton");
-
-const projectFormMessage =
-  document.getElementById("projectFormMessage");
-
-
-/* =========================
-   GENERAL
-========================= */
-
-function isSecretary() {
-  return currentProfile?.role === "secretary";
-}
-
-
-function translateRole(role) {
-
-  if (role === "secretary") {
-    return "دبیر";
-  }
-
-  if (role === "deputy") {
-    return "معاون";
-  }
-
-  return "عضو";
-}
-
-
-function translateStatus(status) {
-
-  const labels = {
-    assigned: "ابلاغ شده",
-    in_progress: "در حال اجرا",
-    submitted: "گزارش ارسال شده",
-    completed: "تکمیل شده",
-    delayed: "تأخیر",
-    cancelled: "لغو شده"
-  };
-
-  return labels[status] || status;
-}
-
-
-function statusClass(status, overdue) {
-
-  if (overdue || status === "delayed") {
-    return "badge-red";
-  }
-
-  if (status === "completed") {
-    return "badge-green";
-  }
-
-  if (status === "submitted") {
-    return "badge-yellow";
-  }
-
-  return "badge-blue";
-}
-
-
-function getTodayDateString() {
-
-  const date = new Date();
-
-  const year = date.getFullYear();
-
-  const month =
-    String(date.getMonth() + 1).padStart(2, "0");
-
-  const day =
-    String(date.getDate()).padStart(2, "0");
-
-  return `${year}-${month}-${day}`;
-}
-
-
-function isProjectOverdue(project) {
-
-  if (!project.deadline) {
-    return false;
-  }
-
-  if (
-    project.status === "completed" ||
-    project.status === "cancelled"
-  ) {
-    return false;
-  }
-
-  return project.deadline < getTodayDateString();
-}
-
-
-function getProfileName(id) {
-
-  if (!id) {
-    return "—";
-  }
-
-  const profile =
-    profiles.find(
-      item => item.id === id
-    );
-
-  if (!profile) {
-    return "عضو";
-  }
-
-  return (
-    profile.display_name ||
-    profile.username ||
-    "عضو"
-  );
-}
-
-
-function showLogin() {
-
-  loadingScreen.classList.add("hidden");
-  headquarters.classList.add("hidden");
-  loginScreen.classList.remove("hidden");
-
-}
-
-
-function showHeadquarters() {
-
-  loadingScreen.classList.add("hidden");
-  loginScreen.classList.add("hidden");
-  headquarters.classList.remove("hidden");
-
-}
-
-
-/* =========================
-   PROFILE
-========================= */
-
-async function loadProfile(user) {
-
-  const {
-    data,
-    error
-  } =
-    await supabase
-      .from("profiles")
-      .select(`
-        id,
-        username,
-        display_name,
-        role,
-        activity_area,
-        is_active
-      `)
-      .eq("id", user.id)
-      .single();
-
-
-  if (error) {
-
-    console.error(
-      "Profile load error:",
-      error
-    );
-
-    await supabase.auth.signOut();
-
-    showLogin();
-
-    return;
-
-  }
-
-
-  currentUser = user;
-  currentProfile = data;
-
-
-  const name =
-    data.display_name ||
-    data.username ||
-    user.email;
-
-
-  accountName.textContent = name;
-
-  accountRole.textContent =
-    translateRole(data.role);
-
-  accountAvatar.textContent =
-    name
-      .trim()
-      .charAt(0)
-      .toUpperCase();
-
-
-  if (isSecretary()) {
-
-    newProjectButton.classList.remove("hidden");
-    projectActionsHeader.classList.remove("hidden");
-
-  } else {
-
-    newProjectButton.classList.add("hidden");
-    projectActionsHeader.classList.add("hidden");
-
-  }
-
-
-  await loadProfiles();
-
-  await loadProjects();
-
-  showHeadquarters();
-
-}
-
-
-/* =========================
-   PROFILES
-========================= */
-
-async function loadProfiles() {
-
-  const {
-    data,
-    error
-  } =
-    await supabase
-      .from("profiles")
-      .select(`
-        id,
-        username,
-        display_name,
-        role,
-        is_active
-      `)
-      .eq("is_active", true)
-      .order("display_name", {
-        ascending: true
-      });
-
-
-  if (error) {
-
-    console.error(
-      "Profiles error:",
-      error
-    );
-
-    profiles = [];
-
-    return;
-
-  }
-
-
-  profiles = data || [];
-
-  renderAssigneeOptions();
-
-}
-
-
-function renderAssigneeOptions() {
-
-  projectAssignee.innerHTML = "";
-
-  const emptyOption =
-    document.createElement("option");
-
-  emptyOption.value = "";
-  emptyOption.textContent = "بدون مسئول";
-
-  projectAssignee.appendChild(
-    emptyOption
-  );
-
-
-  profiles.forEach(profile => {
-
-    const option =
-      document.createElement("option");
-
-    option.value =
-      profile.id;
-
-    option.textContent =
-      profile.display_name ||
-      profile.username ||
-      "عضو";
-
-    projectAssignee.appendChild(
-      option
-    );
-
-  });
-
-}
-
-
-/* =========================
-   PROJECTS
-========================= */
-
-async function loadProjects() {
-
-  projectsTableBody.innerHTML = `
-    <tr>
-      <td colspan="6">
-        <div class="empty-state">
-          در حال دریافت پروژه‌ها...
-        </div>
-      </td>
-    </tr>
-  `;
-
-
-  const {
-    data,
-    error
-  } =
-    await supabase
-      .from("projects")
-      .select(`
-        id,
-        title,
-        description,
-        assigned_to,
-        created_by,
-        deadline,
-        status,
-        progress,
-        priority,
-        created_at,
-        updated_at
-      `)
-      .order("created_at", {
-        ascending: false
-      });
-
-
-  if (error) {
-
-    console.error(
-      "Projects error:",
-      error
-    );
-
-    projectsTableBody.innerHTML = `
-      <tr>
-        <td colspan="6">
-          <div class="empty-state">
-            دریافت پروژه‌ها با مشکل مواجه شد.
-          </div>
-        </td>
-      </tr>
-    `;
-
-    return;
-
-  }
-
-
-  projects = data || [];
-
-  renderProjects();
-
-  updateProjectCounters();
-
-}
-
-
-function renderProjects() {
-
-  projectsTableBody.innerHTML = "";
-
-
-  if (projects.length === 0) {
-
-    projectsTableBody.innerHTML = `
-      <tr>
-        <td colspan="6">
-          <div class="empty-state">
-            هنوز پروژه‌ای ثبت نشده است.
-          </div>
-        </td>
-      </tr>
-    `;
-
-    return;
-
-  }
-
-
-  projects.forEach(project => {
-
-    const overdue =
-      isProjectOverdue(project);
-
-
-    const row =
-      document.createElement("tr");
-
-
-    const titleCell =
-      document.createElement("td");
-
-    titleCell.textContent =
-      project.title;
-
-
-    const assigneeCell =
-      document.createElement("td");
-
-    assigneeCell.textContent =
-      getProfileName(
-        project.assigned_to
-      );
-
-
-    const deadlineCell =
-      document.createElement("td");
-
-    deadlineCell.textContent =
-      project.deadline || "—";
-
-
-    const progressCell =
-      document.createElement("td");
-
-    const progressWrapper =
-      document.createElement("div");
-
-    progressWrapper.className =
-      "progress-wrapper";
-
-
-    const progressNumber =
-      document.createElement("div");
-
-    progressNumber.className =
-      "progress-number";
-
-    progressNumber.textContent =
-      `${project.progress}%`;
-
-
-    const bar =
-      document.createElement("div");
-
-    bar.className = "bar";
-
-
-    const fill =
-      document.createElement("div");
-
-    fill.className =
-      "bar-fill";
-
-    fill.style.width =
-      `${Math.min(
-        100,
-        Math.max(
-          0,
-          project.progress
-        )
-      )}%`;
-
-
-    bar.appendChild(fill);
-
-    progressWrapper.appendChild(
-      progressNumber
-    );
-
-    progressWrapper.appendChild(bar);
-
-    progressCell.appendChild(
-      progressWrapper
-    );
-
-
-    const statusCell =
-      document.createElement("td");
-
-
-    const badge =
-      document.createElement("span");
-
-    badge.className =
-      `badge ${statusClass(
-        project.status,
-        overdue
-      )}`;
-
-
-    if (overdue) {
-
-      badge.textContent =
-        "تأخیر";
-
-    } else {
-
-      badge.textContent =
-        translateStatus(
-          project.status
+      background:
+        rgba(
+          56,
+          193,
+          114,
+          .11
         );
 
     }
 
 
-    statusCell.appendChild(
-      badge
-    );
+    .active {
 
+      color: #7fb1e9;
 
-    const actionsCell =
-      document.createElement("td");
-
-
-    if (isSecretary()) {
-
-      const actions =
-        document.createElement("div");
-
-      actions.className =
-        "project-actions";
-
-
-      const edit =
-        document.createElement("button");
-
-      edit.type = "button";
-
-      edit.className =
-        "edit-button";
-
-      edit.textContent =
-        "✏️ ویرایش";
-
-      edit.addEventListener(
-        "click",
-        () => {
-          openEditProject(
-            project
-          );
-        }
-      );
-
-
-      const remove =
-        document.createElement("button");
-
-      remove.type = "button";
-
-      remove.className =
-        "danger-button";
-
-      remove.textContent =
-        "🗑 حذف";
-
-      remove.addEventListener(
-        "click",
-        () => {
-          deleteProject(
-            project
-          );
-        }
-      );
-
-
-      actions.appendChild(edit);
-
-      actions.appendChild(remove);
-
-      actionsCell.appendChild(
-        actions
-      );
-
-    } else {
-
-      actionsCell.textContent = "—";
+      background:
+        rgba(
+          75,
+          143,
+          216,
+          .11
+        );
 
     }
 
 
-    row.appendChild(titleCell);
+    /*
+    ==========================================
+    MEMBERS
+    ==========================================
+    */
 
-    row.appendChild(assigneeCell);
 
-    row.appendChild(deadlineCell);
+    .members-grid {
 
-    row.appendChild(progressCell);
+      display: grid;
 
-    row.appendChild(statusCell);
+      grid-template-columns:
+        repeat(
+          4,
+          1fr
+        );
 
-    row.appendChild(actionsCell);
-
-
-    projectsTableBody.appendChild(
-      row
-    );
-
-  });
-
-}
-
-
-function updateProjectCounters() {
-
-  const active =
-    projects.filter(project => {
-
-      return (
-        project.status !== "completed" &&
-        project.status !== "cancelled"
-      );
-
-    }).length;
-
-
-  const delayed =
-    projects.filter(project => {
-
-      return (
-        project.status === "delayed" ||
-        isProjectOverdue(project)
-      );
-
-    }).length;
-
-
-  activeProjectsCount.textContent =
-    active;
-
-  delayedProjectsCount.textContent =
-    delayed;
-
-}
-
-
-/* =========================
-   PROJECT MODAL
-========================= */
-
-function openNewProject() {
-
-  projectForm.reset();
-
-  projectId.value = "";
-
-  projectStatus.value =
-    "assigned";
-
-  projectPriority.value =
-    "normal";
-
-  projectProgress.value =
-    "0";
-
-  projectModalTitle.textContent =
-    "پروژه جدید";
-
-  projectFormMessage.textContent =
-    "";
-
-  projectModal.classList.remove(
-    "hidden"
-  );
-
-}
-
-
-function openEditProject(project) {
-
-  projectId.value =
-    project.id;
-
-  projectTitle.value =
-    project.title || "";
-
-  projectDescription.value =
-    project.description || "";
-
-  projectAssignee.value =
-    project.assigned_to || "";
-
-  projectDeadline.value =
-    project.deadline || "";
-
-  projectStatus.value =
-    project.status;
-
-  projectPriority.value =
-    project.priority;
-
-  projectProgress.value =
-    project.progress;
-
-
-  projectModalTitle.textContent =
-    "ویرایش پروژه";
-
-  projectFormMessage.textContent =
-    "";
-
-  projectModal.classList.remove(
-    "hidden"
-  );
-
-}
-
-
-function closeProjectModal() {
-
-  projectModal.classList.add(
-    "hidden"
-  );
-
-}
-
-
-/* =========================
-   SAVE PROJECT
-========================= */
-
-projectForm.addEventListener(
-  "submit",
-  async event => {
-
-    event.preventDefault();
-
-
-    if (!isSecretary()) {
-      return;
-    }
-
-
-    const title =
-      projectTitle.value.trim();
-
-
-    if (!title) {
-
-      projectFormMessage.textContent =
-        "نام پروژه الزامی است.";
-
-      projectFormMessage.className =
-        "login-error";
-
-      return;
+      gap: 11px;
 
     }
 
 
-    let progress =
-      Number(
-        projectProgress.value
-      );
+    .member-card {
+
+      background: var(--card);
+
+      border:
+        1px solid
+        var(--border);
+
+      border-radius: 10px;
+
+      padding: 16px;
+
+      transition:
+        .2s ease;
+
+    }
 
 
-    if (
-      Number.isNaN(progress)
+    .member-card:hover {
+
+      transform:
+        translateY(-2px);
+
+      border-color:
+        var(--gold);
+
+    }
+
+
+    .member-top {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      gap: 8px;
+
+    }
+
+
+    .member-name {
+
+      direction: ltr;
+
+      font-weight: bold;
+
+    }
+
+
+    .member-role {
+
+      color: var(--muted);
+
+      font-size: 10px;
+
+    }
+
+
+    .member-badge {
+
+      color: #75d89e;
+
+      font-size: 9px;
+
+    }
+
+
+    /*
+    ==========================================
+    TABLES
+    ==========================================
+    */
+
+
+    .table-wrapper {
+
+      width: 100%;
+
+      overflow-x: auto;
+
+    }
+
+
+    table {
+
+      width: 100%;
+
+      border-collapse: collapse;
+
+      min-width: 800px;
+
+    }
+
+
+    th {
+
+      padding:
+        12px
+        14px;
+
+      background: #0c1117;
+
+      color: var(--gold);
+
+      border-bottom:
+        1px solid
+        var(--border);
+
+      font-size: 11px;
+
+      font-weight: normal;
+
+      text-align: right;
+
+    }
+
+
+    td {
+
+      padding:
+        13px
+        14px;
+
+      border-bottom:
+        1px solid
+        #1d242b;
+
+      font-size: 12px;
+
+    }
+
+
+    tbody tr:hover {
+
+      background: #11171e;
+
+    }
+
+
+    .badge {
+
+      display: inline-block;
+
+      border-radius: 20px;
+
+      padding:
+        2px
+        8px;
+
+      font-size: 9px;
+
+      white-space: nowrap;
+
+    }
+
+
+    .badge-blue {
+
+      color: #7fb1e9;
+
+      background:
+        rgba(
+          75,
+          143,
+          216,
+          .12
+        );
+
+    }
+
+
+    .badge-red {
+
+      color: #ec8885;
+
+      background:
+        rgba(
+          217,
+          83,
+          79,
+          .12
+        );
+
+    }
+
+
+    .badge-green {
+
+      color: #75d89e;
+
+      background:
+        rgba(
+          56,
+          193,
+          114,
+          .12
+        );
+
+    }
+
+
+    .badge-yellow {
+
+      color: #ebc36f;
+
+      background:
+        rgba(
+          224,
+          173,
+          79,
+          .12
+        );
+
+    }
+
+
+    .progress-wrapper {
+
+      min-width: 110px;
+
+    }
+
+
+    .progress-number {
+
+      color: var(--muted);
+
+      font-size: 9px;
+
+      margin-bottom: 4px;
+
+    }
+
+
+    .bar {
+
+      height: 6px;
+
+      background: #070a0d;
+
+      border:
+        1px solid
+        #202830;
+
+      border-radius: 10px;
+
+      overflow: hidden;
+
+    }
+
+
+    .bar-fill {
+
+      height: 100%;
+
+      background:
+        linear-gradient(
+          90deg,
+          #816a3d,
+          var(--gold-light)
+        );
+
+    }
+
+
+    .project-actions {
+
+      display: flex;
+
+      gap: 5px;
+
+      flex-wrap: wrap;
+
+    }
+
+
+    .empty-state {
+
+      padding: 30px;
+
+      text-align: center;
+
+      color: var(--muted);
+
+    }
+
+
+    /*
+    ==========================================
+    CAPACITY
+    ==========================================
+    */
+
+
+    .capacity-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        1fr
+        1fr;
+
+      gap: 14px;
+
+    }
+
+
+    .capacity-box {
+
+      background: var(--card);
+
+      border:
+        1px solid
+        var(--border);
+
+      border-radius: 10px;
+
+      padding: 17px;
+
+    }
+
+
+    .capacity-box h3 {
+
+      color: var(--gold);
+
+      font-size: 13px;
+
+      margin-bottom: 12px;
+
+    }
+
+
+    .capacity-row {
+
+      margin-bottom: 12px;
+
+    }
+
+
+    .capacity-info {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      margin-bottom: 5px;
+
+      font-size: 11px;
+
+    }
+
+
+    /*
+    ==========================================
+    NOTICE
+    ==========================================
+    */
+
+
+    .notice-list {
+
+      padding:
+        17px
+        21px;
+
+    }
+
+
+    .notice-list ol {
+
+      padding-right: 20px;
+
+    }
+
+
+    .notice-list li {
+
+      color: #d6dade;
+
+      font-size: 12px;
+
+      margin-bottom: 8px;
+
+    }
+
+
+    /*
+    ==========================================
+    MODAL
+    ==========================================
+    */
+
+
+    .modal-overlay {
+
+      position: fixed;
+
+      inset: 0;
+
+      z-index: 1000;
+
+      padding: 20px;
+
+      background:
+        rgba(
+          0,
+          0,
+          0,
+          .80
+        );
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+    }
+
+
+    .modal {
+
+      width: 100%;
+
+      max-width: 620px;
+
+      max-height: 90vh;
+
+      overflow-y: auto;
+
+      background: #0d1218;
+
+      border:
+        1px solid
+        var(--border-light);
+
+      border-radius: 13px;
+
+      padding: 22px;
+
+      animation:
+        fadeUp
+        .25s
+        ease;
+
+    }
+
+
+    .modal-title {
+
+      color: var(--gold);
+
+      font-size: 17px;
+
+      margin-bottom: 18px;
+
+    }
+
+
+    .modal-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        1fr
+        1fr;
+
+      gap: 13px;
+
+    }
+
+
+    .modal-full {
+
+      grid-column:
+        1 / -1;
+
+    }
+
+
+    .modal-actions {
+
+      display: flex;
+
+      justify-content: flex-end;
+
+      gap: 8px;
+
+      margin-top: 18px;
+
+    }
+
+
+    #projectFormMessage {
+
+      min-height: 20px;
+
+      margin-top: 10px;
+
+      font-size: 11px;
+
+    }
+
+
+    /*
+    ==========================================
+    FOOTER
+    ==========================================
+    */
+
+
+    footer {
+
+      padding:
+        23px
+        20px;
+
+      border-top:
+        1px solid
+        var(--border);
+
+      background: #090d11;
+
+      text-align: center;
+
+    }
+
+
+    .footer-title {
+
+      color: var(--gold);
+
+      direction: ltr;
+
+      font-size: 11px;
+
+      letter-spacing: 2px;
+
+    }
+
+
+    .footer-sub {
+
+      margin-top: 4px;
+
+      color: #5f676f;
+
+      font-size: 9px;
+
+    }
+
+
+    /*
+    ==========================================
+    MOBILE
+    ==========================================
+    */
+
+
+    @media (
+      max-width: 900px
     ) {
-      progress = 0;
+
+      .summary-grid {
+
+        grid-template-columns:
+          repeat(
+            2,
+            1fr
+          );
+
+      }
+
+
+      .members-grid {
+
+        grid-template-columns:
+          repeat(
+            2,
+            1fr
+          );
+
+      }
+
+
+      .capacity-grid {
+
+        grid-template-columns:
+          1fr;
+
+      }
+
     }
 
 
-    progress =
-      Math.max(
-        0,
-        Math.min(
-          100,
-          progress
-        )
+    @media (
+      max-width: 650px
+    ) {
+
+      header {
+
+        padding:
+          24px
+          14px;
+
+      }
+
+
+      h1 {
+
+        font-size: 24px;
+
+      }
+
+
+      .eyebrow {
+
+        font-size: 9px;
+
+        letter-spacing: 1.5px;
+
+      }
+
+
+      main {
+
+        padding:
+          24px
+          13px
+          50px;
+
+      }
+
+
+      .status {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+      }
+
+
+      .command-grid,
+      .objectives,
+      .members-grid,
+      .modal-grid {
+
+        grid-template-columns:
+          1fr;
+
+      }
+
+
+      .modal-full {
+
+        grid-column: auto;
+
+      }
+
+
+      .section-title {
+
+        align-items: flex-start;
+
+      }
+
+
+      .section-actions {
+
+        flex-direction: column;
+
+        align-items: flex-end;
+
+      }
+
+    }
+
+
+    @media (
+      prefers-reduced-motion:
+      reduce
+    ) {
+
+      * {
+
+        animation: none !important;
+
+        transition: none !important;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!--
+  ==========================================
+  LOADING
+  ==========================================
+  -->
+
+
+  <div id="loadingScreen">
+
+    در حال برقراری ارتباط با ستاد...
+
+  </div>
+
+
+  <!--
+  ==========================================
+  LOGIN
+  ==========================================
+  -->
+
+
+  <section
+    id="loginScreen"
+    class="hidden"
+  >
+
+
+    <div class="login-shell">
+
+
+      <div class="login-header">
+
+        <div class="login-eyebrow">
+
+          NIGP's MILITARISM HEADQUARTERS OFFICE
+
+        </div>
+
+
+        <h1>
+
+          🏛 دبیرخانه میلیتاریسم
+
+        </h1>
+
+
+        <p>
+
+          SECURE ACCESS
+
+        </p>
+
+      </div>
+
+
+      <div class="login-card">
+
+
+        <div class="login-title">
+
+          ورود به سامانه
+
+        </div>
+
+
+        <form id="loginForm">
+
+
+          <div class="form-group">
+
+            <label for="loginIdentity">
+
+              نام کاربری / ایمیل
+
+            </label>
+
+
+            <input
+              id="loginIdentity"
+              class="ltr-input"
+              type="text"
+              autocomplete="username"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="loginPassword">
+
+              رمز عبور
+
+            </label>
+
+
+            <input
+              id="loginPassword"
+              class="ltr-input"
+              type="password"
+              autocomplete="current-password"
+              required
+            >
+
+          </div>
+
+
+          <button
+            id="loginButton"
+            class="login-button"
+            type="submit"
+          >
+
+            ورود به ستاد
+
+          </button>
+
+
+        </form>
+
+
+        <div
+          id="loginMessage"
+          aria-live="polite"
+        ></div>
+
+
+        <div class="login-help">
+
+          دبیر با ایمیل وارد می‌شود • اعضا با نام کاربری
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!--
+  ==========================================
+  HEADQUARTERS
+  ==========================================
+  -->
+
+
+  <div
+    id="headquarters"
+    class="hidden"
+  >
+
+
+    <header>
+
+
+      <div class="eyebrow">
+
+        NIGP's MILITARISM HEADQUARTERS OFFICE
+
+      </div>
+
+
+      <h1>
+
+        🏛 دبیرخانه میلیتاریسم
+
+      </h1>
+
+
+      <div class="subtitle">
+
+        STATUS BOARD
+
+      </div>
+
+
+    </header>
+
+
+    <!-- ACCOUNT -->
+
+
+    <div class="account-box">
+
+
+      <div class="account-info">
+
+
+        <div
+          id="accountAvatar"
+          class="account-avatar"
+        >
+
+          S
+
+        </div>
+
+
+        <div>
+
+
+          <div
+            id="accountName"
+            class="account-name"
+          >
+
+            SPOOKY
+
+          </div>
+
+
+          <div
+            id="accountRole"
+            class="account-role"
+          >
+
+            دبیر
+
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+
+      <button
+        id="logoutButton"
+        class="logout-button"
+        type="button"
+      >
+
+        خروج از سامانه
+
+      </button>
+
+
+    </div>
+
+
+    <!-- NAV -->
+
+
+    <div class="nav-wrapper">
+
+
+      <nav class="nav">
+
+        <a href="#command">
+
+          فرماندهی
+
+        </a>
+
+        <a href="#objectives">
+
+          اهداف جاری
+
+        </a>
+
+        <a href="#members">
+
+          اعضا
+
+        </a>
+
+        <a href="#projects">
+
+          پروژه‌ها
+
+        </a>
+
+        <a href="#capacity">
+
+          ظرفیت
+
+        </a>
+
+        <a href="#operational">
+
+          استعداد عملیاتی
+
+        </a>
+
+        <a href="#notices">
+
+          تذکرات
+
+        </a>
+
+      </nav>
+
+
+    </div>
+
+
+    <main>
+
+
+      <!-- STATUS -->
+
+
+      <div class="status fade-up">
+
+
+        <div class="status-left">
+
+
+          <span class="dot"></span>
+
+
+          <div>
+
+            <strong>
+
+              وضعیت سامانه:
+
+            </strong>
+
+            ستاد آنلاین و فعال است
+
+          </div>
+
+
+        </div>
+
+
+        <div class="last-update">
+
+          STATUS: OPERATIONAL
+
+        </div>
+
+
+      </div>
+
+
+      <!-- SUMMARY -->
+
+
+      <div class="summary-grid">
+
+
+        <div class="summary-card">
+
+          <div
+            id="memberCount"
+            class="summary-number"
+          >
+
+            4
+
+          </div>
+
+          <div class="summary-label">
+
+            اعضای دبیرخانه
+
+          </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+          <div
+            id="activeProjectsCount"
+            class="summary-number"
+          >
+
+            0
+
+          </div>
+
+          <div class="summary-label">
+
+            پروژه‌های فعال
+
+          </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+          <div
+            id="delayedProjectsCount"
+            class="summary-number"
+          >
+
+            0
+
+          </div>
+
+          <div class="summary-label">
+
+            پروژه با تأخیر
+
+          </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+          <div class="summary-number">
+
+            16H
+
+          </div>
+
+          <div class="summary-label">
+
+            ظرفیت هفتگی
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+      <!-- COMMAND -->
+
+
+      <section
+        id="command"
+        class="section"
+      >
+
+
+        <div class="section-title">
+
+          <span>
+
+            فرماندهی دبیرخانه
+
+          </span>
+
+          <small>
+
+            COMMAND
+
+          </small>
+
+        </div>
+
+
+        <div class="command-grid">
+
+
+          <div class="command-card">
+
+            <div class="command-label">
+
+              دبیر
+
+            </div>
+
+            <div class="command-name">
+
+              SPOOKY
+
+            </div>
+
+            <div class="command-role">
+
+              دبیر دبیرخانه میلیتاریسم
+
+            </div>
+
+          </div>
+
+
+          <div class="command-card">
+
+            <div class="command-label">
+
+              معاونت
+
+            </div>
+
+            <div class="command-name">
+
+              —
+
+            </div>
+
+            <div class="command-role">
+
+              معاون دبیرخانه
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+
+      </section>
+
+
+      <!-- OBJECTIVES -->
+
+
+      <section
+        id="objectives"
+        class="section"
+      >
+
+
+        <div class="section-title">
+
+          <span>
+
+            اهداف جاری دبیرخانه
+
+          </span>
+
+          <small>
+
+            CURRENT OBJECTIVES
+
+          </small>
+
+        </div>
+
+
+        <div class="panel">
+
+
+          <div class="objectives">
+
+
+            <div class="objective">
+
+              <div class="objective-text">
+
+                پلتفرم‌های ISR
+
+              </div>
+
+              <span class="objective-status completed">
+
+                ✓ تکمیل
+
+              </span>
+
+            </div>
+
+
+            <div class="objective">
+
+              <div class="objective-text">
+
+                انواع روش‌های SIGINT و اهمیت آنها
+
+              </div>
+
+              <span class="objective-status completed">
+
+                ✓ تکمیل
+
+              </span>
+
+            </div>
+
+
+            <div class="objective">
+
+              <div class="objective-text">
+
+                تحقیق و بررسی سامانه LINK-16
+
+              </div>
+
+              <span class="objective-status completed">
+
+                ✓ تکمیل
+
+              </span>
+
+            </div>
+
+
+            <div class="objective">
+
+              <div class="objective-text">
+
+                عوامل مؤثر در کاهش لگد و افزایش نفوذ و برد سلاح‌های تک‌تیرانداز
+
+              </div>
+
+              <span class="objective-status active">
+
+                در حال بررسی
+
+              </span>
+
+            </div>
+
+
+            <div class="objective">
+
+              <div class="objective-text">
+
+                ماهواره‌های جاسوسی و اطلاعاتی در دستان دشمن آمریکایی صهیونیستی
+
+              </div>
+
+              <span class="objective-status completed">
+
+                ✓ تکمیل
+
+              </span>
+
+            </div>
+
+
+            <div class="objective">
+
+              <div class="objective-text">
+
+                Frequency Hopping
+
+              </div>
+
+              <span class="objective-status completed">
+
+                ✓ تکمیل
+
+              </span>
+
+            </div>
+
+
+            <div class="objective">
+
+              <div class="objective-text">
+
+                بانک اهداف
+
+              </div>
+
+              <span class="objective-status active">
+
+                فعال
+
+              </span>
+
+            </div>
+
+
+            <div class="objective">
+
+              <div class="objective-text">
+
+                تأثیر و نقش Intel Sharing توسط روس‌ها و چینی‌ها
+
+              </div>
+
+              <span class="objective-status active">
+
+                فعال
+
+              </span>
+
+            </div>
+
+
+            <div class="objective">
+
+              <div class="objective-text">
+
+                GPS Spoofing و Jamming و اثر آن بر بعد نظامی و غیرنظامی منطقه خلیج فارس
+
+              </div>
+
+              <span class="objective-status completed">
+
+                ✓ تکمیل
+
+              </span>
+
+            </div>
+
+
+            <div class="objective">
+
+              <div class="objective-text">
+
+                نفوذ اطلاعاتی از بعد HUMINT
+
+              </div>
+
+              <span class="objective-status active">
+
+                فعال
+
+              </span>
+
+            </div>
+
+
+            <div class="objective">
+
+              <div class="objective-text">
+
+                هدف قرارگرفتن AN/FPS-132
+
+              </div>
+
+              <span class="objective-status active">
+
+                در حال بررسی
+
+              </span>
+
+            </div>
+
+
+            <div class="objective">
+
+              <div class="objective-text">
+
+                هک زیرساخت‌های غیرنظامی
+
+              </div>
+
+              <span class="objective-status active">
+
+                فعال
+
+              </span>
+
+            </div>
+
+
+          </div>
+
+
+        </div>
+
+
+      </section>
+
+
+      <!-- MEMBERS -->
+
+
+      <section
+        id="members"
+        class="section"
+      >
+
+
+        <div class="section-title">
+
+          <span>
+
+            اعضای دبیرخانه
+
+          </span>
+
+          <small>
+
+            PERSONNEL
+
+          </small>
+
+        </div>
+
+
+        <div
+          id="membersGrid"
+          class="members-grid"
+        ></div>
+
+
+      </section>
+
+
+      <!-- PROJECTS -->
+
+
+      <section
+        id="projects"
+        class="section"
+      >
+
+
+        <div class="section-title">
+
+
+          <span>
+
+            پروژه‌های در حال اجرا
+
+          </span>
+
+
+          <div class="section-actions">
+
+
+            <small>
+
+              ACTIVE PROJECTS
+
+            </small>
+
+
+            <button
+              id="newProjectButton"
+              class="primary-button hidden"
+              type="button"
+            >
+
+              + پروژه جدید
+
+            </button>
+
+
+          </div>
+
+
+        </div>
+
+
+        <div class="panel">
+
+
+          <div class="table-wrapper">
+
+
+            <table>
+
+
+              <thead>
+
+
+                <tr>
+
+                  <th>
+
+                    پروژه
+
+                  </th>
+
+                  <th>
+
+                    مسئول
+
+                  </th>
+
+                  <th>
+
+                    مهلت
+
+                  </th>
+
+                  <th>
+
+                    پیشرفت
+
+                  </th>
+
+                  <th>
+
+                    وضعیت
+
+                  </th>
+
+                  <th id="managementHeader">
+
+                    مدیریت
+
+                  </th>
+
+                </tr>
+
+
+              </thead>
+
+
+              <tbody id="projectsTableBody">
+
+
+                <tr>
+
+                  <td colspan="6">
+
+                    <div class="empty-state">
+
+                      در حال دریافت پروژه‌ها...
+
+                    </div>
+
+                  </td>
+
+                </tr>
+
+
+              </tbody>
+
+
+            </table>
+
+
+          </div>
+
+
+        </div>
+
+
+      </section>
+
+
+      <!-- CAPACITY -->
+
+
+      <section
+        id="capacity"
+        class="section"
+      >
+
+
+        <div class="section-title">
+
+          <span>
+
+            ظرفیت اعضا
+
+          </span>
+
+          <small>
+
+            PERSONNEL CAPACITY
+
+          </small>
+
+        </div>
+
+
+        <div class="panel">
+
+
+          <div class="table-wrapper">
+
+
+            <table>
+
+
+              <thead>
+
+                <tr>
+
+                  <th>
+
+                    عضو
+
+                  </th>
+
+                  <th>
+
+                    حوزه فعالیت
+
+                  </th>
+
+                  <th>
+
+                    روزهای فعالیت
+
+                  </th>
+
+                  <th>
+
+                    ظرفیت هر روز
+
+                  </th>
+
+                </tr>
+
+              </thead>
+
+
+              <tbody id="capacityTableBody"></tbody>
+
+
+            </table>
+
+
+          </div>
+
+
+        </div>
+
+
+      </section>
+
+
+      <!-- OPERATIONAL CAPACITY -->
+
+
+      <section
+        id="operational"
+        class="section"
+      >
+
+
+        <div class="section-title">
+
+          <span>
+
+            استعداد عملیاتی دبیرخانه
+
+          </span>
+
+          <small>
+
+            OPERATIONAL CAPACITY
+
+          </small>
+
+        </div>
+
+
+        <div class="capacity-grid">
+
+
+          <div class="capacity-box">
+
+
+            <h3>
+
+              ظرفیت روزانه
+
+            </h3>
+
+
+            <div class="capacity-row">
+
+              <div class="capacity-info">
+
+                <span>
+
+                  شنبه
+
+                </span>
+
+                <span>
+
+                  ۳ ساعت
+
+                </span>
+
+              </div>
+
+              <div class="bar">
+
+                <div
+                  class="bar-fill"
+                  style="width:100%"
+                ></div>
+
+              </div>
+
+            </div>
+
+
+            <div class="capacity-row">
+
+              <div class="capacity-info">
+
+                <span>
+
+                  یکشنبه
+
+                </span>
+
+                <span>
+
+                  ۳ ساعت
+
+                </span>
+
+              </div>
+
+              <div class="bar">
+
+                <div
+                  class="bar-fill"
+                  style="width:100%"
+                ></div>
+
+              </div>
+
+            </div>
+
+
+            <div class="capacity-row">
+
+              <div class="capacity-info">
+
+                <span>
+
+                  دوشنبه
+
+                </span>
+
+                <span>
+
+                  ۳ ساعت
+
+                </span>
+
+              </div>
+
+              <div class="bar">
+
+                <div
+                  class="bar-fill"
+                  style="width:100%"
+                ></div>
+
+              </div>
+
+            </div>
+
+
+            <div class="capacity-row">
+
+              <div class="capacity-info">
+
+                <span>
+
+                  سه‌شنبه
+
+                </span>
+
+                <span>
+
+                  ۳ ساعت
+
+                </span>
+
+              </div>
+
+              <div class="bar">
+
+                <div
+                  class="bar-fill"
+                  style="width:100%"
+                ></div>
+
+              </div>
+
+            </div>
+
+
+            <div class="capacity-row">
+
+              <div class="capacity-info">
+
+                <span>
+
+                  چهارشنبه
+
+                </span>
+
+                <span>
+
+                  ۲ ساعت
+
+                </span>
+
+              </div>
+
+              <div class="bar">
+
+                <div
+                  class="bar-fill"
+                  style="width:67%"
+                ></div>
+
+              </div>
+
+            </div>
+
+
+            <div class="capacity-row">
+
+              <div class="capacity-info">
+
+                <span>
+
+                  پنجشنبه
+
+                </span>
+
+                <span>
+
+                  ۲ ساعت
+
+                </span>
+
+              </div>
+
+              <div class="bar">
+
+                <div
+                  class="bar-fill"
+                  style="width:67%"
+                ></div>
+
+              </div>
+
+            </div>
+
+
+            <div class="capacity-row">
+
+              <div class="capacity-info">
+
+                <span>
+
+                  جمعه
+
+                </span>
+
+                <span>
+
+                  ۰ ساعت
+
+                </span>
+
+              </div>
+
+              <div class="bar">
+
+                <div
+                  class="bar-fill"
+                  style="width:0%"
+                ></div>
+
+              </div>
+
+            </div>
+
+
+          </div>
+
+
+          <div class="capacity-box">
+
+
+            <h3>
+
+              وضعیت کلی هفتگی
+
+            </h3>
+
+
+            <div
+              style="
+                min-height:270px;
+                display:flex;
+                flex-direction:column;
+                align-items:center;
+                justify-content:center;
+                text-align:center;
+              "
+            >
+
+
+              <div
+                style="
+                  color:#8f969e;
+                  font-size:11px;
+                "
+              >
+
+                مجموع استعداد عملیاتی
+
+              </div>
+
+
+              <div
+                style="
+                  direction:ltr;
+                  color:#dbc17e;
+                  font-size:50px;
+                  font-weight:bold;
+                "
+              >
+
+                16H
+
+              </div>
+
+
+              <span class="badge badge-green">
+
+                ● OPERATIONAL
+
+              </span>
+
+
+            </div>
+
+
+          </div>
+
+
+        </div>
+
+
+      </section>
+
+
+      <!-- NOTICES -->
+
+
+      <section
+        id="notices"
+        class="section"
+      >
+
+
+        <div class="section-title">
+
+          <span>
+
+            تذکرات
+
+          </span>
+
+          <small>
+
+            DIRECTIVES
+
+          </small>
+
+        </div>
+
+
+        <div class="panel notice-list">
+
+
+          <ol>
+
+
+            <li>
+
+              ظرفیت هر عضو بر اساس تعهد واقعی ثبت می‌شود.
+
+            </li>
+
+
+            <li>
+
+              هرگونه تغییر در برنامه باید به دبیر یا معاونت اطلاع داده شود.
+
+            </li>
+
+
+            <li>
+
+              تقسیم مأموریت‌ها بر اساس استعداد عملیاتی ثبت‌شده انجام خواهد شد.
+
+            </li>
+
+
+            <li>
+
+              این برد به‌صورت مستمر به‌روزرسانی و مبنای برنامه‌ریزی دبیرخانه خواهد بود.
+
+            </li>
+
+
+          </ol>
+
+
+        </div>
+
+
+      </section>
+
+
+    </main>
+
+
+    <footer>
+
+
+      <div class="footer-title">
+
+        NIGP • MILITARISM HEADQUARTERS OFFICE
+
+      </div>
+
+
+      <div class="footer-sub">
+
+        INTERNAL STATUS BOARD
+
+      </div>
+
+
+    </footer>
+
+
+  </div>
+
+
+  <!--
+  ==========================================
+  PROJECT MODAL
+  ==========================================
+  -->
+
+
+  <div
+    id="projectModal"
+    class="modal-overlay hidden"
+  >
+
+
+    <div class="modal">
+
+
+      <div
+        id="projectModalTitle"
+        class="modal-title"
+      >
+
+        پروژه جدید
+
+      </div>
+
+
+      <form id="projectForm">
+
+
+        <input
+          id="projectId"
+          type="hidden"
+        >
+
+
+        <div class="modal-grid">
+
+
+          <div class="form-group modal-full">
+
+            <label for="projectTitle">
+
+              نام پروژه
+
+            </label>
+
+            <input
+              id="projectTitle"
+              type="text"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group modal-full">
+
+            <label for="projectDescription">
+
+              توضیحات
+
+            </label>
+
+            <textarea id="projectDescription"></textarea>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="projectAssignee">
+
+              مسئول
+
+            </label>
+
+            <select id="projectAssignee"></select>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="projectDeadline">
+
+              مهلت
+
+            </label>
+
+            <input
+              id="projectDeadline"
+              class="ltr-input"
+              type="date"
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="projectStatus">
+
+              وضعیت
+
+            </label>
+
+            <select id="projectStatus">
+
+              <option value="assigned">
+
+                ابلاغ شده
+
+              </option>
+
+              <option value="in_progress">
+
+                در حال اجرا
+
+              </option>
+
+              <option value="submitted">
+
+                گزارش ارسال شده
+
+              </option>
+
+              <option value="completed">
+
+                تکمیل شده
+
+              </option>
+
+              <option value="delayed">
+
+                تأخیر
+
+              </option>
+
+              <option value="cancelled">
+
+                لغو شده
+
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="projectPriority">
+
+              اولویت
+
+            </label>
+
+            <select id="projectPriority">
+
+              <option value="low">
+
+                پایین
+
+              </option>
+
+              <option
+                value="normal"
+                selected
+              >
+
+                عادی
+
+              </option>
+
+              <option value="high">
+
+                بالا
+
+              </option>
+
+              <option value="critical">
+
+                حیاتی
+
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-group modal-full">
+
+            <label for="projectProgress">
+
+              درصد پیشرفت
+
+            </label>
+
+            <input
+              id="projectProgress"
+              class="ltr-input"
+              type="number"
+              min="0"
+              max="100"
+              value="0"
+            >
+
+          </div>
+
+
+        </div>
+
+
+        <div
+          id="projectFormMessage"
+          aria-live="polite"
+        ></div>
+
+
+        <div class="modal-actions">
+
+
+          <button
+            id="cancelProjectButton"
+            class="secondary-button"
+            type="button"
+          >
+
+            انصراف
+
+          </button>
+
+
+          <button
+            id="saveProjectButton"
+            class="primary-button"
+            type="submit"
+          >
+
+            ذخیره پروژه
+
+          </button>
+
+
+        </div>
+
+
+      </form>
+
+
+    </div>
+
+
+  </div>
+
+
+  <!--
+  ==========================================
+  JAVASCRIPT
+  ==========================================
+  -->
+
+
+  <script type="module">
+
+
+    import {
+      createClient
+    } from
+      "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+
+    /*
+    ==========================================
+    SUPABASE
+    ==========================================
+    */
+
+
+    const SUPABASE_URL =
+      "https://xhwyhwlgxbzcmzutcsqb.supabase.co";
+
+
+    const SUPABASE_PUBLISHABLE_KEY =
+      "sb_publishable_jpC_quL4SdXrAaqtiSshWQ_pefkeMwh";
+
+
+    const supabase =
+      createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
       );
 
 
-    const payload = {
+    /*
+    ==========================================
+    MEMBER ACCOUNTS
+    ==========================================
 
-      title,
+    THIS IS WHERE YOU CREATE MEMBERS.
 
-      description:
-        projectDescription.value.trim()
-        || null,
+    Change their passwords below.
 
-      assigned_to:
-        projectAssignee.value
-        || null,
+    Example:
 
-      deadline:
-        projectDeadline.value
-        || null,
+    username: "WERNER"
+    password: "whatever-you-want"
 
-      status:
-        projectStatus.value,
-
-      priority:
-        projectPriority.value,
-
-      progress
-
-    };
+    Members do NOT need Supabase accounts.
+    ==========================================
+    */
 
 
-    saveProjectButton.disabled =
-      true;
-
-    projectFormMessage.textContent =
-      "در حال ذخیره...";
-
-    projectFormMessage.className =
-      "";
+    const MEMBER_ACCOUNTS = [
 
 
-    const editingId =
-      projectId.value;
+      {
+
+        username:
+          "KOUROSH",
+
+        password:
+          "CHANGE-KOUROSH-PASSWORD",
+
+        displayName:
+          "Kourosh",
+
+        role:
+          "عضو",
+
+        activityArea:
+          "تحلیل",
+
+        activeDays:
+          "شنبه تا چهارشنبه",
+
+        dailyCapacity:
+          "۲ ساعت"
+
+      },
 
 
-    let error;
+      {
+
+        username:
+          "JULIDEHMU",
+
+        password:
+          "CHANGE-JULIDEHMU-PASSWORD",
+
+        displayName:
+          "Julidehmu",
+
+        role:
+          "عضو",
+
+        activityArea:
+          "تحلیل",
+
+        activeDays:
+          "پنجشنبه",
+
+        dailyCapacity:
+          "۲ ساعت"
+
+      },
 
 
-    if (editingId) {
+      {
 
-      const result =
+        username:
+          "WERNER",
+
+        password:
+          "CHANGE-WERNER-PASSWORD",
+
+        displayName:
+          "Werner",
+
+        role:
+          "عضو",
+
+        activityArea:
+          "تحلیل",
+
+        activeDays:
+          "تعیین نشده",
+
+        dailyCapacity:
+          "تعیین نشده"
+
+      }
+
+
+    ];
+
+
+    /*
+    ==========================================
+    STATE
+    ==========================================
+    */
+
+
+    let currentUser = null;
+
+    let currentProfile = null;
+
+    let loginType = null;
+
+    let projects = [];
+
+
+    /*
+    ==========================================
+    ELEMENTS
+    ==========================================
+    */
+
+
+    const loadingScreen =
+      document.getElementById(
+        "loadingScreen"
+      );
+
+
+    const loginScreen =
+      document.getElementById(
+        "loginScreen"
+      );
+
+
+    const headquarters =
+      document.getElementById(
+        "headquarters"
+      );
+
+
+    const loginForm =
+      document.getElementById(
+        "loginForm"
+      );
+
+
+    const loginIdentity =
+      document.getElementById(
+        "loginIdentity"
+      );
+
+
+    const loginPassword =
+      document.getElementById(
+        "loginPassword"
+      );
+
+
+    const loginButton =
+      document.getElementById(
+        "loginButton"
+      );
+
+
+    const loginMessage =
+      document.getElementById(
+        "loginMessage"
+      );
+
+
+    const logoutButton =
+      document.getElementById(
+        "logoutButton"
+      );
+
+
+    const accountName =
+      document.getElementById(
+        "accountName"
+      );
+
+
+    const accountRole =
+      document.getElementById(
+        "accountRole"
+      );
+
+
+    const accountAvatar =
+      document.getElementById(
+        "accountAvatar"
+      );
+
+
+    const membersGrid =
+      document.getElementById(
+        "membersGrid"
+      );
+
+
+    const memberCount =
+      document.getElementById(
+        "memberCount"
+      );
+
+
+    const capacityTableBody =
+      document.getElementById(
+        "capacityTableBody"
+      );
+
+
+    const projectsTableBody =
+      document.getElementById(
+        "projectsTableBody"
+      );
+
+
+    const activeProjectsCount =
+      document.getElementById(
+        "activeProjectsCount"
+      );
+
+
+    const delayedProjectsCount =
+      document.getElementById(
+        "delayedProjectsCount"
+      );
+
+
+    const newProjectButton =
+      document.getElementById(
+        "newProjectButton"
+      );
+
+
+    const managementHeader =
+      document.getElementById(
+        "managementHeader"
+      );
+
+
+    const projectModal =
+      document.getElementById(
+        "projectModal"
+      );
+
+
+    const projectModalTitle =
+      document.getElementById(
+        "projectModalTitle"
+      );
+
+
+    const projectForm =
+      document.getElementById(
+        "projectForm"
+      );
+
+
+    const projectId =
+      document.getElementById(
+        "projectId"
+      );
+
+
+    const projectTitle =
+      document.getElementById(
+        "projectTitle"
+      );
+
+
+    const projectDescription =
+      document.getElementById(
+        "projectDescription"
+      );
+
+
+    const projectAssignee =
+      document.getElementById(
+        "projectAssignee"
+      );
+
+
+    const projectDeadline =
+      document.getElementById(
+        "projectDeadline"
+      );
+
+
+    const projectStatus =
+      document.getElementById(
+        "projectStatus"
+      );
+
+
+    const projectPriority =
+      document.getElementById(
+        "projectPriority"
+      );
+
+
+    const projectProgress =
+      document.getElementById(
+        "projectProgress"
+      );
+
+
+    const projectFormMessage =
+      document.getElementById(
+        "projectFormMessage"
+      );
+
+
+    const saveProjectButton =
+      document.getElementById(
+        "saveProjectButton"
+      );
+
+
+    const cancelProjectButton =
+      document.getElementById(
+        "cancelProjectButton"
+      );
+
+
+    /*
+    ==========================================
+    HELPERS
+    ==========================================
+    */
+
+
+    function normalizeUsername(
+      value
+    ) {
+
+      return value
+        .trim()
+        .toUpperCase();
+
+    }
+
+
+    function isSecretary() {
+
+      return (
+        loginType ===
+        "secretary"
+      );
+
+    }
+
+
+    function showLogin() {
+
+      loadingScreen
+        .classList
+        .add(
+          "hidden"
+        );
+
+
+      headquarters
+        .classList
+        .add(
+          "hidden"
+        );
+
+
+      loginScreen
+        .classList
+        .remove(
+          "hidden"
+        );
+
+    }
+
+
+    function showHeadquarters() {
+
+      loadingScreen
+        .classList
+        .add(
+          "hidden"
+        );
+
+
+      loginScreen
+        .classList
+        .add(
+          "hidden"
+        );
+
+
+      headquarters
+        .classList
+        .remove(
+          "hidden"
+        );
+
+    }
+
+
+    function updateAccountBar() {
+
+
+      const name =
+        currentProfile.displayName ||
+        currentProfile.username;
+
+
+      accountName.textContent =
+        name;
+
+
+      accountRole.textContent =
+        currentProfile.role;
+
+
+      accountAvatar.textContent =
+        name
+          .charAt(0)
+          .toUpperCase();
+
+
+      if (
+        isSecretary()
+      ) {
+
+
+        newProjectButton
+          .classList
+          .remove(
+            "hidden"
+          );
+
+
+        managementHeader
+          .classList
+          .remove(
+            "hidden"
+          );
+
+
+      } else {
+
+
+        newProjectButton
+          .classList
+          .add(
+            "hidden"
+          );
+
+
+        managementHeader
+          .classList
+          .add(
+            "hidden"
+          );
+
+
+      }
+
+
+    }
+
+
+    function translateStatus(
+      value
+    ) {
+
+
+      const labels = {
+
+        assigned:
+          "ابلاغ شده",
+
+        in_progress:
+          "در حال اجرا",
+
+        submitted:
+          "گزارش ارسال شده",
+
+        completed:
+          "تکمیل شده",
+
+        delayed:
+          "تأخیر",
+
+        cancelled:
+          "لغو شده"
+
+      };
+
+
+      return (
+        labels[value] ||
+        value
+      );
+
+    }
+
+
+    function todayString() {
+
+
+      const now =
+        new Date();
+
+
+      const year =
+        now.getFullYear();
+
+
+      const month =
+        String(
+          now.getMonth() + 1
+        )
+        .padStart(
+          2,
+          "0"
+        );
+
+
+      const day =
+        String(
+          now.getDate()
+        )
+        .padStart(
+          2,
+          "0"
+        );
+
+
+      return (
+        `${year}-${month}-${day}`
+      );
+
+    }
+
+
+    function isOverdue(
+      project
+    ) {
+
+
+      if (
+        !project.deadline
+      ) {
+
+        return false;
+
+      }
+
+
+      if (
+        project.status ===
+        "completed"
+      ) {
+
+        return false;
+
+      }
+
+
+      if (
+        project.status ===
+        "cancelled"
+      ) {
+
+        return false;
+
+      }
+
+
+      return (
+        project.deadline <
+        todayString()
+      );
+
+    }
+
+
+    function statusBadgeClass(
+      project
+    ) {
+
+
+      if (
+        isOverdue(project) ||
+        project.status ===
+        "delayed"
+      ) {
+
+        return "badge-red";
+
+      }
+
+
+      if (
+        project.status ===
+        "completed"
+      ) {
+
+        return "badge-green";
+
+      }
+
+
+      if (
+        project.status ===
+        "submitted"
+      ) {
+
+        return "badge-yellow";
+
+      }
+
+
+      return "badge-blue";
+
+    }
+
+
+    /*
+    ==========================================
+    MEMBERS UI
+    ==========================================
+    */
+
+
+    function renderMembers() {
+
+
+      membersGrid.innerHTML =
+        "";
+
+
+      const allMembers = [
+
+
+        {
+
+          username:
+            "SPOOKY",
+
+          displayName:
+            "SPOOKY",
+
+          role:
+            "دبیر",
+
+          activityArea:
+            "مدیریت و تحلیل",
+
+          activeDays:
+            "شنبه تا سه‌شنبه",
+
+          dailyCapacity:
+            "۱ ساعت"
+
+        },
+
+
+        ...MEMBER_ACCOUNTS
+
+
+      ];
+
+
+      memberCount.textContent =
+        allMembers.length;
+
+
+      allMembers.forEach(
+        member => {
+
+
+          const card =
+            document.createElement(
+              "div"
+            );
+
+
+          card.className =
+            "member-card fade-up";
+
+
+          card.innerHTML = `
+
+            <div class="member-top">
+
+              <div class="member-name">
+                ${member.username}
+              </div>
+
+              <div class="member-badge">
+                ● ACTIVE
+              </div>
+
+            </div>
+
+            <div class="member-role">
+              ${member.role}
+              /
+              ${member.activityArea}
+            </div>
+
+          `;
+
+
+          membersGrid.appendChild(
+            card
+          );
+
+
+        }
+      );
+
+
+      capacityTableBody.innerHTML =
+        "";
+
+
+      allMembers.forEach(
+        member => {
+
+
+          const row =
+            document.createElement(
+              "tr"
+            );
+
+
+          row.innerHTML = `
+
+            <td>
+              ${member.displayName}
+            </td>
+
+            <td>
+              ${member.activityArea}
+            </td>
+
+            <td>
+              ${member.activeDays}
+            </td>
+
+            <td>
+              ${member.dailyCapacity}
+            </td>
+
+          `;
+
+
+          capacityTableBody
+            .appendChild(
+              row
+            );
+
+
+        }
+      );
+
+
+    }
+
+
+    function renderAssigneeOptions() {
+
+
+      projectAssignee.innerHTML =
+        "";
+
+
+      const nobody =
+        document.createElement(
+          "option"
+        );
+
+
+      nobody.value = "";
+
+      nobody.textContent =
+        "بدون مسئول";
+
+
+      projectAssignee.appendChild(
+        nobody
+      );
+
+
+      const spooky =
+        document.createElement(
+          "option"
+        );
+
+
+      spooky.value =
+        "SPOOKY";
+
+      spooky.textContent =
+        "SPOOKY";
+
+
+      projectAssignee.appendChild(
+        spooky
+      );
+
+
+      MEMBER_ACCOUNTS.forEach(
+        member => {
+
+
+          const option =
+            document.createElement(
+              "option"
+            );
+
+
+          option.value =
+            member.username;
+
+
+          option.textContent =
+            member.displayName;
+
+
+          projectAssignee
+            .appendChild(
+              option
+            );
+
+
+        }
+      );
+
+
+    }
+
+
+    /*
+    ==========================================
+    SECRETARY LOGIN
+    ==========================================
+    */
+
+
+    async function loginSecretary(
+      email,
+      password
+    ) {
+
+
+      const {
+        data,
+        error
+      } =
+        await supabase.auth
+          .signInWithPassword({
+
+            email,
+            password
+
+          });
+
+
+      if (
+        error
+      ) {
+
+        throw error;
+
+      }
+
+
+      const {
+        data: profile,
+        error: profileError
+      } =
         await supabase
-          .from("projects")
-          .update(payload)
+          .from(
+            "profiles"
+          )
+          .select(
+            "username, display_name, role, activity_area, is_active"
+          )
           .eq(
             "id",
-            editingId
+            data.user.id
+          )
+          .single();
+
+
+      if (
+        profileError
+      ) {
+
+        throw profileError;
+
+      }
+
+
+      if (
+        profile.role !==
+        "secretary"
+      ) {
+
+        await supabase.auth
+          .signOut();
+
+
+        throw new Error(
+          "Not secretary"
+        );
+
+      }
+
+
+      currentUser =
+        data.user;
+
+
+      currentProfile = {
+
+        username:
+          profile.username ||
+          "SPOOKY",
+
+        displayName:
+          profile.display_name ||
+          "SPOOKY",
+
+        role:
+          "دبیر",
+
+        activityArea:
+          profile.activity_area ||
+          "مدیریت و تحلیل"
+
+      };
+
+
+      loginType =
+        "secretary";
+
+
+      sessionStorage.removeItem(
+        "militarismMember"
+      );
+
+
+    }
+
+
+    /*
+    ==========================================
+    MEMBER LOGIN
+    ==========================================
+    */
+
+
+    function loginMember(
+      username,
+      password
+    ) {
+
+
+      const normalized =
+        normalizeUsername(
+          username
+        );
+
+
+      const member =
+        MEMBER_ACCOUNTS.find(
+          item => {
+
+            return (
+              item.username
+                .toUpperCase() ===
+                normalized
+              &&
+              item.password ===
+                password
+            );
+
+          }
+        );
+
+
+      if (
+        !member
+      ) {
+
+        throw new Error(
+          "Invalid member credentials"
+        );
+
+      }
+
+
+      currentUser = null;
+
+
+      currentProfile = {
+
+        ...member
+
+      };
+
+
+      loginType =
+        "member";
+
+
+      sessionStorage.setItem(
+        "militarismMember",
+        member.username
+      );
+
+
+    }
+
+
+    /*
+    ==========================================
+    LOGIN FORM
+    ==========================================
+    */
+
+
+    loginForm.addEventListener(
+      "submit",
+      async event => {
+
+
+        event.preventDefault();
+
+
+        const identity =
+          loginIdentity
+            .value
+            .trim();
+
+
+        const password =
+          loginPassword
+            .value;
+
+
+        loginButton.disabled =
+          true;
+
+
+        loginMessage.textContent =
+          "در حال ورود...";
+
+
+        loginMessage.className =
+          "";
+
+
+        try {
+
+
+          if (
+            identity.includes(
+              "@"
+            )
+          ) {
+
+
+            await loginSecretary(
+              identity,
+              password
+            );
+
+
+          } else {
+
+
+            loginMember(
+              identity,
+              password
+            );
+
+
+          }
+
+
+          loginMessage.textContent =
+            "ورود موفقیت‌آمیز بود.";
+
+
+          loginMessage.className =
+            "success";
+
+
+          updateAccountBar();
+
+
+          await loadProjects();
+
+
+          showHeadquarters();
+
+
+        } catch (
+          error
+        ) {
+
+
+          console.error(
+            error
           );
 
-      error = result.error;
 
-    } else {
-
-      payload.created_by =
-        currentUser.id;
+          loginMessage.textContent =
+            "نام کاربری، ایمیل یا رمز عبور صحیح نیست.";
 
 
-      const result =
+          loginMessage.className =
+            "error";
+
+
+        } finally {
+
+
+          loginButton.disabled =
+            false;
+
+
+        }
+
+
+      }
+    );
+
+
+    /*
+    ==========================================
+    PROJECTS
+    ==========================================
+    */
+
+
+    async function loadProjects() {
+
+
+      projectsTableBody.innerHTML = `
+
+        <tr>
+
+          <td colspan="6">
+
+            <div class="empty-state">
+
+              در حال دریافت پروژه‌ها...
+
+            </div>
+
+          </td>
+
+        </tr>
+
+      `;
+
+
+      const {
+        data,
+        error
+      } =
         await supabase
-          .from("projects")
-          .insert(payload);
+          .from(
+            "projects"
+          )
+          .select(
+            "id,title,description,deadline,status,progress,priority,assigned_username,created_at"
+          )
+          .order(
+            "created_at",
+            {
+              ascending:
+                false
+            }
+          );
 
-      error = result.error;
+
+      if (
+        error
+      ) {
+
+
+        console.error(
+          error
+        );
+
+
+        projectsTableBody.innerHTML = `
+
+          <tr>
+
+            <td colspan="6">
+
+              <div class="empty-state">
+
+                دریافت پروژه‌ها با مشکل مواجه شد.
+
+              </div>
+
+            </td>
+
+          </tr>
+
+        `;
+
+
+        return;
+
+
+      }
+
+
+      projects =
+        data || [];
+
+
+      renderProjects();
+
 
     }
 
 
-    saveProjectButton.disabled =
-      false;
+    function visibleProjects() {
 
 
-    if (error) {
+      if (
+        isSecretary()
+      ) {
 
-      console.error(
-        "Project save error:",
-        error
+        return projects;
+
+      }
+
+
+      return projects.filter(
+        project => {
+
+          return (
+            normalizeUsername(
+              project.assigned_username ||
+              ""
+            )
+            ===
+            normalizeUsername(
+              currentProfile.username
+            )
+          );
+
+        }
       );
+
+
+    }
+
+
+    function updateProjectCounters(
+      list
+    ) {
+
+
+      const active =
+        list.filter(
+          project => {
+
+            return (
+              project.status !==
+              "completed"
+              &&
+              project.status !==
+              "cancelled"
+            );
+
+          }
+        )
+        .length;
+
+
+      const delayed =
+        list.filter(
+          project => {
+
+            return (
+              project.status ===
+              "delayed"
+              ||
+              isOverdue(
+                project
+              )
+            );
+
+          }
+        )
+        .length;
+
+
+      activeProjectsCount
+        .textContent =
+          active;
+
+
+      delayedProjectsCount
+        .textContent =
+          delayed;
+
+
+    }
+
+
+    function renderProjects() {
+
+
+      const list =
+        visibleProjects();
+
+
+      updateProjectCounters(
+        list
+      );
+
+
+      projectsTableBody.innerHTML =
+        "";
+
+
+      if (
+        list.length ===
+        0
+      ) {
+
+
+        projectsTableBody.innerHTML = `
+
+          <tr>
+
+            <td colspan="6">
+
+              <div class="empty-state">
+
+                پروژه‌ای برای نمایش وجود ندارد.
+
+              </div>
+
+            </td>
+
+          </tr>
+
+        `;
+
+
+        return;
+
+
+      }
+
+
+      list.forEach(
+        project => {
+
+
+          const row =
+            document.createElement(
+              "tr"
+            );
+
+
+          const overdue =
+            isOverdue(
+              project
+            );
+
+
+          const statusText =
+            overdue
+            ?
+            "تأخیر"
+            :
+            translateStatus(
+              project.status
+            );
+
+
+          const safeProgress =
+            Math.min(
+              100,
+              Math.max(
+                0,
+                Number(
+                  project.progress
+                ) || 0
+              )
+            );
+
+
+          const management =
+            isSecretary()
+            ?
+            `
+
+              <div class="project-actions">
+
+                <button
+                  type="button"
+                  class="edit-button"
+                  data-edit="${project.id}"
+                >
+                  ✏️ ویرایش
+                </button>
+
+                <button
+                  type="button"
+                  class="danger-button"
+                  data-delete="${project.id}"
+                >
+                  🗑 حذف
+                </button>
+
+              </div>
+
+            `
+            :
+            "—";
+
+
+          row.innerHTML = `
+
+            <td>
+              ${project.title}
+            </td>
+
+            <td>
+              ${project.assigned_username || "—"}
+            </td>
+
+            <td>
+              ${project.deadline || "—"}
+            </td>
+
+            <td>
+
+              <div class="progress-wrapper">
+
+                <div class="progress-number">
+                  ${safeProgress}%
+                </div>
+
+                <div class="bar">
+
+                  <div
+                    class="bar-fill"
+                    style="width:${safeProgress}%"
+                  ></div>
+
+                </div>
+
+              </div>
+
+            </td>
+
+            <td>
+
+              <span
+                class="
+                  badge
+                  ${statusBadgeClass(project)}
+                "
+              >
+                ${statusText}
+              </span>
+
+            </td>
+
+            <td>
+              ${management}
+            </td>
+
+          `;
+
+
+          projectsTableBody
+            .appendChild(
+              row
+            );
+
+
+        }
+      );
+
+
+      if (
+        isSecretary()
+      ) {
+
+
+        document
+          .querySelectorAll(
+            "[data-edit]"
+          )
+          .forEach(
+            button => {
+
+
+              button.addEventListener(
+                "click",
+                () => {
+
+
+                  const id =
+                    Number(
+                      button.dataset.edit
+                    );
+
+
+                  const project =
+                    projects.find(
+                      item =>
+                        item.id === id
+                    );
+
+
+                  if (
+                    project
+                  ) {
+
+                    openEditProject(
+                      project
+                    );
+
+                  }
+
+
+                }
+              );
+
+
+            }
+          );
+
+
+        document
+          .querySelectorAll(
+            "[data-delete]"
+          )
+          .forEach(
+            button => {
+
+
+              button.addEventListener(
+                "click",
+                () => {
+
+
+                  const id =
+                    Number(
+                      button.dataset.delete
+                    );
+
+
+                  const project =
+                    projects.find(
+                      item =>
+                        item.id === id
+                    );
+
+
+                  if (
+                    project
+                  ) {
+
+                    deleteProject(
+                      project
+                    );
+
+                  }
+
+
+                }
+              );
+
+
+            }
+          );
+
+
+      }
+
+
+    }
+
+
+    /*
+    ==========================================
+    PROJECT MODAL
+    ==========================================
+    */
+
+
+    function openNewProject() {
+
+
+      if (
+        !isSecretary()
+      ) {
+
+        return;
+
+      }
+
+
+      projectForm.reset();
+
+
+      projectId.value =
+        "";
+
+
+      projectProgress.value =
+        "0";
+
+
+      projectStatus.value =
+        "assigned";
+
+
+      projectPriority.value =
+        "normal";
+
+
+      projectModalTitle.textContent =
+        "پروژه جدید";
+
 
       projectFormMessage.textContent =
-        "ذخیره پروژه انجام نشد.";
+        "";
 
-      projectFormMessage.className =
-        "login-error";
 
-      return;
+      projectModal
+        .classList
+        .remove(
+          "hidden"
+        );
+
 
     }
 
 
-    projectFormMessage.textContent =
-      "پروژه با موفقیت ذخیره شد.";
-
-    projectFormMessage.className =
-      "login-success";
-
-
-    await loadProjects();
-
-
-    setTimeout(
-      closeProjectModal,
-      400
-    );
-
-  }
-);
-
-
-/* =========================
-   DELETE PROJECT
-========================= */
-
-async function deleteProject(project) {
-
-  if (!isSecretary()) {
-    return;
-  }
-
-
-  const approved =
-    confirm(
-      `پروژه «${project.title}» حذف شود؟`
-    );
-
-
-  if (!approved) {
-    return;
-  }
-
-
-  const {
-    error
-  } =
-    await supabase
-      .from("projects")
-      .delete()
-      .eq(
-        "id",
-        project.id
-      );
-
-
-  if (error) {
-
-    console.error(
-      "Project delete error:",
-      error
-    );
-
-    alert(
-      "حذف پروژه انجام نشد."
-    );
-
-    return;
-
-  }
-
-
-  await loadProjects();
-
-}
-
-
-/* =========================
-   MODAL EVENTS
-========================= */
-
-newProjectButton.addEventListener(
-  "click",
-  openNewProject
-);
-
-
-cancelProjectButton.addEventListener(
-  "click",
-  closeProjectModal
-);
-
-
-projectModal.addEventListener(
-  "click",
-  event => {
-
-    if (
-      event.target === projectModal
+    function openEditProject(
+      project
     ) {
-      closeProjectModal();
-    }
-
-  }
-);
 
 
-/* =========================
-   LOGIN
-========================= */
+      if (
+        !isSecretary()
+      ) {
 
-loginForm.addEventListener(
-  "submit",
-  async event => {
+        return;
 
-    event.preventDefault();
+      }
 
 
-    const email =
-      document
-        .getElementById("email")
-        .value
-        .trim();
+      projectId.value =
+        project.id;
 
 
-    const password =
-      document
-        .getElementById("password")
-        .value;
+      projectTitle.value =
+        project.title ||
+        "";
 
 
-    loginButton.disabled =
-      true;
-
-    loginMessage.textContent =
-      "در حال ورود...";
-
-    loginMessage.className = "";
+      projectDescription.value =
+        project.description ||
+        "";
 
 
-    const {
-      data,
-      error
-    } =
-      await supabase.auth
-        .signInWithPassword({
-          email,
-          password
-        });
+      projectAssignee.value =
+        project.assigned_username ||
+        "";
 
 
-    loginButton.disabled =
-      false;
+      projectDeadline.value =
+        project.deadline ||
+        "";
 
 
-    if (error) {
+      projectStatus.value =
+        project.status;
 
-      console.error(error);
 
-      loginMessage.textContent =
-        "ایمیل یا رمز عبور صحیح نیست.";
+      projectPriority.value =
+        project.priority;
 
-      loginMessage.className =
-        "login-error";
 
-      return;
+      projectProgress.value =
+        project.progress;
+
+
+      projectModalTitle.textContent =
+        "ویرایش پروژه";
+
+
+      projectFormMessage.textContent =
+        "";
+
+
+      projectModal
+        .classList
+        .remove(
+          "hidden"
+        );
+
 
     }
 
 
-    loginMessage.textContent =
-      "ورود موفقیت‌آمیز بود.";
-
-    loginMessage.className =
-      "login-success";
+    function closeProjectModal() {
 
 
-    await loadProfile(
-      data.user
+      projectModal
+        .classList
+        .add(
+          "hidden"
+        );
+
+
+    }
+
+
+    newProjectButton.addEventListener(
+      "click",
+      openNewProject
     );
 
-  }
-);
+
+    cancelProjectButton.addEventListener(
+      "click",
+      closeProjectModal
+    );
 
 
-/* =========================
-   LOGOUT
-========================= */
-
-logoutButton.addEventListener(
-  "click",
-  async () => {
-
-    await supabase.auth.signOut();
-
-    currentUser = null;
-    currentProfile = null;
-    profiles = [];
-    projects = [];
-
-    loginForm.reset();
-
-    showLogin();
-
-  }
-);
+    projectModal.addEventListener(
+      "click",
+      event => {
 
 
-/* =========================
-   SESSION
-========================= */
+        if (
+          event.target ===
+          projectModal
+        ) {
 
-async function checkSession() {
+          closeProjectModal();
 
-  const {
-    data,
-    error
-  } =
-    await supabase.auth
-      .getSession();
+        }
 
 
-  if (error) {
-
-    console.error(error);
-
-    showLogin();
-
-    return;
-
-  }
+      }
+    );
 
 
-  if (!data.session) {
-
-    showLogin();
-
-    return;
-
-  }
+    /*
+    ==========================================
+    SAVE PROJECT
+    ==========================================
+    */
 
 
-  await loadProfile(
-    data.session.user
-  );
-
-}
+    projectForm.addEventListener(
+      "submit",
+      async event => {
 
 
-supabase.auth.onAuthStateChange(
-  async (event, session) => {
+        event.preventDefault();
 
-    if (
-      event === "SIGNED_OUT"
+
+        if (
+          !isSecretary()
+        ) {
+
+          return;
+
+        }
+
+
+        const title =
+          projectTitle
+            .value
+            .trim();
+
+
+        if (
+          !title
+        ) {
+
+
+          projectFormMessage.textContent =
+            "نام پروژه الزامی است.";
+
+
+          projectFormMessage.className =
+            "error";
+
+
+          return;
+
+
+        }
+
+
+        let progress =
+          Number(
+            projectProgress.value
+          );
+
+
+        if (
+          Number.isNaN(
+            progress
+          )
+        ) {
+
+          progress = 0;
+
+        }
+
+
+        progress =
+          Math.min(
+            100,
+            Math.max(
+              0,
+              progress
+            )
+          );
+
+
+        const payload = {
+
+
+          title,
+
+
+          description:
+            projectDescription
+              .value
+              .trim()
+            ||
+            null,
+
+
+          assigned_username:
+            projectAssignee.value
+            ||
+            null,
+
+
+          deadline:
+            projectDeadline.value
+            ||
+            null,
+
+
+          status:
+            projectStatus.value,
+
+
+          priority:
+            projectPriority.value,
+
+
+          progress
+
+
+        };
+
+
+        saveProjectButton.disabled =
+          true;
+
+
+        projectFormMessage.textContent =
+          "در حال ذخیره...";
+
+
+        projectFormMessage.className =
+          "";
+
+
+        const editingId =
+          projectId.value;
+
+
+        let result;
+
+
+        if (
+          editingId
+        ) {
+
+
+          result =
+            await supabase
+              .from(
+                "projects"
+              )
+              .update(
+                payload
+              )
+              .eq(
+                "id",
+                editingId
+              );
+
+
+        } else {
+
+
+          result =
+            await supabase
+              .from(
+                "projects"
+              )
+              .insert({
+                ...payload,
+                created_by:
+                  currentUser.id
+              });
+
+
+        }
+
+
+        saveProjectButton.disabled =
+          false;
+
+
+        if (
+          result.error
+        ) {
+
+
+          console.error(
+            result.error
+          );
+
+
+          projectFormMessage.textContent =
+            "ذخیره پروژه انجام نشد.";
+
+
+          projectFormMessage.className =
+            "error";
+
+
+          return;
+
+
+        }
+
+
+        projectFormMessage.textContent =
+          "پروژه ذخیره شد.";
+
+
+        projectFormMessage.className =
+          "success";
+
+
+        await loadProjects();
+
+
+        setTimeout(
+          closeProjectModal,
+          350
+        );
+
+
+      }
+    );
+
+
+    /*
+    ==========================================
+    DELETE PROJECT
+    ==========================================
+    */
+
+
+    async function deleteProject(
+      project
     ) {
+
+
+      if (
+        !isSecretary()
+      ) {
+
+        return;
+
+      }
+
+
+      const approved =
+        confirm(
+          `پروژه «${project.title}» حذف شود؟`
+        );
+
+
+      if (
+        !approved
+      ) {
+
+        return;
+
+      }
+
+
+      const {
+        error
+      } =
+        await supabase
+          .from(
+            "projects"
+          )
+          .delete()
+          .eq(
+            "id",
+            project.id
+          );
+
+
+      if (
+        error
+      ) {
+
+
+        console.error(
+          error
+        );
+
+
+        alert(
+          "حذف پروژه انجام نشد."
+        );
+
+
+        return;
+
+
+      }
+
+
+      await loadProjects();
+
+
+    }
+
+
+    /*
+    ==========================================
+    LOGOUT
+    ==========================================
+    */
+
+
+    logoutButton.addEventListener(
+      "click",
+      async () => {
+
+
+        if (
+          loginType ===
+          "secretary"
+        ) {
+
+
+          await supabase.auth
+            .signOut();
+
+
+        }
+
+
+        sessionStorage.removeItem(
+          "militarismMember"
+        );
+
+
+        currentUser = null;
+
+        currentProfile = null;
+
+        loginType = null;
+
+        projects = [];
+
+
+        loginForm.reset();
+
+
+        loginMessage.textContent =
+          "";
+
+
+        showLogin();
+
+
+      }
+    );
+
+
+    /*
+    ==========================================
+    RESTORE SESSION
+    ==========================================
+    */
+
+
+    async function restoreSession() {
+
+
+      renderMembers();
+
+
+      renderAssigneeOptions();
+
+
+      /*
+      Check real secretary session first.
+      */
+
+
+      const {
+        data
+      } =
+        await supabase.auth
+          .getSession();
+
+
+      if (
+        data.session
+      ) {
+
+
+        try {
+
+
+          await loginSecretary(
+            data.session.user.email,
+            ""
+          );
+
+
+        } catch (
+          ignored
+        ) {
+
+
+          /*
+          Existing session is already valid,
+          so load profile directly instead.
+          */
+
+
+          const user =
+            data.session.user;
+
+
+          const {
+            data: profile,
+            error
+          } =
+            await supabase
+              .from(
+                "profiles"
+              )
+              .select(
+                "username,display_name,role,activity_area,is_active"
+              )
+              .eq(
+                "id",
+                user.id
+              )
+              .single();
+
+
+          if (
+            !error &&
+            profile.role ===
+            "secretary"
+          ) {
+
+
+            currentUser =
+              user;
+
+
+            currentProfile = {
+
+              username:
+                profile.username ||
+                "SPOOKY",
+
+              displayName:
+                profile.display_name ||
+                "SPOOKY",
+
+              role:
+                "دبیر",
+
+              activityArea:
+                profile.activity_area ||
+                "مدیریت و تحلیل"
+
+            };
+
+
+            loginType =
+              "secretary";
+
+
+            updateAccountBar();
+
+
+            await loadProjects();
+
+
+            showHeadquarters();
+
+
+            return;
+
+
+          }
+
+
+        }
+
+
+      }
+
+
+      /*
+      Restore code-based member login.
+      */
+
+
+      const savedMember =
+        sessionStorage.getItem(
+          "militarismMember"
+        );
+
+
+      if (
+        savedMember
+      ) {
+
+
+        const member =
+          MEMBER_ACCOUNTS.find(
+            item =>
+              item.username ===
+              savedMember
+          );
+
+
+        if (
+          member
+        ) {
+
+
+          currentProfile = {
+            ...member
+          };
+
+
+          loginType =
+            "member";
+
+
+          updateAccountBar();
+
+
+          await loadProjects();
+
+
+          showHeadquarters();
+
+
+          return;
+
+
+        }
+
+
+      }
+
 
       showLogin();
 
-      return;
 
     }
 
 
-    if (
-      event === "SIGNED_IN" &&
-      session
-    ) {
-
-      await loadProfile(
-        session.user
-      );
-
-    }
-
-  }
-);
+    /*
+    ==========================================
+    START
+    ==========================================
+    */
 
 
-checkSession();
+    renderMembers();
 
-</script>
+
+    renderAssigneeOptions();
+
+
+    restoreSession();
+
+
+  </script>
+
 
 </body>
+
 </html>
