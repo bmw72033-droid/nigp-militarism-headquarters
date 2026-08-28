@@ -15,34 +15,37 @@
 <style>
 
 :root {
-  --bg:#080b0f;
-  --bg2:#0b0f14;
-  --card:#10151b;
-  --card2:#0d1218;
-  --border:#242b33;
-  --border2:#38414c;
-  --gold:#b9985a;
-  --gold2:#dbc17e;
-  --text:#f1f1f1;
-  --muted:#8f969e;
-  --green:#38c172;
-  --red:#d9534f;
-  --blue:#4b8fd8;
-  --yellow:#e0ad4f;
+  --bg: #080b0f;
+  --bg2: #0c1015;
+  --card: #10151b;
+  --card2: #0d1218;
+  --border: #242b33;
+  --border2: #39434d;
+
+  --gold: #b9985a;
+  --gold2: #ddc27e;
+
+  --text: #f1f1f1;
+  --muted: #8f969e;
+
+  --green: #38c172;
+  --blue: #4b8fd8;
+  --yellow: #e0ad4f;
+  --red: #d9534f;
 }
 
 * {
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
-  scroll-behavior:smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-  min-height:100vh;
+  min-height: 100vh;
 
   background:
     radial-gradient(
@@ -52,58 +55,61 @@ body {
     ),
     var(--bg);
 
-  color:var(--text);
+  color: var(--text);
 
   font-family:
     Tahoma,
     Arial,
     sans-serif;
 
-  line-height:1.8;
+  line-height: 1.8;
 }
 
 button,
 input,
-select,
-textarea {
-  font-family:inherit;
+textarea,
+select {
+  font-family: inherit;
 }
 
 button {
-  cursor:pointer;
+  cursor: pointer;
 }
 
 a {
-  color:inherit;
-  text-decoration:none;
+  color: inherit;
+  text-decoration: none;
 }
 
 .hidden {
-  display:none !important;
+  display: none !important;
 }
 
 
-/* =========================
+/* =====================================
    ANIMATION
-========================= */
+===================================== */
 
 @keyframes fadeUp {
+
   from {
-    opacity:0;
-    transform:translateY(12px);
+    opacity: 0;
+    transform: translateY(12px);
   }
 
   to {
-    opacity:1;
-    transform:translateY(0);
+    opacity: 1;
+    transform: translateY(0);
   }
+
 }
 
 @keyframes pulse {
+
   0% {
     box-shadow:
       0 0 0 0
-      rgba(56,193,114,.45);
+      rgba(56,193,114,.5);
   }
 
   70% {
@@ -117,51 +123,155 @@ a {
       0 0 0 0
       rgba(56,193,114,0);
   }
+
 }
 
-@keyframes goldSweep {
+@keyframes goldMove {
+
   from {
-    background-position:-200% center;
+    background-position: -200% center;
   }
 
   to {
-    background-position:200% center;
+    background-position: 200% center;
   }
+
 }
 
 
-/* =========================
+/* =====================================
+   COMMON
+===================================== */
+
+.primary-button {
+
+  padding: 8px 12px;
+
+  background: var(--gold);
+
+  color: #080b0f;
+
+  border: 1px solid var(--gold2);
+
+  border-radius: 7px;
+
+  font-weight: bold;
+
+  transition: .2s;
+}
+
+.primary-button:hover {
+
+  background: var(--gold2);
+
+  transform: translateY(-1px);
+}
+
+.secondary-button {
+
+  padding: 8px 11px;
+
+  background: transparent;
+
+  color: var(--text);
+
+  border: 1px solid var(--border2);
+
+  border-radius: 7px;
+}
+
+.edit-button {
+
+  padding: 5px 8px;
+
+  color: var(--gold2);
+
+  background:
+    rgba(185,152,90,.09);
+
+  border:
+    1px solid
+    rgba(185,152,90,.35);
+
+  border-radius: 6px;
+
+  font-size: 10px;
+}
+
+.delete-button {
+
+  padding: 5px 8px;
+
+  color: #ef8985;
+
+  background:
+    rgba(217,83,79,.09);
+
+  border:
+    1px solid
+    rgba(217,83,79,.35);
+
+  border-radius: 6px;
+
+  font-size: 10px;
+}
+
+.restore-button {
+
+  padding: 5px 8px;
+
+  color: #75d89e;
+
+  background:
+    rgba(56,193,114,.09);
+
+  border:
+    1px solid
+    rgba(56,193,114,.3);
+
+  border-radius: 6px;
+
+  font-size: 10px;
+}
+
+
+/* =====================================
    LOADING
-========================= */
+===================================== */
 
 #loadingScreen {
-  min-height:100vh;
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  min-height: 100vh;
 
-  color:var(--gold);
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: var(--gold);
 }
 
 
-/* =========================
+/* =====================================
    LOGIN
-========================= */
+===================================== */
 
 #loginScreen {
-  min-height:100vh;
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  min-height: 100vh;
 
-  padding:25px;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  padding: 25px;
 }
 
 .login-shell {
-  width:100%;
-  max-width:430px;
+
+  width: 100%;
+  max-width: 430px;
 
   animation:
     fadeUp
@@ -170,276 +280,209 @@ a {
 }
 
 .login-header {
-  text-align:center;
 
-  margin-bottom:24px;
+  text-align: center;
+
+  margin-bottom: 24px;
 }
 
 .login-eyebrow {
-  direction:ltr;
 
-  color:var(--gold);
+  direction: ltr;
 
-  font-size:11px;
-  letter-spacing:2px;
+  color: var(--gold);
+
+  font-size: 10px;
+  letter-spacing: 2.5px;
 }
 
 .login-header h1 {
-  margin-top:7px;
 
-  font-size:28px;
+  margin-top: 8px;
+
+  font-size: 28px;
 }
 
 .login-header p {
-  direction:ltr;
 
-  color:var(--muted);
+  direction: ltr;
 
-  font-size:11px;
-  letter-spacing:2px;
+  color: var(--muted);
+
+  font-size: 11px;
+
+  letter-spacing: 2px;
 }
 
 .login-card {
-  position:relative;
 
-  overflow:hidden;
+  position: relative;
 
-  padding:27px;
+  overflow: hidden;
 
-  background:var(--card);
+  padding: 27px;
+
+  background: var(--card);
 
   border:
     1px solid
     var(--border);
 
-  border-radius:14px;
+  border-radius: 14px;
 }
 
 .login-card::before {
-  content:"";
 
-  position:absolute;
+  content: "";
 
-  top:0;
-  right:0;
-  left:0;
+  position: absolute;
 
-  height:3px;
+  top: 0;
+  right: 0;
+  left: 0;
+
+  height: 3px;
 
   background:
     linear-gradient(
       90deg,
-      #66532f,
+      #675331,
       var(--gold2),
-      #66532f
+      #675331
     );
 
-  background-size:200% auto;
+  background-size: 200% auto;
 
   animation:
-    goldSweep
-    5s
+    goldMove
+    6s
     linear
     infinite;
 }
 
 .login-title {
-  margin-bottom:20px;
 
-  color:var(--gold);
+  margin-bottom: 18px;
+
+  color: var(--gold);
 }
 
 .form-group {
-  margin-bottom:15px;
+
+  margin-bottom: 14px;
 }
 
 .form-group label {
-  display:block;
 
-  margin-bottom:5px;
+  display: block;
 
-  color:var(--muted);
+  margin-bottom: 5px;
 
-  font-size:11px;
+  color: var(--muted);
+
+  font-size: 11px;
 }
 
 .form-group input,
 .form-group textarea,
 .form-group select {
-  width:100%;
+
+  width: 100%;
 
   padding:
     10px
     11px;
 
-  outline:none;
+  outline: none;
 
-  color:var(--text);
+  background: #090d12;
 
-  background:#090d12;
+  color: var(--text);
 
   border:
     1px solid
     var(--border);
 
-  border-radius:7px;
+  border-radius: 7px;
 }
 
 .form-group input:focus,
 .form-group textarea:focus,
 .form-group select:focus {
-  border-color:var(--gold);
+
+  border-color: var(--gold);
 }
 
 .form-group textarea {
-  min-height:95px;
 
-  resize:vertical;
+  min-height: 95px;
+
+  resize: vertical;
 }
 
 .ltr {
-  direction:ltr;
-  text-align:left;
-}
 
-.login-button,
-.primary-button {
-  padding:
-    10px
-    14px;
+  direction: ltr;
 
-  background:var(--gold);
-
-  color:#080b0f;
-
-  border:
-    1px solid
-    var(--gold2);
-
-  border-radius:7px;
-
-  font-weight:bold;
-
-  transition:.2s;
+  text-align: left;
 }
 
 .login-button {
-  width:100%;
+
+  width: 100%;
+
+  padding: 11px;
+
+  background: var(--gold);
+
+  color: #080b0f;
+
+  border: 1px solid var(--gold2);
+
+  border-radius: 7px;
+
+  font-weight: bold;
 }
 
-.login-button:hover,
-.primary-button:hover {
-  background:var(--gold2);
+.login-button:hover {
 
-  transform:translateY(-1px);
+  background: var(--gold2);
 }
 
-.secondary-button {
-  padding:
-    9px
-    12px;
+#loginMessage {
 
-  color:var(--text);
+  min-height: 20px;
 
-  background:transparent;
+  margin-top: 10px;
 
-  border:
-    1px solid
-    var(--border2);
+  text-align: center;
 
-  border-radius:7px;
-}
-
-.edit-button {
-  padding:
-    6px
-    9px;
-
-  color:var(--gold2);
-
-  background:
-    rgba(
-      185,
-      152,
-      90,
-      .1
-    );
-
-  border:
-    1px solid
-    rgba(
-      185,
-      152,
-      90,
-      .35
-    );
-
-  border-radius:6px;
-}
-
-.delete-button {
-  padding:
-    6px
-    9px;
-
-  color:#ec8885;
-
-  background:
-    rgba(
-      217,
-      83,
-      79,
-      .1
-    );
-
-  border:
-    1px solid
-    rgba(
-      217,
-      83,
-      79,
-      .35
-    );
-
-  border-radius:6px;
-}
-
-#loginMessage,
-.form-message {
-  min-height:20px;
-
-  margin-top:10px;
-
-  font-size:11px;
+  font-size: 11px;
 }
 
 .error {
-  color:#ef8985;
+  color: #ef8985;
 }
 
 .success {
-  color:#75d89e;
+  color: #75d89e;
 }
 
 
-/* =========================
+/* =====================================
    HEADER
-========================= */
+===================================== */
 
 header {
+
   padding:
     30px
     20px;
 
-  text-align:center;
+  text-align: center;
 
   background:
-    rgba(
-      13,
-      17,
-      23,
-      .97
-    );
+    rgba(13,17,23,.97);
 
   border-bottom:
     1px solid
@@ -447,50 +490,57 @@ header {
 }
 
 .eyebrow {
-  direction:ltr;
 
-  color:var(--gold);
+  direction: ltr;
 
-  font-size:12px;
-  letter-spacing:3px;
+  color: var(--gold);
+
+  font-size: 12px;
+
+  letter-spacing: 3px;
 }
 
-header h1 {
-  margin-top:7px;
+#boardTitle {
 
-  font-size:29px;
+  margin-top: 7px;
+
+  font-size: 29px;
 }
 
-.subtitle {
-  direction:ltr;
+#boardSubtitle {
 
-  color:var(--muted);
+  direction: ltr;
 
-  font-size:12px;
-  letter-spacing:2px;
+  color: var(--muted);
+
+  font-size: 11px;
+
+  letter-spacing: 2px;
 }
 
 
-/* =========================
+/* =====================================
    ACCOUNT
-========================= */
+===================================== */
 
 .account-bar {
-  max-width:1100px;
 
-  margin:auto;
+  max-width: 1150px;
+
+  margin: auto;
 
   padding:
     11px
     20px;
 
-  display:flex;
+  display: flex;
 
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
+  justify-content: space-between;
+  align-items: center;
 
-  background:#090d12;
+  gap: 10px;
+
+  background: #090d12;
 
   border-bottom:
     1px solid
@@ -498,120 +548,108 @@ header h1 {
 }
 
 .account-info {
-  display:flex;
 
-  align-items:center;
+  display: flex;
 
-  gap:10px;
+  align-items: center;
+
+  gap: 10px;
 }
 
 .avatar {
-  width:38px;
-  height:38px;
 
-  display:flex;
+  width: 38px;
+  height: 38px;
 
-  justify-content:center;
-  align-items:center;
+  display: flex;
 
-  color:var(--gold);
+  justify-content: center;
+  align-items: center;
+
+  color: var(--gold);
 
   border:
     1px solid
     var(--gold);
 
-  border-radius:50%;
+  border-radius: 50%;
 
-  font-weight:bold;
+  font-weight: bold;
 }
 
 .account-name {
-  direction:ltr;
 
-  font-weight:bold;
+  direction: ltr;
+
+  font-weight: bold;
 }
 
 .account-role {
-  color:var(--gold);
 
-  font-size:10px;
+  color: var(--gold);
+
+  font-size: 10px;
 }
 
 .account-actions {
-  display:flex;
 
-  gap:7px;
+  display: flex;
 
-  flex-wrap:wrap;
+  gap: 7px;
+
+  flex-wrap: wrap;
 }
 
-.manage-button {
+.settings-button {
+
   padding:
     7px
     10px;
 
-  color:var(--gold2);
+  color: var(--gold2);
 
   background:
-    rgba(
-      185,
-      152,
-      90,
-      .08
-    );
+    rgba(185,152,90,.08);
 
   border:
     1px solid
-    rgba(
-      185,
-      152,
-      90,
-      .35
-    );
+    rgba(185,152,90,.35);
 
-  border-radius:7px;
+  border-radius: 7px;
 }
 
 .logout-button {
+
   padding:
     7px
     10px;
 
-  color:#d77c78;
+  color: #d97c78;
 
-  background:transparent;
+  background: transparent;
 
   border:
     1px solid
-    rgba(
-      217,
-      83,
-      79,
-      .35
-    );
+    rgba(217,83,79,.35);
 
-  border-radius:7px;
+  border-radius: 7px;
 }
 
 
-/* =========================
+/* =====================================
    NAV
-========================= */
+===================================== */
 
 .nav-wrapper {
-  position:sticky;
 
-  top:0;
+  position: sticky;
 
-  z-index:100;
+  top: 0;
+
+  z-index: 100;
 
   background:
-    rgba(
-      11,
-      15,
-      20,
-      .97
-    );
+    rgba(11,15,20,.97);
 
   border-bottom:
     1px solid
@@ -619,50 +657,54 @@ header h1 {
 }
 
 .nav {
-  max-width:1100px;
 
-  margin:auto;
+  max-width: 1150px;
+
+  margin: auto;
 
   padding:
     9px
     20px;
 
-  display:flex;
+  display: flex;
 
-  gap:5px;
+  gap: 5px;
 
-  overflow-x:auto;
+  overflow-x: auto;
 }
 
 .nav a {
-  white-space:nowrap;
+
+  white-space: nowrap;
 
   padding:
     6px
     10px;
 
-  color:var(--muted);
+  color: var(--muted);
 
-  border-radius:7px;
+  border-radius: 6px;
 
-  font-size:11px;
+  font-size: 11px;
 }
 
 .nav a:hover {
-  color:var(--gold2);
 
-  background:#111820;
+  background: #111820;
+
+  color: var(--gold2);
 }
 
 
-/* =========================
-   GENERAL
-========================= */
+/* =====================================
+   MAIN
+===================================== */
 
 main {
-  max-width:1100px;
 
-  margin:auto;
+  max-width: 1150px;
+
+  margin: auto;
 
   padding:
     32px
@@ -671,78 +713,91 @@ main {
 }
 
 .section {
-  margin-top:32px;
 
-  scroll-margin-top:70px;
+  margin-top: 34px;
+
+  scroll-margin-top: 70px;
+
+  animation:
+    fadeUp
+    .45s
+    ease;
 }
 
 .section-title {
-  margin-bottom:13px;
 
-  padding-right:10px;
+  margin-bottom: 13px;
 
-  display:flex;
+  padding-right: 10px;
 
-  justify-content:space-between;
-  align-items:center;
+  display: flex;
 
-  gap:10px;
+  justify-content: space-between;
+  align-items: center;
 
-  color:var(--gold);
+  gap: 10px;
 
   border-right:
     3px solid
     var(--gold);
+
+  color: var(--gold);
+}
+
+.section-title-right {
+
+  display: flex;
+
+  gap: 7px;
+
+  align-items: center;
 }
 
 .section-title small {
-  direction:ltr;
 
-  color:var(--muted);
+  direction: ltr;
 
-  font-size:9px;
+  color: var(--muted);
+
+  font-size: 9px;
 }
 
 .panel {
-  overflow:hidden;
 
-  background:var(--card);
+  overflow: hidden;
+
+  background: var(--card);
 
   border:
     1px solid
     var(--border);
 
-  border-radius:10px;
-}
-
-.admin-section-actions {
-  display:flex;
-
-  gap:6px;
+  border-radius: 10px;
 }
 
 
-/* =========================
+/* =====================================
    STATUS
-========================= */
+===================================== */
 
 .status {
-  padding:17px;
 
-  display:flex;
+  padding: 17px;
 
-  justify-content:space-between;
-  align-items:center;
+  display: flex;
 
-  gap:12px;
+  justify-content: space-between;
+  align-items: center;
 
-  background:var(--card);
+  gap: 12px;
+
+  background: var(--card);
 
   border:
     1px solid
     var(--border);
 
-  border-radius:10px;
+  border-radius: 10px;
 
   animation:
     fadeUp
@@ -751,20 +806,22 @@ main {
 }
 
 .status-left {
-  display:flex;
 
-  align-items:center;
+  display: flex;
 
-  gap:10px;
+  gap: 10px;
+
+  align-items: center;
 }
 
-.dot {
-  width:10px;
-  height:10px;
+.status-dot {
 
-  background:var(--green);
+  width: 10px;
+  height: 10px;
 
-  border-radius:50%;
+  border-radius: 50%;
+
+  background: var(--green);
 
   animation:
     pulse
@@ -773,361 +830,538 @@ main {
 }
 
 .status strong {
-  color:var(--gold);
+
+  color: var(--gold);
 }
 
 .status-en {
-  direction:ltr;
 
-  color:var(--muted);
+  direction: ltr;
 
-  font-size:10px;
+  color: var(--muted);
+
+  font-size: 10px;
 }
 
 
-/* =========================
+/* =====================================
    SUMMARY
-========================= */
+===================================== */
 
 .summary-grid {
-  margin-top:13px;
 
-  display:grid;
+  margin-top: 13px;
+
+  display: grid;
 
   grid-template-columns:
-    repeat(
-      4,
-      1fr
-    );
+    repeat(4,1fr);
 
-  gap:10px;
+  gap: 10px;
 }
 
 .summary-card {
-  padding:15px;
 
-  background:var(--card2);
+  padding: 16px;
+
+  background: var(--card2);
 
   border:
     1px solid
     var(--border);
 
-  border-radius:8px;
+  border-radius: 9px;
 
-  transition:.2s;
-
-  animation:
-    fadeUp
-    .5s
-    ease;
+  transition: .2s;
 }
 
 .summary-card:hover {
-  transform:translateY(-2px);
 
-  border-color:var(--border2);
+  border-color: var(--border2);
+
+  transform: translateY(-2px);
 }
 
 .summary-number {
-  direction:ltr;
 
-  color:var(--gold2);
+  direction: ltr;
 
-  font-size:23px;
+  color: var(--gold2);
 
-  font-weight:bold;
+  font-size: 24px;
+
+  font-weight: bold;
 }
 
 .summary-label {
-  color:var(--muted);
 
-  font-size:10px;
+  color: var(--muted);
+
+  font-size: 10px;
 }
 
 
-/* =========================
+/* =====================================
    LEADERSHIP
-========================= */
+===================================== */
 
 .leadership-grid {
-  display:grid;
+
+  display: grid;
 
   grid-template-columns:
-    repeat(
-      2,
-      1fr
-    );
+    repeat(2,1fr);
 
-  gap:13px;
+  gap: 12px;
 }
 
 .leader-card {
-  position:relative;
 
-  overflow:hidden;
+  position: relative;
 
-  padding:20px;
+  overflow: hidden;
 
-  background:var(--card);
+  padding: 19px;
+
+  background: var(--card);
 
   border:
     1px solid
     var(--border);
 
-  border-radius:9px;
-
-  transition:.2s;
-}
-
-.leader-card:hover {
-  transform:translateY(-2px);
-
-  border-color:var(--gold);
+  border-radius: 9px;
 }
 
 .leader-card::before {
-  content:"";
 
-  position:absolute;
+  content: "";
 
-  top:0;
-  right:0;
+  position: absolute;
 
-  width:4px;
-  height:100%;
+  top: 0;
+  right: 0;
 
-  background:var(--gold);
+  width: 4px;
+  height: 100%;
+
+  background: var(--gold);
+}
+
+.leader-top {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 8px;
 }
 
 .leader-label {
-  color:var(--muted);
 
-  font-size:10px;
+  color: var(--muted);
+
+  font-size: 10px;
 }
 
 .leader-name {
-  direction:ltr;
 
-  font-size:21px;
+  direction: ltr;
 
-  font-weight:bold;
+  font-size: 21px;
 
-  text-align:right;
+  font-weight: bold;
+
+  text-align: right;
 }
 
 .leader-description {
-  color:var(--gold);
 
-  font-size:10px;
+  margin-top: 4px;
+
+  color: var(--gold);
+
+  font-size: 10px;
 }
 
 
-/* =========================
+/* =====================================
    OBJECTIVES
-========================= */
+===================================== */
 
 .objectives-grid {
-  display:grid;
+
+  display: grid;
 
   grid-template-columns:
-    repeat(
-      2,
-      1fr
-    );
+    repeat(2,1fr);
 
-  gap:8px;
+  gap: 8px;
 
-  padding:12px;
+  padding: 12px;
 }
 
 .objective {
+
   padding:
-    12px
-    13px;
+    11px
+    12px;
 
-  display:flex;
+  display: flex;
 
-  justify-content:space-between;
-  align-items:center;
+  justify-content: space-between;
+  align-items: center;
 
-  gap:10px;
+  gap: 10px;
 
-  background:#0c1117;
+  background: #0c1117;
 
   border:
     1px solid
     var(--border);
 
-  border-radius:7px;
-
-  transition:.2s;
+  border-radius: 7px;
 }
 
-.objective:hover {
-  background:#111820;
+.objective-content {
+
+  min-width: 0;
 }
 
 .objective-title {
-  font-size:11px;
+
+  font-size: 11px;
+}
+
+.objective-actions {
+
+  margin-top: 5px;
+
+  display: flex;
+
+  gap: 5px;
 }
 
 .tag {
-  flex-shrink:0;
+
+  flex-shrink: 0;
 
   padding:
     2px
     8px;
 
-  border-radius:20px;
+  border-radius: 20px;
 
-  font-size:9px;
+  font-size: 9px;
 }
 
 .tag-completed {
-  color:#75d89e;
+
+  color: #75d89e;
 
   background:
-    rgba(
-      56,
-      193,
-      114,
-      .12
-    );
+    rgba(56,193,114,.12);
 }
 
 .tag-progress {
-  color:#7fb1e9;
+
+  color: #7fb1e9;
 
   background:
-    rgba(
-      75,
-      143,
-      216,
-      .12
-    );
+    rgba(75,143,216,.12);
 }
 
 .tag-delayed {
-  color:#ec8885;
+
+  color: #ef8985;
 
   background:
-    rgba(
-      217,
-      83,
-      79,
-      .12
-    );
+    rgba(217,83,79,.12);
 }
 
 .tag-cancelled {
-  color:#aaa;
+
+  color: #aaa;
 
   background:
-    rgba(
-      150,
-      150,
-      150,
-      .12
-    );
+    rgba(160,160,160,.12);
 }
 
 
-/* =========================
+/* =====================================
    MEMBERS
-========================= */
+===================================== */
 
 .members-grid {
-  display:grid;
+
+  display: grid;
 
   grid-template-columns:
-    repeat(
-      4,
-      1fr
-    );
+    repeat(4,1fr);
 
-  gap:10px;
+  gap: 10px;
 }
 
 .member-card {
-  padding:15px;
 
-  background:var(--card);
+  padding: 15px;
+
+  background: var(--card);
 
   border:
     1px solid
     var(--border);
 
-  border-radius:9px;
+  border-radius: 9px;
 
-  transition:.2s;
+  transition: .2s;
 }
 
 .member-card:hover {
-  transform:translateY(-2px);
 
-  border-color:var(--gold);
+  transform: translateY(-2px);
+
+  border-color: var(--gold);
+}
+
+.member-card.inactive {
+
+  opacity: .45;
+
+  border-style: dashed;
+}
+
+.member-card-top {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 7px;
 }
 
 .member-name {
-  direction:ltr;
 
-  font-weight:bold;
+  direction: ltr;
+
+  font-weight: bold;
 }
 
 .member-role {
-  color:var(--gold);
 
-  font-size:10px;
+  color: var(--gold);
+
+  font-size: 10px;
 }
 
 .member-area {
-  margin-top:3px;
 
-  color:var(--muted);
+  color: var(--muted);
 
-  font-size:9px;
+  font-size: 9px;
+}
+
+.member-capacity {
+
+  margin-top: 9px;
+
+  color: var(--text);
+
+  font-size: 10px;
+}
+
+.member-login-state {
+
+  margin-top: 4px;
+
+  color: var(--muted);
+
+  font-size: 8px;
+}
+
+.member-actions {
+
+  display: flex;
+
+  gap: 5px;
+
+  margin-top: 10px;
+
+  flex-wrap: wrap;
 }
 
 
-/* =========================
+/* =====================================
+   CAPACITY
+===================================== */
+
+.capacity-overview {
+
+  display: grid;
+
+  grid-template-columns:
+    220px
+    1fr;
+
+  gap: 12px;
+}
+
+.total-capacity-card {
+
+  min-height: 220px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  background: var(--card);
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius: 10px;
+
+  text-align: center;
+}
+
+.total-capacity-label {
+
+  color: var(--muted);
+
+  font-size: 10px;
+}
+
+.total-capacity-number {
+
+  direction: ltr;
+
+  margin:
+    8px
+    0;
+
+  color: var(--gold2);
+
+  font-size: 46px;
+
+  font-weight: bold;
+}
+
+.capacity-panel {
+
+  padding: 14px;
+}
+
+.capacity-item {
+
+  margin-bottom: 15px;
+}
+
+.capacity-item:last-child {
+
+  margin-bottom: 0;
+}
+
+.capacity-info {
+
+  margin-bottom: 5px;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 8px;
+
+  font-size: 10px;
+}
+
+.capacity-info span:last-child {
+
+  direction: ltr;
+
+  color: var(--gold2);
+}
+
+.capacity-bar {
+
+  height: 7px;
+
+  overflow: hidden;
+
+  background: #070a0d;
+
+  border:
+    1px solid
+    #202830;
+
+  border-radius: 20px;
+}
+
+.capacity-fill {
+
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      #80683b,
+      var(--gold2)
+    );
+
+  border-radius: 20px;
+
+  transition:
+    width
+    .4s
+    ease;
+}
+
+
+/* =====================================
    TABLE
-========================= */
+===================================== */
 
 .table-wrapper {
-  width:100%;
 
-  overflow-x:auto;
+  width: 100%;
+
+  overflow-x: auto;
 }
 
 table {
-  width:100%;
 
-  min-width:750px;
+  width: 100%;
 
-  border-collapse:collapse;
+  min-width: 800px;
+
+  border-collapse: collapse;
 }
 
 th {
+
   padding:
     11px
     13px;
 
-  background:#0c1117;
+  color: var(--gold);
 
-  color:var(--gold);
+  background: #0c1117;
 
   border-bottom:
     1px solid
     var(--border);
 
-  text-align:right;
+  text-align: right;
 
-  font-size:10px;
+  font-size: 10px;
 
-  font-weight:normal;
+  font-weight: normal;
 }
 
 td {
+
   padding:
     12px
     13px;
@@ -1136,304 +1370,160 @@ td {
     1px solid
     #1d242b;
 
-  font-size:11px;
+  font-size: 11px;
 }
 
 tbody tr:hover {
-  background:#11171e;
+
+  background: #11171e;
 }
 
 .row-actions {
-  display:flex;
 
-  gap:5px;
+  display: flex;
+
+  gap: 5px;
+
+  flex-wrap: wrap;
 }
 
 .badge {
-  display:inline-block;
 
   padding:
     2px
     8px;
 
-  border-radius:20px;
+  border-radius: 20px;
 
-  font-size:9px;
+  font-size: 9px;
 }
 
 .badge-green {
-  color:#75d89e;
+
+  color: #75d89e;
 
   background:
-    rgba(
-      56,
-      193,
-      114,
-      .12
-    );
+    rgba(56,193,114,.12);
 }
 
 .badge-blue {
-  color:#7fb1e9;
+
+  color: #7fb1e9;
 
   background:
-    rgba(
-      75,
-      143,
-      216,
-      .12
-    );
+    rgba(75,143,216,.12);
 }
 
 .badge-red {
-  color:#ec8885;
+
+  color: #ef8985;
 
   background:
-    rgba(
-      217,
-      83,
-      79,
-      .12
-    );
+    rgba(217,83,79,.12);
 }
 
 .badge-yellow {
-  color:#ebc36f;
+
+  color: #ebc36f;
 
   background:
-    rgba(
-      224,
-      173,
-      79,
-      .12
-    );
+    rgba(224,173,79,.12);
 }
 
 
-/* =========================
+/* =====================================
    NOTICES
-========================= */
+===================================== */
 
-.notice-list {
-  padding:
-    17px
-    21px;
+.notices {
+
+  padding: 14px;
 }
 
-.notice-list ol {
-  padding-right:20px;
-}
+.notice {
 
-.notice-list li {
-  margin-bottom:8px;
-
-  color:#d7dade;
-
-  font-size:11px;
-}
-
-
-/* =========================
-   ADMIN DRAWER
-========================= */
-
-.admin-overlay {
-  position:fixed;
-
-  inset:0;
-
-  z-index:900;
-
-  background:
-    rgba(
-      0,
-      0,
-      0,
-      .7
-    );
-}
-
-.admin-drawer {
-  position:fixed;
-
-  top:0;
-  right:0;
-
-  z-index:950;
-
-  width:min(
-    440px,
-    94vw
-  );
-
-  height:100vh;
-
-  overflow-y:auto;
-
-  padding:22px;
-
-  background:#0d1218;
-
-  border-left:
-    1px solid
-    var(--border2);
-
-  box-shadow:
-    -20px
-    0
-    50px
-    rgba(
-      0,
-      0,
-      0,
-      .35
-    );
-
-  animation:
-    fadeUp
-    .25s
-    ease;
-}
-
-.admin-head {
-  margin-bottom:20px;
-
-  display:flex;
-
-  justify-content:space-between;
-  align-items:center;
-
-  gap:10px;
-}
-
-.admin-head h2 {
-  color:var(--gold);
-
-  font-size:17px;
-}
-
-.admin-tabs {
-  margin-bottom:18px;
-
-  display:flex;
-
-  gap:6px;
-
-  overflow-x:auto;
-}
-
-.admin-tab {
-  white-space:nowrap;
+  margin-bottom: 8px;
 
   padding:
-    7px
-    9px;
+    10px
+    11px;
 
-  color:var(--muted);
+  display: flex;
 
-  background:#090d12;
+  justify-content: space-between;
+
+  gap: 10px;
+
+  background: #0c1117;
 
   border:
     1px solid
     var(--border);
 
-  border-radius:6px;
+  border-radius: 7px;
 }
 
-.admin-tab.active {
-  color:#080b0f;
+.notice:last-child {
 
-  background:var(--gold);
-
-  border-color:var(--gold);
+  margin-bottom: 0;
 }
 
-.admin-content {
-  animation:
-    fadeUp
-    .25s
-    ease;
+.notice-text {
+
+  font-size: 10px;
 }
 
-.admin-list-item {
-  margin-bottom:8px;
+.notice-actions {
 
-  padding:10px;
+  display: flex;
 
-  display:flex;
+  gap: 5px;
 
-  justify-content:space-between;
-  align-items:center;
-
-  gap:8px;
-
-  background:#090d12;
-
-  border:
-    1px solid
-    var(--border);
-
-  border-radius:7px;
-}
-
-.admin-item-title {
-  font-size:10px;
-
-  overflow-wrap:anywhere;
-}
-
-.admin-item-sub {
-  color:var(--muted);
-
-  font-size:9px;
+  flex-shrink: 0;
 }
 
 
-/* =========================
+/* =====================================
    MODAL
-========================= */
+===================================== */
 
 .modal-overlay {
-  position:fixed;
 
-  inset:0;
+  position: fixed;
 
-  z-index:1100;
+  inset: 0;
 
-  display:flex;
+  z-index: 1000;
 
-  justify-content:center;
-  align-items:center;
+  display: flex;
 
-  padding:20px;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
 
   background:
-    rgba(
-      0,
-      0,
-      0,
-      .8
-    );
+    rgba(0,0,0,.82);
 }
 
 .modal {
-  width:100%;
 
-  max-width:600px;
+  width: 100%;
+  max-width: 620px;
 
-  max-height:90vh;
+  max-height: 90vh;
 
-  overflow-y:auto;
+  overflow-y: auto;
 
-  padding:21px;
+  padding: 21px;
 
-  background:#0d1218;
+  background: #0d1218;
 
   border:
     1px solid
     var(--border2);
 
-  border-radius:12px;
+  border-radius: 12px;
 
   animation:
     fadeUp
@@ -1442,94 +1532,132 @@ tbody tr:hover {
 }
 
 .modal-title {
-  margin-bottom:17px;
 
-  color:var(--gold);
+  margin-bottom: 17px;
 
-  font-size:16px;
+  color: var(--gold);
+
+  font-size: 16px;
 }
 
 .modal-grid {
-  display:grid;
+
+  display: grid;
 
   grid-template-columns:
     1fr
     1fr;
 
-  gap:12px;
+  gap: 12px;
 }
 
 .full {
+
   grid-column:
     1 / -1;
 }
 
 .modal-actions {
-  margin-top:18px;
 
-  display:flex;
+  margin-top: 18px;
 
-  justify-content:flex-end;
+  display: flex;
 
-  gap:7px;
+  justify-content: flex-end;
+
+  gap: 7px;
+}
+
+.modal-message {
+
+  min-height: 20px;
+
+  margin-top: 9px;
+
+  font-size: 10px;
+}
+
+.info-box {
+
+  margin-bottom: 15px;
+
+  padding: 10px;
+
+  color: #b7bcc2;
+
+  background:
+    rgba(75,143,216,.07);
+
+  border:
+    1px solid
+    rgba(75,143,216,.22);
+
+  border-radius: 7px;
+
+  font-size: 9px;
 }
 
 
-/* =========================
+/* =====================================
    FOOTER
-========================= */
+===================================== */
 
 footer {
+
   padding:
     22px
     20px;
 
-  text-align:center;
+  text-align: center;
 
-  background:#090d11;
+  background: #090d11;
 
   border-top:
     1px solid
     var(--border);
 }
 
-.footer-title {
-  direction:ltr;
+#footerText {
 
-  color:var(--gold);
+  direction: ltr;
 
-  font-size:10px;
+  color: var(--gold);
 
-  letter-spacing:2px;
+  font-size: 10px;
+
+  letter-spacing: 2px;
 }
 
 .footer-sub {
-  color:#5f676f;
 
-  font-size:9px;
+  color: #5f676f;
+
+  font-size: 9px;
 }
 
 
-/* =========================
+/* =====================================
    MOBILE
-========================= */
+===================================== */
 
 @media(max-width:900px) {
 
   .summary-grid {
+
     grid-template-columns:
-      repeat(
-        2,
-        1fr
-      );
+      repeat(2,1fr);
   }
 
   .members-grid {
+
     grid-template-columns:
-      repeat(
-        2,
-        1fr
-      );
+      repeat(2,1fr);
+  }
+
+  .capacity-overview {
+
+    grid-template-columns:
+      1fr;
   }
 
 }
@@ -1537,39 +1665,48 @@ footer {
 @media(max-width:650px) {
 
   main {
+
     padding:
       23px
       13px
       50px;
   }
 
-  header h1 {
-    font-size:24px;
+  #boardTitle {
+
+    font-size: 24px;
   }
 
   .leadership-grid,
   .objectives-grid,
   .members-grid,
   .modal-grid {
-    grid-template-columns:1fr;
+
+    grid-template-columns: 1fr;
   }
 
   .full {
-    grid-column:auto;
+
+    grid-column: auto;
   }
 
   .status {
-    flex-direction:column;
 
-    align-items:flex-start;
+    flex-direction: column;
+
+    align-items: flex-start;
   }
 
-  .account-bar {
-    align-items:flex-start;
+  .section-title {
+
+    align-items: flex-start;
   }
 
-  .account-actions {
-    justify-content:flex-end;
+  .section-title-right {
+
+    flex-direction: column;
+
+    align-items: flex-end;
   }
 
 }
@@ -1577,8 +1714,10 @@ footer {
 @media(prefers-reduced-motion:reduce) {
 
   * {
-    animation:none !important;
-    transition:none !important;
+
+    animation: none !important;
+
+    transition: none !important;
   }
 
 }
@@ -1591,12 +1730,20 @@ footer {
 <body>
 
 
+<!-- =====================================
+     LOADING
+===================================== -->
+
 <div id="loadingScreen">
+
   در حال برقراری ارتباط با ستاد...
+
 </div>
 
 
-<!-- LOGIN -->
+<!-- =====================================
+     LOGIN
+===================================== -->
 
 <section
   id="loginScreen"
@@ -1608,15 +1755,21 @@ footer {
   <div class="login-header">
 
     <div class="login-eyebrow">
+
       NIGP's MILITARISM HEADQUARTERS OFFICE
+
     </div>
 
     <h1>
+
       🏛 دبیرخانه میلیتاریسم
+
     </h1>
 
     <p>
-      SECURE ACCESS
+
+      HEADQUARTERS ACCESS
+
     </p>
 
   </div>
@@ -1625,20 +1778,26 @@ footer {
   <div class="login-card">
 
     <div class="login-title">
+
       ورود به سامانه
+
     </div>
+
 
     <form id="loginForm">
 
       <div class="form-group">
 
         <label>
+
           نام کاربری / ایمیل
+
         </label>
 
         <input
           id="loginIdentity"
           class="ltr"
+          autocomplete="username"
           required
         >
 
@@ -1648,13 +1807,16 @@ footer {
       <div class="form-group">
 
         <label>
+
           رمز عبور
+
         </label>
 
         <input
           id="loginPassword"
           class="ltr"
           type="password"
+          autocomplete="current-password"
           required
         >
 
@@ -1664,8 +1826,11 @@ footer {
       <button
         id="loginButton"
         class="login-button"
+        type="submit"
       >
+
         ورود به ستاد
+
       </button>
 
     </form>
@@ -1680,7 +1845,9 @@ footer {
 </section>
 
 
-<!-- BOARD -->
+<!-- =====================================
+     BOARD
+===================================== -->
 
 <div
   id="headquarters"
@@ -1691,22 +1858,27 @@ footer {
 <header>
 
   <div class="eyebrow">
+
     NIGP's MILITARISM HEADQUARTERS OFFICE
+
   </div>
 
-  <h1>
+  <h1 id="boardTitle">
+
     🏛 دبیرخانه میلیتاریسم
+
   </h1>
 
-  <div
-    id="boardSubtitle"
-    class="subtitle"
-  >
+  <div id="boardSubtitle">
+
     STATUS BOARD
+
   </div>
 
 </header>
 
+
+<!-- ACCOUNT BAR -->
 
 <div class="account-bar">
 
@@ -1743,11 +1915,13 @@ footer {
   <div class="account-actions">
 
     <button
-      id="manageBoardButton"
-      class="manage-button hidden"
+      id="settingsButton"
+      class="settings-button hidden"
       type="button"
     >
-      ⚙ مدیریت برد
+
+      ⚙ تنظیمات برد
+
     </button>
 
     <button
@@ -1755,7 +1929,9 @@ footer {
       class="logout-button"
       type="button"
     >
+
       خروج
+
     </button>
 
   </div>
@@ -1763,32 +1939,46 @@ footer {
 </div>
 
 
+<!-- NAV -->
+
 <div class="nav-wrapper">
 
 <nav class="nav">
 
   <a href="#leadership">
+
     فرماندهی
+
   </a>
 
   <a href="#objectives">
+
     اهداف جاری
+
   </a>
 
   <a href="#members">
-    اعضا
-  </a>
 
-  <a href="#projects">
-    پروژه‌ها
+    اعضا
+
   </a>
 
   <a href="#capacity">
-    ظرفیت
+
+    ظرفیت اعضا
+
+  </a>
+
+  <a href="#projects">
+
+    پروژه‌ها
+
   </a>
 
   <a href="#notices">
+
     تذکرات
+
   </a>
 
 </nav>
@@ -1799,20 +1989,26 @@ footer {
 <main>
 
 
+<!-- STATUS -->
+
 <div class="status">
 
   <div class="status-left">
 
-    <span class="dot"></span>
+    <span class="status-dot"></span>
 
     <div>
 
       <strong>
+
         وضعیت سامانه:
+
       </strong>
 
       <span id="systemStatus">
+
         ستاد آنلاین و فعال است
+
       </span>
 
     </div>
@@ -1820,11 +2016,15 @@ footer {
   </div>
 
   <div class="status-en">
+
     STATUS: OPERATIONAL
+
   </div>
 
 </div>
 
+
+<!-- SUMMARY -->
 
 <div class="summary-grid">
 
@@ -1838,7 +2038,9 @@ footer {
     </div>
 
     <div class="summary-label">
-      اعضای دبیرخانه
+
+      اعضای فعال
+
     </div>
 
   </div>
@@ -1847,14 +2049,16 @@ footer {
   <div class="summary-card">
 
     <div
-      id="objectiveCount"
+      id="currentObjectiveCount"
       class="summary-number"
     >
       0
     </div>
 
     <div class="summary-label">
+
       اهداف جاری
+
     </div>
 
   </div>
@@ -1870,7 +2074,9 @@ footer {
     </div>
 
     <div class="summary-label">
+
       پروژه‌های فعال
+
     </div>
 
   </div>
@@ -1879,14 +2085,16 @@ footer {
   <div class="summary-card">
 
     <div
-      id="weeklyCapacity"
+      id="totalWeeklyCapacity"
       class="summary-number"
     >
       0H
     </div>
 
     <div class="summary-label">
-      ظرفیت هفتگی
+
+      ظرفیت هفتگی دبیرخانه
+
     </div>
 
   </div>
@@ -1894,7 +2102,9 @@ footer {
 </div>
 
 
-<!-- LEADERSHIP -->
+<!-- =====================================
+     LEADERSHIP
+===================================== -->
 
 <section
   id="leadership"
@@ -1904,14 +2114,19 @@ footer {
 <div class="section-title">
 
   <span>
+
     فرماندهی دبیرخانه
+
   </span>
 
   <small>
+
     COMMAND
+
   </small>
 
 </div>
+
 
 <div
   id="leadershipGrid"
@@ -1921,7 +2136,9 @@ footer {
 </section>
 
 
-<!-- OBJECTIVES -->
+<!-- =====================================
+     OBJECTIVES
+===================================== -->
 
 <section
   id="objectives"
@@ -1931,14 +2148,33 @@ footer {
 <div class="section-title">
 
   <span>
+
     اهداف جاری
+
   </span>
 
-  <small>
-    CURRENT OBJECTIVES
-  </small>
+  <div class="section-title-right">
+
+    <small>
+
+      CURRENT OBJECTIVES
+
+    </small>
+
+    <button
+      id="addObjectiveButton"
+      class="primary-button hidden"
+      type="button"
+    >
+
+      + هدف جدید
+
+    </button>
+
+  </div>
 
 </div>
+
 
 <div class="panel">
 
@@ -1952,7 +2188,9 @@ footer {
 </section>
 
 
-<!-- MEMBERS -->
+<!-- =====================================
+     MEMBERS
+===================================== -->
 
 <section
   id="members"
@@ -1962,14 +2200,33 @@ footer {
 <div class="section-title">
 
   <span>
+
     اعضای دبیرخانه
+
   </span>
 
-  <small>
-    PERSONNEL
-  </small>
+  <div class="section-title-right">
+
+    <small>
+
+      PERSONNEL
+
+    </small>
+
+    <button
+      id="addMemberButton"
+      class="primary-button hidden"
+      type="button"
+    >
+
+      + عضو جدید
+
+    </button>
+
+  </div>
 
 </div>
+
 
 <div
   id="membersGrid"
@@ -1979,7 +2236,138 @@ footer {
 </section>
 
 
-<!-- PROJECTS -->
+<!-- =====================================
+     CAPACITY
+===================================== -->
+
+<section
+  id="capacity"
+  class="section"
+>
+
+<div class="section-title">
+
+  <span>
+
+    ظرفیت اعضا
+
+  </span>
+
+  <small>
+
+    WEEKLY CAPACITY
+
+  </small>
+
+</div>
+
+
+<div class="capacity-overview">
+
+
+  <div class="total-capacity-card">
+
+    <div class="total-capacity-label">
+
+      مجموع ظرفیت هفتگی
+
+    </div>
+
+    <div
+      id="bigTotalCapacity"
+      class="total-capacity-number"
+    >
+
+      0H
+
+    </div>
+
+    <span class="badge badge-green">
+
+      ● OPERATIONAL CAPACITY
+
+    </span>
+
+  </div>
+
+
+  <div class="panel capacity-panel">
+
+    <div id="capacityBars"></div>
+
+  </div>
+
+
+</div>
+
+
+<div
+  class="panel"
+  style="margin-top:12px;"
+>
+
+<div class="table-wrapper">
+
+<table>
+
+<thead>
+
+<tr>
+
+  <th>
+
+    عضو
+
+  </th>
+
+  <th>
+
+    نقش
+
+  </th>
+
+  <th>
+
+    حوزه
+
+  </th>
+
+  <th>
+
+    روزهای فعالیت
+
+  </th>
+
+  <th>
+
+    ظرفیت هفتگی
+
+  </th>
+
+  <th>
+
+    مدیریت
+
+  </th>
+
+</tr>
+
+</thead>
+
+<tbody id="capacityTableBody"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================
+     PROJECTS
+===================================== -->
 
 <section
   id="projects"
@@ -1989,21 +2377,27 @@ footer {
 <div class="section-title">
 
   <span>
+
     پروژه‌ها
+
   </span>
 
-  <div class="admin-section-actions">
+  <div class="section-title-right">
 
     <small>
+
       PROJECTS
+
     </small>
 
     <button
-      id="newProjectButton"
+      id="addProjectButton"
       class="primary-button hidden"
       type="button"
     >
-      + پروژه
+
+      + پروژه جدید
+
     </button>
 
   </div>
@@ -2022,34 +2416,46 @@ footer {
 <tr>
 
   <th>
+
     پروژه
+
   </th>
 
   <th>
+
     مسئول
+
   </th>
 
   <th>
+
     مهلت
+
   </th>
 
   <th>
+
     پیشرفت
+
   </th>
 
   <th>
+
     وضعیت
+
   </th>
 
   <th>
+
     مدیریت
+
   </th>
 
 </tr>
 
 </thead>
 
-<tbody id="projectsBody"></tbody>
+<tbody id="projectsTableBody"></tbody>
 
 </table>
 
@@ -2060,72 +2466,9 @@ footer {
 </section>
 
 
-<!-- CAPACITY -->
-
-<section
-  id="capacity"
-  class="section"
->
-
-<div class="section-title">
-
-  <span>
-    ظرفیت اعضا
-  </span>
-
-  <small>
-    CAPACITY
-  </small>
-
-</div>
-
-
-<div class="panel">
-
-<div class="table-wrapper">
-
-<table>
-
-<thead>
-
-<tr>
-
-  <th>
-    عضو
-  </th>
-
-  <th>
-    نقش
-  </th>
-
-  <th>
-    حوزه
-  </th>
-
-  <th>
-    روزها
-  </th>
-
-  <th>
-    ظرفیت روزانه
-  </th>
-
-</tr>
-
-</thead>
-
-<tbody id="capacityBody"></tbody>
-
-</table>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- NOTICES -->
+<!-- =====================================
+     NOTICES
+===================================== -->
 
 <section
   id="notices"
@@ -2135,19 +2478,40 @@ footer {
 <div class="section-title">
 
   <span>
+
     تذکرات
+
   </span>
 
-  <small>
-    DIRECTIVES
-  </small>
+  <div class="section-title-right">
+
+    <small>
+
+      DIRECTIVES
+
+    </small>
+
+    <button
+      id="addNoticeButton"
+      class="primary-button hidden"
+      type="button"
+    >
+
+      + تذکر جدید
+
+    </button>
+
+  </div>
 
 </div>
 
 
-<div class="panel notice-list">
+<div class="panel">
 
-  <ol id="noticesList"></ol>
+  <div
+    id="noticesContainer"
+    class="notices"
+  ></div>
 
 </div>
 
@@ -2159,12 +2523,16 @@ footer {
 
 <footer>
 
-<div class="footer-title">
+<div id="footerText">
+
   NIGP • MILITARISM HEADQUARTERS OFFICE
+
 </div>
 
 <div class="footer-sub">
+
   INTERNAL STATUS BOARD
+
 </div>
 
 </footer>
@@ -2173,84 +2541,9 @@ footer {
 </div>
 
 
-<!-- ADMIN OVERLAY -->
-
-<div
-  id="adminOverlay"
-  class="admin-overlay hidden"
-></div>
-
-
-<aside
-  id="adminDrawer"
-  class="admin-drawer hidden"
->
-
-<div class="admin-head">
-
-  <h2>
-    ⚙ مدیریت برد
-  </h2>
-
-  <button
-    id="closeAdminButton"
-    class="secondary-button"
-  >
-    بستن
-  </button>
-
-</div>
-
-
-<div class="admin-tabs">
-
-  <button
-    class="admin-tab active"
-    data-tab="leadership"
-  >
-    فرماندهی
-  </button>
-
-  <button
-    class="admin-tab"
-    data-tab="objectives"
-  >
-    اهداف
-  </button>
-
-  <button
-    class="admin-tab"
-    data-tab="members"
-  >
-    اعضا
-  </button>
-
-  <button
-    class="admin-tab"
-    data-tab="notices"
-  >
-    تذکرات
-  </button>
-
-  <button
-    class="admin-tab"
-    data-tab="settings"
-  >
-    تنظیمات
-  </button>
-
-</div>
-
-
-<div
-  id="adminContent"
-  class="admin-content"
-></div>
-
-</aside>
-
-
-<!-- GENERIC MODAL -->
+<!-- =====================================
+     GENERIC MODAL
+===================================== -->
 
 <div
   id="modalOverlay"
@@ -2266,222 +2559,33 @@ footer {
 
   <form id="modalForm">
 
-    <div id="modalFields"></div>
+    <div id="modalContent"></div>
 
     <div
       id="modalMessage"
-      class="form-message"
+      class="modal-message"
     ></div>
 
     <div class="modal-actions">
 
       <button
-        id="cancelModal"
+        id="cancelModalButton"
         class="secondary-button"
         type="button"
       >
+
         انصراف
+
       </button>
 
       <button
-        id="saveModal"
+        id="saveModalButton"
         class="primary-button"
         type="submit"
       >
+
         ذخیره
-      </button>
 
-    </div>
-
-  </form>
-
-</div>
-
-</div>
-
-
-<!-- PROJECT MODAL -->
-
-<div
-  id="projectModal"
-  class="modal-overlay hidden"
->
-
-<div class="modal">
-
-  <div
-    id="projectModalTitle"
-    class="modal-title"
-  >
-    پروژه
-  </div>
-
-  <form id="projectForm">
-
-    <input
-      id="projectId"
-      type="hidden"
-    >
-
-    <div class="modal-grid">
-
-      <div class="form-group full">
-
-        <label>
-          نام پروژه
-        </label>
-
-        <input
-          id="projectTitle"
-          required
-        >
-
-      </div>
-
-
-      <div class="form-group full">
-
-        <label>
-          توضیحات
-        </label>
-
-        <textarea id="projectDescription"></textarea>
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label>
-          مسئول
-        </label>
-
-        <select id="projectAssignee"></select>
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label>
-          مهلت
-        </label>
-
-        <input
-          id="projectDeadline"
-          class="ltr"
-          type="date"
-        >
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label>
-          وضعیت
-        </label>
-
-        <select id="projectStatus">
-
-          <option value="assigned">
-            ابلاغ شده
-          </option>
-
-          <option value="in_progress">
-            در حال اجرا
-          </option>
-
-          <option value="submitted">
-            گزارش ارسال شده
-          </option>
-
-          <option value="completed">
-            تکمیل شده
-          </option>
-
-          <option value="delayed">
-            تأخیر
-          </option>
-
-          <option value="cancelled">
-            لغو شده
-          </option>
-
-        </select>
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label>
-          اولویت
-        </label>
-
-        <select id="projectPriority">
-
-          <option value="low">
-            پایین
-          </option>
-
-          <option value="normal">
-            عادی
-          </option>
-
-          <option value="high">
-            بالا
-          </option>
-
-          <option value="critical">
-            حیاتی
-          </option>
-
-        </select>
-
-      </div>
-
-
-      <div class="form-group full">
-
-        <label>
-          درصد پیشرفت
-        </label>
-
-        <input
-          id="projectProgress"
-          class="ltr"
-          type="number"
-          min="0"
-          max="100"
-        >
-
-      </div>
-
-    </div>
-
-
-    <div
-      id="projectMessage"
-      class="form-message"
-    ></div>
-
-
-    <div class="modal-actions">
-
-      <button
-        id="cancelProject"
-        class="secondary-button"
-        type="button"
-      >
-        انصراف
-      </button>
-
-      <button
-        class="primary-button"
-        type="submit"
-      >
-        ذخیره
       </button>
 
     </div>
@@ -2503,6 +2607,10 @@ from
 "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
 
+/* =====================================
+   SUPABASE
+===================================== */
+
 const SUPABASE_URL =
   "https://xhwyhwlgxbzcmzutcsqb.supabase.co";
 
@@ -2518,56 +2626,39 @@ const supabase =
   );
 
 
-/*
-==================================================
-MEMBER LOGIN ACCOUNTS
+/* =====================================
+   MEMBER LOGIN ACCOUNTS
 
-Passwords for code-based members stay HERE.
+   این قسمت فقط برای LOGIN اعضاست.
 
-Changing board_members in the admin panel
-changes the BOARD PROFILE.
-
-It does not automatically create/change
-the password below.
-==================================================
-*/
-
+   اضافه کردن عضو از پنل، عضو را به برد
+   اضافه می‌کند ولی برای اینکه بتواند LOGIN کند
+   باید حساب او اینجا هم وجود داشته باشد.
+===================================== */
 
 const MEMBER_ACCOUNTS = [
 
   {
-    username:
-      "KOUROSH",
-
-    password:
-      "CHANGE-KOUROSH-PASSWORD"
+    username: "KOUROSH",
+    password: "CHANGE-KOUROSH-PASSWORD"
   },
 
   {
-    username:
-      "JULIDEHMU",
-
-    password:
-      "CHANGE-JULIDEHMU-PASSWORD"
+    username: "JULIDEHMU",
+    password: "CHANGE-JULIDEHMU-PASSWORD"
   },
 
   {
-    username:
-      "WERNER",
-
-    password:
-      "CHANGE-WERNER-PASSWORD"
+    username: "WERNER",
+    password: "CHANGE-WERNER-PASSWORD"
   }
 
 ];
 
 
-/*
-==================================================
-STATE
-==================================================
-*/
-
+/* =====================================
+   STATE
+===================================== */
 
 let loginType = null;
 
@@ -2583,326 +2674,221 @@ let objectives = [];
 
 let notices = [];
 
-let settings = {};
-
 let projects = [];
 
-let modalSaveHandler = null;
+let settings = {};
+
+let modalHandler = null;
 
 
-/*
-==================================================
-ELEMENTS
-==================================================
-*/
-
+/* =====================================
+   ELEMENTS
+===================================== */
 
 const loadingScreen =
   document.getElementById(
     "loadingScreen"
   );
 
-
 const loginScreen =
   document.getElementById(
     "loginScreen"
   );
-
 
 const headquarters =
   document.getElementById(
     "headquarters"
   );
 
-
 const loginForm =
   document.getElementById(
     "loginForm"
   );
-
 
 const loginIdentity =
   document.getElementById(
     "loginIdentity"
   );
 
-
 const loginPassword =
   document.getElementById(
     "loginPassword"
   );
-
 
 const loginButton =
   document.getElementById(
     "loginButton"
   );
 
-
 const loginMessage =
   document.getElementById(
     "loginMessage"
   );
-
 
 const accountAvatar =
   document.getElementById(
     "accountAvatar"
   );
 
-
 const accountName =
   document.getElementById(
     "accountName"
   );
-
 
 const accountRole =
   document.getElementById(
     "accountRole"
   );
 
+const settingsButton =
+  document.getElementById(
+    "settingsButton"
+  );
 
 const logoutButton =
   document.getElementById(
     "logoutButton"
   );
 
-
-const manageBoardButton =
+const boardTitle =
   document.getElementById(
-    "manageBoardButton"
+    "boardTitle"
   );
-
-
-const memberCount =
-  document.getElementById(
-    "memberCount"
-  );
-
-
-const objectiveCount =
-  document.getElementById(
-    "objectiveCount"
-  );
-
-
-const activeProjectCount =
-  document.getElementById(
-    "activeProjectCount"
-  );
-
-
-const weeklyCapacity =
-  document.getElementById(
-    "weeklyCapacity"
-  );
-
 
 const boardSubtitle =
   document.getElementById(
     "boardSubtitle"
   );
 
-
 const systemStatus =
   document.getElementById(
     "systemStatus"
   );
 
+const footerText =
+  document.getElementById(
+    "footerText"
+  );
+
+const memberCount =
+  document.getElementById(
+    "memberCount"
+  );
+
+const currentObjectiveCount =
+  document.getElementById(
+    "currentObjectiveCount"
+  );
+
+const activeProjectCount =
+  document.getElementById(
+    "activeProjectCount"
+  );
+
+const totalWeeklyCapacity =
+  document.getElementById(
+    "totalWeeklyCapacity"
+  );
+
+const bigTotalCapacity =
+  document.getElementById(
+    "bigTotalCapacity"
+  );
 
 const leadershipGrid =
   document.getElementById(
     "leadershipGrid"
   );
 
-
 const objectivesGrid =
   document.getElementById(
     "objectivesGrid"
   );
-
 
 const membersGrid =
   document.getElementById(
     "membersGrid"
   );
 
-
-const capacityBody =
+const capacityBars =
   document.getElementById(
-    "capacityBody"
+    "capacityBars"
   );
 
-
-const noticesList =
+const capacityTableBody =
   document.getElementById(
-    "noticesList"
+    "capacityTableBody"
   );
 
-
-const projectsBody =
+const projectsTableBody =
   document.getElementById(
-    "projectsBody"
+    "projectsTableBody"
   );
 
-
-const newProjectButton =
+const noticesContainer =
   document.getElementById(
-    "newProjectButton"
+    "noticesContainer"
   );
 
-
-const adminOverlay =
+const addObjectiveButton =
   document.getElementById(
-    "adminOverlay"
+    "addObjectiveButton"
   );
 
-
-const adminDrawer =
+const addMemberButton =
   document.getElementById(
-    "adminDrawer"
+    "addMemberButton"
   );
 
-
-const closeAdminButton =
+const addProjectButton =
   document.getElementById(
-    "closeAdminButton"
+    "addProjectButton"
   );
 
-
-const adminContent =
+const addNoticeButton =
   document.getElementById(
-    "adminContent"
+    "addNoticeButton"
   );
-
-
-const adminTabs =
-  document.querySelectorAll(
-    ".admin-tab"
-  );
-
 
 const modalOverlay =
   document.getElementById(
     "modalOverlay"
   );
 
-
 const modalTitle =
   document.getElementById(
     "modalTitle"
   );
-
-
-const modalFields =
-  document.getElementById(
-    "modalFields"
-  );
-
 
 const modalForm =
   document.getElementById(
     "modalForm"
   );
 
+const modalContent =
+  document.getElementById(
+    "modalContent"
+  );
 
 const modalMessage =
   document.getElementById(
     "modalMessage"
   );
 
-
-const cancelModal =
+const cancelModalButton =
   document.getElementById(
-    "cancelModal"
+    "cancelModalButton"
+  );
+
+const saveModalButton =
+  document.getElementById(
+    "saveModalButton"
   );
 
 
-const projectModal =
-  document.getElementById(
-    "projectModal"
-  );
-
-
-const projectForm =
-  document.getElementById(
-    "projectForm"
-  );
-
-
-const projectModalTitle =
-  document.getElementById(
-    "projectModalTitle"
-  );
-
-
-const projectId =
-  document.getElementById(
-    "projectId"
-  );
-
-
-const projectTitle =
-  document.getElementById(
-    "projectTitle"
-  );
-
-
-const projectDescription =
-  document.getElementById(
-    "projectDescription"
-  );
-
-
-const projectAssignee =
-  document.getElementById(
-    "projectAssignee"
-  );
-
-
-const projectDeadline =
-  document.getElementById(
-    "projectDeadline"
-  );
-
-
-const projectStatus =
-  document.getElementById(
-    "projectStatus"
-  );
-
-
-const projectPriority =
-  document.getElementById(
-    "projectPriority"
-  );
-
-
-const projectProgress =
-  document.getElementById(
-    "projectProgress"
-  );
-
-
-const projectMessage =
-  document.getElementById(
-    "projectMessage"
-  );
-
-
-const cancelProject =
-  document.getElementById(
-    "cancelProject"
-  );
-
-
-/*
-==================================================
-HELPERS
-==================================================
-*/
-
+/* =====================================
+   HELPERS
+===================================== */
 
 function normalizeUsername(
   value
@@ -2917,12 +2903,278 @@ function normalizeUsername(
 }
 
 
+function escapeHTML(
+  value
+) {
+
+  return String(
+    value ?? ""
+  )
+  .replaceAll(
+    "&",
+    "&amp;"
+  )
+  .replaceAll(
+    "<",
+    "&lt;"
+  )
+  .replaceAll(
+    ">",
+    "&gt;"
+  )
+  .replaceAll(
+    '"',
+    "&quot;"
+  )
+  .replaceAll(
+    "'",
+    "&#039;"
+  );
+
+}
+
+
 function isSecretary() {
 
   return (
     loginType ===
     "secretary"
   );
+
+}
+
+
+function activeMembers() {
+
+  return members.filter(
+    member =>
+      member.is_active
+  );
+
+}
+
+
+function memberHasLogin(
+  username
+) {
+
+  if (
+    normalizeUsername(
+      username
+    ) ===
+    "SPOOKY"
+  ) {
+
+    return true;
+
+  }
+
+
+  return MEMBER_ACCOUNTS.some(
+    account =>
+      normalizeUsername(
+        account.username
+      ) ===
+      normalizeUsername(
+        username
+      )
+  );
+
+}
+
+
+function formatHours(
+  value
+) {
+
+  const number =
+    Number(
+      value || 0
+    );
+
+
+  if (
+    Number.isInteger(
+      number
+    )
+  ) {
+
+    return String(
+      number
+    );
+
+  }
+
+
+  return number
+    .toFixed(
+      1
+    )
+    .replace(
+      /\.0$/,
+      ""
+    );
+
+}
+
+
+function calculateTotalCapacity() {
+
+  return activeMembers()
+    .reduce(
+      (
+        total,
+        member
+      ) => {
+
+        return (
+          total +
+          Number(
+            member.weekly_capacity_hours ||
+            0
+          )
+        );
+
+      },
+      0
+    );
+
+}
+
+
+function objectiveStatusInfo(
+  status
+) {
+
+  if (
+    status ===
+    "completed"
+  ) {
+
+    return {
+      label:
+        "تکمیل",
+
+      className:
+        "tag-completed"
+    };
+
+  }
+
+
+  if (
+    status ===
+    "delayed"
+  ) {
+
+    return {
+      label:
+        "تأخیر",
+
+      className:
+        "tag-delayed"
+    };
+
+  }
+
+
+  if (
+    status ===
+    "cancelled"
+  ) {
+
+    return {
+      label:
+        "کنسل شده",
+
+      className:
+        "tag-cancelled"
+    };
+
+  }
+
+
+  return {
+    label:
+      "در حال انجام",
+
+    className:
+      "tag-progress"
+  };
+
+}
+
+
+function projectStatusLabel(
+  status
+) {
+
+  const map = {
+
+    assigned:
+      "ابلاغ شده",
+
+    in_progress:
+      "در حال اجرا",
+
+    submitted:
+      "گزارش ارسال شده",
+
+    completed:
+      "تکمیل شده",
+
+    delayed:
+      "تأخیر",
+
+    cancelled:
+      "لغو شده"
+
+  };
+
+
+  return (
+    map[status] ||
+    status
+  );
+
+}
+
+
+function projectBadgeClass(
+  status
+) {
+
+  if (
+    status ===
+    "completed"
+  ) {
+
+    return "badge-green";
+
+  }
+
+
+  if (
+    status ===
+    "delayed"
+  ) {
+
+    return "badge-red";
+
+  }
+
+
+  if (
+    status ===
+    "submitted"
+  ) {
+
+    return "badge-yellow";
+
+  }
+
+
+  return "badge-blue";
 
 }
 
@@ -2973,355 +3225,21 @@ function showBoard() {
 }
 
 
-function escapeHTML(
-  value
-) {
+/* =====================================
+   DATABASE
+===================================== */
 
-  return String(
-    value ?? ""
-  )
-  .replaceAll(
-    "&",
-    "&amp;"
-  )
-  .replaceAll(
-    "<",
-    "&lt;"
-  )
-  .replaceAll(
-    ">",
-    "&gt;"
-  )
-  .replaceAll(
-    '"',
-    "&quot;"
-  )
-  .replaceAll(
-    "'",
-    "&#039;"
-  );
+async function loadData() {
 
-}
-
-
-function objectiveTag(
-  status
-) {
-
-  if (
-    status ===
-    "completed"
-  ) {
-
-    return [
-      "تکمیل",
-      "tag-completed"
-    ];
-
-  }
-
-
-  if (
-    status ===
-    "delayed"
-  ) {
-
-    return [
-      "تأخیر",
-      "tag-delayed"
-    ];
-
-  }
-
-
-  if (
-    status ===
-    "cancelled"
-  ) {
-
-    return [
-      "کنسل شده",
-      "tag-cancelled"
-    ];
-
-  }
-
-
-  return [
-    "در حال انجام",
-    "tag-progress"
-  ];
-
-}
-
-
-function projectStatusLabel(
-  status
-) {
-
-  const labels = {
-
-    assigned:
-      "ابلاغ شده",
-
-    in_progress:
-      "در حال اجرا",
-
-    submitted:
-      "گزارش ارسال شده",
-
-    completed:
-      "تکمیل شده",
-
-    delayed:
-      "تأخیر",
-
-    cancelled:
-      "لغو شده"
-
-  };
-
-  return (
-    labels[status] ||
-    status
-  );
-
-}
-
-
-function projectBadge(
-  status
-) {
-
-  if (
-    status ===
-    "completed"
-  ) {
-
-    return "badge-green";
-
-  }
-
-  if (
-    status ===
-    "delayed"
-  ) {
-
-    return "badge-red";
-
-  }
-
-  if (
-    status ===
-    "submitted"
-  ) {
-
-    return "badge-yellow";
-
-  }
-
-  return "badge-blue";
-
-}
-
-
-/*
-==================================================
-LOGIN
-==================================================
-*/
-
-
-async function secretaryLogin(
-  email,
-  password
-) {
-
-  const {
-    data,
-    error
-  } =
-    await supabase.auth
-      .signInWithPassword({
-        email,
-        password
-      });
-
-
-  if (
-    error
-  ) {
-
-    throw error;
-
-  }
-
-
-  const {
-    data: profile,
-    error: profileError
-  } =
-    await supabase
-      .from(
-        "profiles"
-      )
-      .select(
-        "username,display_name,role,activity_area,is_active"
-      )
-      .eq(
-        "id",
-        data.user.id
-      )
-      .single();
-
-
-  if (
-    profileError
-  ) {
-
-    throw profileError;
-
-  }
-
-
-  if (
-    profile.role !==
-    "secretary"
-  ) {
-
-    await supabase.auth
-      .signOut();
-
-    throw new Error(
-      "Not secretary"
-    );
-
-  }
-
-
-  loginType =
-    "secretary";
-
-
-  currentUser =
-    data.user;
-
-
-  currentProfile = {
-
-    username:
-      profile.username ||
-      "SPOOKY",
-
-    displayName:
-      profile.display_name ||
-      "SPOOKY",
-
-    role:
-      "دبیر"
-
-  };
-
-
-  sessionStorage.removeItem(
-    "militarismMember"
-  );
-
-}
-
-
-function memberLogin(
-  username,
-  password
-) {
-
-  const normalized =
-    normalizeUsername(
-      username
-    );
-
-
-  const account =
-    MEMBER_ACCOUNTS.find(
-      item =>
-        normalizeUsername(
-          item.username
-        ) ===
-        normalized
-        &&
-        item.password ===
-        password
-    );
-
-
-  if (
-    !account
-  ) {
-
-    throw new Error(
-      "Invalid member"
-    );
-
-  }
-
-
-  loginType =
-    "member";
-
-
-  currentUser =
-    null;
-
-
-  currentProfile = {
-
-    username:
-      account.username,
-
-    displayName:
-      account.username,
-
-    role:
-      "عضو"
-
-  };
-
-
-  sessionStorage.setItem(
-    "militarismMember",
-    account.username
-  );
-
-}
-
-
-/*
-==================================================
-BOARD DATA
-==================================================
-*/
-
-
-async function loadBoardData() {
-
-  const [
-    membersResult,
-    leadershipResult,
-    objectivesResult,
-    noticesResult,
-    settingsResult,
-    projectsResult
-  ] =
+  const results =
     await Promise.all([
 
       supabase
         .from(
           "board_members"
         )
-        .select("*")
-        .eq(
-          "is_active",
-          true
+        .select(
+          "*"
         )
         .order(
           "sort_order"
@@ -3331,13 +3249,17 @@ async function loadBoardData() {
         .from(
           "board_leadership"
         )
-        .select("*"),
+        .select(
+          "*"
+        ),
 
       supabase
         .from(
           "objectives"
         )
-        .select("*")
+        .select(
+          "*"
+        )
         .order(
           "sort_order"
         ),
@@ -3346,7 +3268,9 @@ async function loadBoardData() {
         .from(
           "board_notices"
         )
-        .select("*")
+        .select(
+          "*"
+        )
         .eq(
           "is_active",
           true
@@ -3359,7 +3283,9 @@ async function loadBoardData() {
         .from(
           "board_settings"
         )
-        .select("*"),
+        .select(
+          "*"
+        ),
 
       supabase
         .from(
@@ -3371,64 +3297,88 @@ async function loadBoardData() {
         .order(
           "created_at",
           {
-            ascending:false
+            ascending:
+              false
           }
         )
 
     ]);
 
 
+  const [
+    membersResult,
+    leadershipResult,
+    objectivesResult,
+    noticesResult,
+    settingsResult,
+    projectsResult
+  ] =
+    results;
+
+
   if (
     membersResult.error
   ) {
+
     console.error(
       membersResult.error
     );
+
   }
 
 
   if (
     leadershipResult.error
   ) {
+
     console.error(
       leadershipResult.error
     );
+
   }
 
 
   if (
     objectivesResult.error
   ) {
+
     console.error(
       objectivesResult.error
     );
+
   }
 
 
   if (
     noticesResult.error
   ) {
+
     console.error(
       noticesResult.error
     );
+
   }
 
 
   if (
     settingsResult.error
   ) {
+
     console.error(
       settingsResult.error
     );
+
   }
 
 
   if (
     projectsResult.error
   ) {
+
     console.error(
       projectsResult.error
     );
+
   }
 
 
@@ -3465,12 +3415,12 @@ async function loadBoardData() {
     []
   )
   .forEach(
-    item => {
+    row => {
 
       settings[
-        item.setting_key
+        row.setting_key
       ] =
-        item.setting_value;
+        row.setting_value;
 
     }
   );
@@ -3481,35 +3431,9 @@ async function loadBoardData() {
 }
 
 
-/*
-==================================================
-RENDER
-==================================================
-*/
-
-
-function renderEverything() {
-
-  renderAccount();
-
-  renderSettings();
-
-  renderLeadership();
-
-  renderObjectives();
-
-  renderMembers();
-
-  renderCapacity();
-
-  renderNotices();
-
-  renderProjects();
-
-  populateProjectAssignees();
-
-}
-
+/* =====================================
+   RENDER ACCOUNT
+===================================== */
 
 function renderAccount() {
 
@@ -3519,12 +3443,17 @@ function renderAccount() {
     "USER";
 
 
+  let role =
+    currentProfile?.role ||
+    "عضو";
+
+
   if (
     loginType ===
     "member"
   ) {
 
-    const boardMember =
+    const member =
       members.find(
         item =>
           normalizeUsername(
@@ -3537,15 +3466,14 @@ function renderAccount() {
 
 
     if (
-      boardMember
+      member
     ) {
 
       name =
-        boardMember.display_name;
+        member.display_name;
 
-
-      currentProfile.role =
-        boardMember.role;
+      role =
+        member.role;
 
     }
 
@@ -3557,8 +3485,7 @@ function renderAccount() {
 
 
   accountRole.textContent =
-    currentProfile?.role ||
-    "عضو";
+    role;
 
 
   accountAvatar.textContent =
@@ -3571,48 +3498,42 @@ function renderAccount() {
     .toUpperCase();
 
 
-  if (
-    isSecretary()
-  ) {
+  const adminButtons = [
 
-    manageBoardButton
-      .classList
-      .remove(
-        "hidden"
-      );
+    settingsButton,
+    addObjectiveButton,
+    addMemberButton,
+    addProjectButton,
+    addNoticeButton
 
-
-    newProjectButton
-      .classList
-      .remove(
-        "hidden"
-      );
-
-  } else {
-
-    manageBoardButton
-      .classList
-      .add(
-        "hidden"
-      );
+  ];
 
 
-    newProjectButton
-      .classList
-      .add(
-        "hidden"
-      );
+  adminButtons.forEach(
+    button => {
 
-  }
+      button
+        .classList
+        .toggle(
+          "hidden",
+          !isSecretary()
+        );
+
+    }
+  );
 
 }
 
 
+/* =====================================
+   RENDER SETTINGS
+===================================== */
+
 function renderSettings() {
 
-  systemStatus.textContent =
-    settings.system_status ||
-    "ستاد آنلاین و فعال است";
+  boardTitle.textContent =
+    settings.board_title ||
+    "🏛 دبیرخانه میلیتاریسم";
 
 
   boardSubtitle.textContent =
@@ -3620,16 +3541,21 @@ function renderSettings() {
     "STATUS BOARD";
 
 
-  weeklyCapacity.textContent =
-    (
-      settings.weekly_capacity ||
-      "0"
-    )
-    +
-    "H";
+  systemStatus.textContent =
+    settings.system_status ||
+    "ستاد آنلاین و فعال است";
+
+
+  footerText.textContent =
+    settings.footer_text ||
+    "NIGP • MILITARISM HEADQUARTERS OFFICE";
 
 }
 
+
+/* =====================================
+   LEADERSHIP
+===================================== */
 
 function renderLeadership() {
 
@@ -3637,19 +3563,19 @@ function renderLeadership() {
     "";
 
 
-  const ordered = [
+  const order = [
     "secretary",
     "deputy"
   ];
 
 
-  ordered.forEach(
+  order.forEach(
     key => {
 
       const item =
         leadership.find(
-          x =>
-            x.position_key ===
+          row =>
+            row.position_key ===
             key
         );
 
@@ -3675,11 +3601,36 @@ function renderLeadership() {
 
       card.innerHTML = `
 
-        <div class="leader-label">
+        <div class="leader-top">
 
-          ${escapeHTML(
-            item.position_label
-          )}
+          <div>
+
+            <div class="leader-label">
+
+              ${escapeHTML(
+                item.position_label
+              )}
+
+            </div>
+
+          </div>
+
+          ${
+            isSecretary()
+            ?
+            `
+              <button
+                class="edit-button"
+                data-leadership-edit="${escapeHTML(
+                  item.position_key
+                )}"
+              >
+                ویرایش
+              </button>
+            `
+            :
+            ""
+          }
 
         </div>
 
@@ -3712,8 +3663,52 @@ function renderLeadership() {
     }
   );
 
+
+  if (
+    isSecretary()
+  ) {
+
+    document
+      .querySelectorAll(
+        "[data-leadership-edit]"
+      )
+      .forEach(
+        button => {
+
+          button.onclick =
+            () => {
+
+              const item =
+                leadership.find(
+                  row =>
+                    row.position_key ===
+                    button.dataset.leadershipEdit
+                );
+
+
+              if (
+                item
+              ) {
+
+                openLeadershipModal(
+                  item
+                );
+
+              }
+
+            };
+
+        }
+      );
+
+  }
+
 }
 
+
+/* =====================================
+   OBJECTIVES
+===================================== */
 
 function renderObjectives() {
 
@@ -3722,45 +3717,72 @@ function renderObjectives() {
 
 
   objectives.forEach(
-    item => {
+    objective => {
 
-      const [
-        label,
-        className
-      ] =
-        objectiveTag(
-          item.status
+      const status =
+        objectiveStatusInfo(
+          objective.status
         );
 
 
-      const div =
+      const box =
         document.createElement(
           "div"
         );
 
 
-      div.className =
+      box.className =
         "objective";
 
 
-      div.innerHTML = `
+      box.innerHTML = `
 
-        <div class="objective-title">
+        <div class="objective-content">
 
-          ${escapeHTML(
-            item.title
-          )}
+          <div class="objective-title">
+
+            ${escapeHTML(
+              objective.title
+            )}
+
+          </div>
+
+          ${
+            isSecretary()
+            ?
+            `
+              <div class="objective-actions">
+
+                <button
+                  class="edit-button"
+                  data-objective-edit="${objective.id}"
+                >
+                  ویرایش
+                </button>
+
+                <button
+                  class="delete-button"
+                  data-objective-delete="${objective.id}"
+                >
+                  حذف
+                </button>
+
+              </div>
+            `
+            :
+            ""
+          }
 
         </div>
 
         <span
           class="
             tag
-            ${className}
+            ${status.className}
           "
         >
 
-          ${label}
+          ${status.label}
 
         </span>
 
@@ -3769,26 +3791,85 @@ function renderObjectives() {
 
       objectivesGrid
         .appendChild(
-          div
+          box
         );
 
     }
   );
 
 
-  objectiveCount.textContent =
+  currentObjectiveCount.textContent =
     objectives.filter(
-      x =>
-        x.status !==
-        "completed"
-        &&
-        x.status !==
-        "cancelled"
+      objective =>
+        objective.status ===
+        "in_progress"
+        ||
+        objective.status ===
+        "delayed"
     )
     .length;
 
+
+  if (
+    isSecretary()
+  ) {
+
+    document
+      .querySelectorAll(
+        "[data-objective-edit]"
+      )
+      .forEach(
+        button => {
+
+          button.onclick =
+            () => {
+
+              const item =
+                objectives.find(
+                  row =>
+                    row.id ===
+                    Number(
+                      button.dataset.objectiveEdit
+                    )
+                );
+
+
+              openObjectiveModal(
+                item
+              );
+
+            };
+
+        }
+      );
+
+
+    document
+      .querySelectorAll(
+        "[data-objective-delete]"
+      )
+      .forEach(
+        button => {
+
+          button.onclick =
+            () =>
+              deleteObjective(
+                Number(
+                  button.dataset.objectiveDelete
+                )
+              );
+
+        }
+      );
+
+  }
+
 }
 
+
+/* =====================================
+   MEMBERS
+===================================== */
 
 function renderMembers() {
 
@@ -3796,34 +3877,90 @@ function renderMembers() {
     "";
 
 
-  members.forEach(
+  const visibleMembers =
+    isSecretary()
+    ?
+    members
+    :
+    activeMembers();
+
+
+  visibleMembers.forEach(
     member => {
 
-      const div =
+      const card =
         document.createElement(
           "div"
         );
 
 
-      div.className =
+      card.className =
         "member-card";
 
 
-      div.innerHTML = `
+      if (
+        !member.is_active
+      ) {
 
-        <div class="member-name">
+        card.classList.add(
+          "inactive"
+        );
 
-          ${escapeHTML(
-            member.display_name
-          )}
+      }
 
-        </div>
 
-        <div class="member-role">
+      const loginDefined =
+        memberHasLogin(
+          member.username
+        );
 
-          ${escapeHTML(
-            member.role
-          )}
+
+      card.innerHTML = `
+
+        <div class="member-card-top">
+
+          <div>
+
+            <div class="member-name">
+
+              ${escapeHTML(
+                member.display_name
+              )}
+
+            </div>
+
+            <div class="member-role">
+
+              ${escapeHTML(
+                member.role
+              )}
+
+            </div>
+
+          </div>
+
+          <span
+            class="
+              badge
+              ${
+                member.is_active
+                ?
+                "badge-green"
+                :
+                "badge-red"
+              }
+            "
+          >
+
+            ${
+              member.is_active
+              ?
+              "فعال"
+              :
+              "غیرفعال"
+            }
+
+          </span>
 
         </div>
 
@@ -3836,12 +3973,80 @@ function renderMembers() {
 
         </div>
 
+        <div class="member-capacity">
+
+          ظرفیت هفتگی:
+          <strong>
+
+            ${formatHours(
+              member.weekly_capacity_hours
+            )}
+            ساعت
+
+          </strong>
+
+        </div>
+
+        ${
+          isSecretary()
+          ?
+          `
+            <div class="member-login-state">
+
+              ورود:
+              ${
+                loginDefined
+                ?
+                "تعریف شده"
+                :
+                "حساب LOGIN در کد تعریف نشده"
+              }
+
+            </div>
+
+            <div class="member-actions">
+
+              <button
+                class="edit-button"
+                data-member-edit="${member.id}"
+              >
+                ویرایش
+              </button>
+
+              ${
+                member.is_active
+                ?
+                `
+                  <button
+                    class="delete-button"
+                    data-member-disable="${member.id}"
+                  >
+                    غیرفعال
+                  </button>
+                `
+                :
+                `
+                  <button
+                    class="restore-button"
+                    data-member-enable="${member.id}"
+                  >
+                    فعال‌سازی
+                  </button>
+                `
+              }
+
+            </div>
+          `
+          :
+          ""
+        }
+
       `;
 
 
       membersGrid
         .appendChild(
-          div
+          card
         );
 
     }
@@ -3849,18 +4054,212 @@ function renderMembers() {
 
 
   memberCount.textContent =
-    members.length;
+    activeMembers()
+      .length;
+
+
+  if (
+    isSecretary()
+  ) {
+
+    document
+      .querySelectorAll(
+        "[data-member-edit]"
+      )
+      .forEach(
+        button => {
+
+          button.onclick =
+            () => {
+
+              const member =
+                members.find(
+                  row =>
+                    row.id ===
+                    Number(
+                      button.dataset.memberEdit
+                    )
+                );
+
+
+              openMemberModal(
+                member
+              );
+
+            };
+
+        }
+      );
+
+
+    document
+      .querySelectorAll(
+        "[data-member-disable]"
+      )
+      .forEach(
+        button => {
+
+          button.onclick =
+            () =>
+              setMemberActive(
+                Number(
+                  button.dataset.memberDisable
+                ),
+                false
+              );
+
+        }
+      );
+
+
+    document
+      .querySelectorAll(
+        "[data-member-enable]"
+      )
+      .forEach(
+        button => {
+
+          button.onclick =
+            () =>
+              setMemberActive(
+                Number(
+                  button.dataset.memberEnable
+                ),
+                true
+              );
+
+        }
+      );
+
+  }
 
 }
 
 
+/* =====================================
+   CAPACITY
+===================================== */
+
 function renderCapacity() {
 
-  capacityBody.innerHTML =
+  const active =
+    activeMembers();
+
+
+  const total =
+    calculateTotalCapacity();
+
+
+  totalWeeklyCapacity.textContent =
+    `${formatHours(
+      total
+    )}H`;
+
+
+  bigTotalCapacity.textContent =
+    `${formatHours(
+      total
+    )}H`;
+
+
+  const maxCapacity =
+    Math.max(
+      ...active.map(
+        member =>
+          Number(
+            member.weekly_capacity_hours ||
+            0
+          )
+      ),
+      1
+    );
+
+
+  capacityBars.innerHTML =
     "";
 
 
-  members.forEach(
+  active.forEach(
+    member => {
+
+      const capacity =
+        Number(
+          member.weekly_capacity_hours ||
+          0
+        );
+
+
+      const percentage =
+        Math.min(
+          100,
+          (
+            capacity /
+            maxCapacity
+          ) *
+          100
+        );
+
+
+      const item =
+        document.createElement(
+          "div"
+        );
+
+
+      item.className =
+        "capacity-item";
+
+
+      item.innerHTML = `
+
+        <div class="capacity-info">
+
+          <span>
+
+            ${escapeHTML(
+              member.display_name
+            )}
+
+          </span>
+
+          <span>
+
+            ${formatHours(
+              capacity
+            )}H
+
+          </span>
+
+        </div>
+
+        <div class="capacity-bar">
+
+          <div
+            class="capacity-fill"
+            style="
+              width:${percentage}%;
+            "
+          ></div>
+
+        </div>
+
+      `;
+
+
+      capacityBars
+        .appendChild(
+          item
+        );
+
+    }
+  );
+
+
+  capacityTableBody.innerHTML =
+    "";
+
+
+  active.forEach(
     member => {
 
       const row =
@@ -3907,15 +4306,40 @@ function renderCapacity() {
 
         <td>
 
-          ${member.daily_capacity_hours}
-          ساعت
+          <strong>
+
+            ${formatHours(
+              member.weekly_capacity_hours
+            )}
+            ساعت
+
+          </strong>
+
+        </td>
+
+        <td>
+
+          ${
+            isSecretary()
+            ?
+            `
+              <button
+                class="edit-button"
+                data-capacity-edit="${member.id}"
+              >
+                ✏️ تغییر ظرفیت
+              </button>
+            `
+            :
+            "—"
+          }
 
         </td>
 
       `;
 
 
-      capacityBody
+      capacityTableBody
         .appendChild(
           row
         );
@@ -3923,38 +4347,54 @@ function renderCapacity() {
     }
   );
 
+
+  if (
+    isSecretary()
+  ) {
+
+    document
+      .querySelectorAll(
+        "[data-capacity-edit]"
+      )
+      .forEach(
+        button => {
+
+          button.onclick =
+            () => {
+
+              const member =
+                members.find(
+                  row =>
+                    row.id ===
+                    Number(
+                      button.dataset.capacityEdit
+                    )
+                );
+
+
+              if (
+                member
+              ) {
+
+                openCapacityModal(
+                  member
+                );
+
+              }
+
+            };
+
+        }
+      );
+
+  }
+
 }
 
 
-function renderNotices() {
-
-  noticesList.innerHTML =
-    "";
-
-
-  notices.forEach(
-    notice => {
-
-      const li =
-        document.createElement(
-          "li"
-        );
-
-
-      li.textContent =
-        notice.content;
-
-
-      noticesList
-        .appendChild(
-          li
-        );
-
-    }
-  );
-
-}
-
+/* =====================================
+   PROJECTS
+===================================== */
 
 function visibleProjects() {
 
@@ -3971,8 +4411,7 @@ function visibleProjects() {
     project =>
       normalizeUsername(
         project.assigned_username
-      )
-      ===
+      ) ===
       normalizeUsername(
         currentProfile.username
       )
@@ -3999,7 +4438,7 @@ function renderProjects() {
     .length;
 
 
-  projectsBody.innerHTML =
+  projectsTableBody.innerHTML =
     "";
 
 
@@ -4008,7 +4447,7 @@ function renderProjects() {
     0
   ) {
 
-    projectsBody.innerHTML = `
+    projectsTableBody.innerHTML = `
 
       <tr>
 
@@ -4020,7 +4459,7 @@ function renderProjects() {
           "
         >
 
-          پروژه‌ای وجود ندارد.
+          پروژه‌ای برای نمایش وجود ندارد.
 
         </td>
 
@@ -4036,47 +4475,6 @@ function renderProjects() {
 
   list.forEach(
     project => {
-
-      const progress =
-        Math.min(
-          100,
-          Math.max(
-            0,
-            Number(
-              project.progress
-            ) ||
-            0
-          )
-        );
-
-
-      const actions =
-        isSecretary()
-        ?
-        `
-
-          <div class="row-actions">
-
-            <button
-              class="edit-button"
-              data-project-edit="${project.id}"
-            >
-              ویرایش
-            </button>
-
-            <button
-              class="delete-button"
-              data-project-delete="${project.id}"
-            >
-              حذف
-            </button>
-
-          </div>
-
-        `
-        :
-        "—";
-
 
       const row =
         document.createElement(
@@ -4114,7 +4512,10 @@ function renderProjects() {
 
         <td>
 
-          ${progress}%
+          ${Number(
+            project.progress ||
+            0
+          )}%
 
         </td>
 
@@ -4123,7 +4524,7 @@ function renderProjects() {
           <span
             class="
               badge
-              ${projectBadge(
+              ${projectBadgeClass(
                 project.status
               )}
             "
@@ -4139,14 +4540,38 @@ function renderProjects() {
 
         <td>
 
-          ${actions}
+          ${
+            isSecretary()
+            ?
+            `
+              <div class="row-actions">
+
+                <button
+                  class="edit-button"
+                  data-project-edit="${project.id}"
+                >
+                  ویرایش
+                </button>
+
+                <button
+                  class="delete-button"
+                  data-project-delete="${project.id}"
+                >
+                  حذف
+                </button>
+
+              </div>
+            `
+            :
+            "—"
+          }
 
         </td>
 
       `;
 
 
-      projectsBody
+      projectsTableBody
         .appendChild(
           row
         );
@@ -4171,8 +4596,8 @@ function renderProjects() {
 
               const project =
                 projects.find(
-                  x =>
-                    x.id ===
+                  row =>
+                    row.id ===
                     Number(
                       button.dataset.projectEdit
                     )
@@ -4212,177 +4637,18 @@ function renderProjects() {
 }
 
 
-/*
-==================================================
-ADMIN DRAWER
-==================================================
-*/
+/* =====================================
+   NOTICES
+===================================== */
 
+function renderNotices() {
 
-function openAdmin() {
-
-  if (
-    !isSecretary()
-  ) {
-
-    return;
-
-  }
-
-
-  adminOverlay
-    .classList
-    .remove(
-      "hidden"
-    );
-
-
-  adminDrawer
-    .classList
-    .remove(
-      "hidden"
-    );
-
-
-  renderAdminTab(
-    "leadership"
-  );
-
-}
-
-
-function closeAdmin() {
-
-  adminOverlay
-    .classList
-    .add(
-      "hidden"
-    );
-
-
-  adminDrawer
-    .classList
-    .add(
-      "hidden"
-    );
-
-}
-
-
-manageBoardButton.onclick =
-  openAdmin;
-
-
-closeAdminButton.onclick =
-  closeAdmin;
-
-
-adminOverlay.onclick =
-  closeAdmin;
-
-
-adminTabs.forEach(
-  tab => {
-
-    tab.onclick =
-      () => {
-
-        adminTabs.forEach(
-          x =>
-            x.classList
-              .remove(
-                "active"
-              )
-        );
-
-
-        tab.classList
-          .add(
-            "active"
-          );
-
-
-        renderAdminTab(
-          tab.dataset.tab
-        );
-
-      };
-
-  }
-);
-
-
-function renderAdminTab(
-  tab
-) {
-
-  if (
-    tab ===
-    "leadership"
-  ) {
-
-    renderAdminLeadership();
-
-  }
-
-
-  if (
-    tab ===
-    "objectives"
-  ) {
-
-    renderAdminObjectives();
-
-  }
-
-
-  if (
-    tab ===
-    "members"
-  ) {
-
-    renderAdminMembers();
-
-  }
-
-
-  if (
-    tab ===
-    "notices"
-  ) {
-
-    renderAdminNotices();
-
-  }
-
-
-  if (
-    tab ===
-    "settings"
-  ) {
-
-    renderAdminSettings();
-
-  }
-
-}
-
-
-/*
-==================================================
-ADMIN LEADERSHIP
-==================================================
-*/
-
-
-function renderAdminLeadership() {
-
-  adminContent.innerHTML =
+  noticesContainer.innerHTML =
     "";
 
 
-  leadership.forEach(
-    item => {
+  notices.forEach(
+    notice => {
 
       const div =
         document.createElement(
@@ -4391,53 +4657,49 @@ function renderAdminLeadership() {
 
 
       div.className =
-        "admin-list-item";
+        "notice";
 
 
       div.innerHTML = `
 
-        <div>
+        <div class="notice-text">
 
-          <div class="admin-item-title">
-
-            ${escapeHTML(
-              item.position_label
-            )}
-
-          </div>
-
-          <div class="admin-item-sub">
-
-            ${escapeHTML(
-              item.member_username ||
-              "—"
-            )}
-
-          </div>
+          ${escapeHTML(
+            notice.content
+          )}
 
         </div>
 
-        <button
-          class="edit-button"
-        >
-          ویرایش
-        </button>
+        ${
+          isSecretary()
+          ?
+          `
+            <div class="notice-actions">
+
+              <button
+                class="edit-button"
+                data-notice-edit="${notice.id}"
+              >
+                ویرایش
+              </button>
+
+              <button
+                class="delete-button"
+                data-notice-delete="${notice.id}"
+              >
+                حذف
+              </button>
+
+            </div>
+          `
+          :
+          ""
+        }
 
       `;
 
 
-      div
-        .querySelector(
-          "button"
-        )
-        .onclick =
-          () =>
-            editLeadership(
-              item
-            );
-
-
-      adminContent
+      noticesContainer
         .appendChild(
           div
         );
@@ -4445,59 +4707,837 @@ function renderAdminLeadership() {
     }
   );
 
+
+  if (
+    isSecretary()
+  ) {
+
+    document
+      .querySelectorAll(
+        "[data-notice-edit]"
+      )
+      .forEach(
+        button => {
+
+          button.onclick =
+            () => {
+
+              const notice =
+                notices.find(
+                  row =>
+                    row.id ===
+                    Number(
+                      button.dataset.noticeEdit
+                    )
+                );
+
+
+              openNoticeModal(
+                notice
+              );
+
+            };
+
+        }
+      );
+
+
+    document
+      .querySelectorAll(
+        "[data-notice-delete]"
+      )
+      .forEach(
+        button => {
+
+          button.onclick =
+            () =>
+              deleteNotice(
+                Number(
+                  button.dataset.noticeDelete
+                )
+              );
+
+        }
+      );
+
+  }
+
 }
 
 
-function editLeadership(
+/* =====================================
+   RENDER ALL
+===================================== */
+
+function renderEverything() {
+
+  renderAccount();
+
+  renderSettings();
+
+  renderLeadership();
+
+  renderObjectives();
+
+  renderMembers();
+
+  renderCapacity();
+
+  renderProjects();
+
+  renderNotices();
+
+}
+
+
+/* =====================================
+   GENERIC MODAL
+===================================== */
+
+function openModal(
+  title,
+  html,
+  handler
+) {
+
+  modalTitle.textContent =
+    title;
+
+
+  modalContent.innerHTML =
+    html;
+
+
+  modalMessage.textContent =
+    "";
+
+
+  modalMessage.className =
+    "modal-message";
+
+
+  modalHandler =
+    handler;
+
+
+  modalOverlay
+    .classList
+    .remove(
+      "hidden"
+    );
+
+}
+
+
+function closeModal() {
+
+  modalOverlay
+    .classList
+    .add(
+      "hidden"
+    );
+
+
+  modalHandler =
+    null;
+
+}
+
+
+cancelModalButton.onclick =
+  closeModal;
+
+
+modalOverlay.onclick =
+  event => {
+
+    if (
+      event.target ===
+      modalOverlay
+    ) {
+
+      closeModal();
+
+    }
+
+  };
+
+
+modalForm.onsubmit =
+  async event => {
+
+    event.preventDefault();
+
+
+    if (
+      !modalHandler
+    ) {
+
+      return;
+
+    }
+
+
+    saveModalButton.disabled =
+      true;
+
+
+    modalMessage.textContent =
+      "در حال ذخیره...";
+
+
+    try {
+
+      await modalHandler();
+
+
+      modalMessage.textContent =
+        "ذخیره شد.";
+
+
+      modalMessage.className =
+        "modal-message success";
+
+
+      await loadData();
+
+
+      setTimeout(
+        closeModal,
+        250
+      );
+
+    } catch (
+      error
+    ) {
+
+      console.error(
+        error
+      );
+
+
+      modalMessage.textContent =
+        error.message ||
+        "ذخیره انجام نشد.";
+
+
+      modalMessage.className =
+        "modal-message error";
+
+    } finally {
+
+      saveModalButton.disabled =
+        false;
+
+    }
+
+  };
+
+
+/* =====================================
+   MEMBER MODAL
+===================================== */
+
+function openMemberModal(
+  member = null
+) {
+
+  openModal(
+
+    member
+      ?
+      "ویرایش عضو"
+      :
+      "عضو جدید",
+
+    `
+
+      ${
+        !member
+        ?
+        `
+          <div class="info-box">
+
+            این بخش پروفایل عضو را در برد ایجاد می‌کند.
+            برای LOGIN عضو، نام کاربری و رمز او همچنان
+            باید در MEMBER_ACCOUNTS داخل index.html تعریف شود.
+
+          </div>
+        `
+        :
+        ""
+      }
+
+
+      <div class="modal-grid">
+
+
+        <div class="form-group">
+
+          <label>
+
+            Username
+
+          </label>
+
+          <input
+            id="memberUsernameInput"
+            class="ltr"
+            value="${escapeHTML(
+              member?.username ||
+              ""
+            )}"
+            ${member ? "readonly" : ""}
+            required
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+
+            نام نمایشی
+
+          </label>
+
+          <input
+            id="memberDisplayNameInput"
+            value="${escapeHTML(
+              member?.display_name ||
+              ""
+            )}"
+            required
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+
+            Role / سمت
+
+          </label>
+
+          <input
+            id="memberRoleInput"
+            value="${escapeHTML(
+              member?.role ||
+              "عضو"
+            )}"
+            placeholder="عضو، معاون، تحلیلگر..."
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+
+            حوزه فعالیت
+
+          </label>
+
+          <input
+            id="memberAreaInput"
+            value="${escapeHTML(
+              member?.activity_area ||
+              ""
+            )}"
+            placeholder="تحلیل"
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+
+            روزهای فعالیت
+
+          </label>
+
+          <input
+            id="memberDaysInput"
+            value="${escapeHTML(
+              member?.active_days ||
+              ""
+            )}"
+            placeholder="شنبه تا چهارشنبه"
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+
+            ظرفیت هفتگی / ساعت
+
+          </label>
+
+          <input
+            id="memberWeeklyCapacityInput"
+            class="ltr"
+            type="number"
+            min="0"
+            max="168"
+            step="0.5"
+            value="${member?.weekly_capacity_hours ?? 0}"
+          >
+
+        </div>
+
+
+      </div>
+
+    `,
+
+    async () => {
+
+      const username =
+        normalizeUsername(
+          document
+            .getElementById(
+              "memberUsernameInput"
+            )
+            .value
+        );
+
+
+      const display_name =
+        document
+          .getElementById(
+            "memberDisplayNameInput"
+          )
+          .value
+          .trim();
+
+
+      const role =
+        document
+          .getElementById(
+            "memberRoleInput"
+          )
+          .value
+          .trim()
+        ||
+        "عضو";
+
+
+      const activity_area =
+        document
+          .getElementById(
+            "memberAreaInput"
+          )
+          .value
+          .trim();
+
+
+      const active_days =
+        document
+          .getElementById(
+            "memberDaysInput"
+          )
+          .value
+          .trim();
+
+
+      const weekly_capacity_hours =
+        Number(
+          document
+            .getElementById(
+              "memberWeeklyCapacityInput"
+            )
+            .value
+        )
+        ||
+        0;
+
+
+      if (
+        !username ||
+        !display_name
+      ) {
+
+        throw new Error(
+          "Username و نام عضو الزامی است."
+        );
+
+      }
+
+
+      if (
+        member
+      ) {
+
+        const {
+          error
+        } =
+          await supabase
+            .from(
+              "board_members"
+            )
+            .update({
+
+              display_name,
+
+              role,
+
+              activity_area,
+
+              active_days,
+
+              weekly_capacity_hours
+
+            })
+            .eq(
+              "id",
+              member.id
+            );
+
+
+        if (
+          error
+        ) {
+
+          throw error;
+
+        }
+
+      } else {
+
+        const {
+          error
+        } =
+          await supabase
+            .from(
+              "board_members"
+            )
+            .insert({
+
+              username,
+
+              display_name,
+
+              role,
+
+              activity_area,
+
+              active_days,
+
+              weekly_capacity_hours,
+
+              is_active:
+                true,
+
+              sort_order:
+                members.length +
+                1
+
+            });
+
+
+        if (
+          error
+        ) {
+
+          throw error;
+
+        }
+
+      }
+
+    }
+
+  );
+
+}
+
+
+/* =====================================
+   CAPACITY MODAL
+===================================== */
+
+function openCapacityModal(
+  member
+) {
+
+  openModal(
+
+    `ظرفیت ${member.display_name}`,
+
+    `
+
+      <div class="info-box">
+
+        ظرفیت هفتگی این عضو را وارد کن.
+        مجموع ظرفیت همه اعضای فعال به صورت خودکار
+        ظرفیت هفتگی دبیرخانه را تشکیل می‌دهد.
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+
+          ظرفیت هفتگی / ساعت
+
+        </label>
+
+        <input
+          id="capacityHoursInput"
+          class="ltr"
+          type="number"
+          min="0"
+          max="168"
+          step="0.5"
+          value="${member.weekly_capacity_hours ?? 0}"
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+
+          روزهای فعالیت
+
+        </label>
+
+        <input
+          id="capacityDaysInput"
+          value="${escapeHTML(
+            member.active_days ||
+            ""
+          )}"
+        >
+
+      </div>
+
+    `,
+
+    async () => {
+
+      const weekly_capacity_hours =
+        Number(
+          document
+            .getElementById(
+              "capacityHoursInput"
+            )
+            .value
+        )
+        ||
+        0;
+
+
+      const active_days =
+        document
+          .getElementById(
+            "capacityDaysInput"
+          )
+          .value
+          .trim();
+
+
+      const {
+        error
+      } =
+        await supabase
+          .from(
+            "board_members"
+          )
+          .update({
+
+            weekly_capacity_hours,
+
+            active_days
+
+          })
+          .eq(
+            "id",
+            member.id
+          );
+
+
+      if (
+        error
+      ) {
+
+        throw error;
+
+      }
+
+    }
+
+  );
+
+}
+
+
+/* =====================================
+   ACTIVE / INACTIVE MEMBER
+===================================== */
+
+async function setMemberActive(
+  id,
+  active
+) {
+
+  const message =
+    active
+    ?
+    "عضو دوباره فعال شود؟"
+    :
+    "این عضو غیرفعال شود؟";
+
+
+  if (
+    !confirm(
+      message
+    )
+  ) {
+
+    return;
+
+  }
+
+
+  const {
+    error
+  } =
+    await supabase
+      .from(
+        "board_members"
+      )
+      .update({
+        is_active:
+          active
+      })
+      .eq(
+        "id",
+        id
+      );
+
+
+  if (
+    error
+  ) {
+
+    console.error(
+      error
+    );
+
+
+    alert(
+      "تغییر وضعیت عضو انجام نشد."
+    );
+
+
+    return;
+
+  }
+
+
+  await loadData();
+
+}
+
+
+/* =====================================
+   LEADERSHIP MODAL
+===================================== */
+
+function openLeadershipModal(
   item
 ) {
 
   const options =
-    members
+    activeMembers()
       .map(
-        member => `
+        member => {
 
-          <option
-            value="${escapeHTML(
-              member.username
-            )}"
-            ${
-              member.username ===
-              item.member_username
-              ?
-              "selected"
-              :
-              ""
-            }
-          >
+          return `
 
-            ${escapeHTML(
-              member.display_name
-            )}
+            <option
+              value="${escapeHTML(
+                member.username
+              )}"
+              ${
+                normalizeUsername(
+                  member.username
+                ) ===
+                normalizeUsername(
+                  item.member_username
+                )
+                ?
+                "selected"
+                :
+                ""
+              }
+            >
 
-          </option>
+              ${escapeHTML(
+                member.display_name
+              )}
 
-        `
+            </option>
+
+          `;
+
+        }
       )
       .join(
         ""
       );
 
 
-  openGenericModal(
-    "ویرایش فرماندهی",
+  openModal(
+
+    `ویرایش ${item.position_label}`,
+
     `
 
       <div class="form-group">
 
         <label>
-          مسئول
+
+          عنوان جایگاه
+
         </label>
 
-        <select id="modalLeaderUsername">
+        <input
+          id="leadershipLabelInput"
+          value="${escapeHTML(
+            item.position_label
+          )}"
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+
+          مسئول
+
+        </label>
+
+        <select id="leadershipMemberInput">
 
           <option value="">
+
             —
+
           </option>
 
           ${options}
@@ -4506,14 +5546,17 @@ function editLeadership(
 
       </div>
 
+
       <div class="form-group">
 
         <label>
+
           توضیح
+
         </label>
 
         <input
-          id="modalLeaderDescription"
+          id="leadershipDescriptionInput"
           value="${escapeHTML(
             item.description ||
             ""
@@ -4523,12 +5566,22 @@ function editLeadership(
       </div>
 
     `,
+
     async () => {
+
+      const position_label =
+        document
+          .getElementById(
+            "leadershipLabelInput"
+          )
+          .value
+          .trim();
+
 
       const member_username =
         document
           .getElementById(
-            "modalLeaderUsername"
+            "leadershipMemberInput"
           )
           .value
         ||
@@ -4538,7 +5591,7 @@ function editLeadership(
       const description =
         document
           .getElementById(
-            "modalLeaderDescription"
+            "leadershipDescriptionInput"
           )
           .value
           .trim();
@@ -4552,8 +5605,13 @@ function editLeadership(
             "board_leadership"
           )
           .update({
+
+            position_label,
+
             member_username,
+
             description
+
           })
           .eq(
             "position_key",
@@ -4570,141 +5628,23 @@ function editLeadership(
       }
 
     }
+
   );
 
 }
 
 
-/*
-==================================================
-ADMIN OBJECTIVES
-==================================================
-*/
+/* =====================================
+   OBJECTIVE MODAL
+===================================== */
 
-
-function renderAdminObjectives() {
-
-  adminContent.innerHTML = `
-
-    <button
-      id="addObjective"
-      class="primary-button"
-      style="margin-bottom:12px;"
-    >
-      + هدف جدید
-    </button>
-
-  `;
-
-
-  document
-    .getElementById(
-      "addObjective"
-    )
-    .onclick =
-      () =>
-        editObjective(
-          null
-        );
-
-
-  objectives.forEach(
-    item => {
-
-      const [
-        label
-      ] =
-        objectiveTag(
-          item.status
-        );
-
-
-      const div =
-        document.createElement(
-          "div"
-        );
-
-
-      div.className =
-        "admin-list-item";
-
-
-      div.innerHTML = `
-
-        <div>
-
-          <div class="admin-item-title">
-
-            ${escapeHTML(
-              item.title
-            )}
-
-          </div>
-
-          <div class="admin-item-sub">
-
-            ${label}
-
-          </div>
-
-        </div>
-
-        <div class="row-actions">
-
-          <button
-            class="edit-button"
-          >
-            ویرایش
-          </button>
-
-          <button
-            class="delete-button"
-          >
-            حذف
-          </button>
-
-        </div>
-
-      `;
-
-
-      const buttons =
-        div.querySelectorAll(
-          "button"
-        );
-
-
-      buttons[0].onclick =
-        () =>
-          editObjective(
-            item
-          );
-
-
-      buttons[1].onclick =
-        () =>
-          deleteObjective(
-            item.id
-          );
-
-
-      adminContent
-        .appendChild(
-          div
-        );
-
-    }
-  );
-
-}
-
-
-function editObjective(
-  item
+function openObjectiveModal(
+  objective = null
 ) {
 
-  openGenericModal(
-    item
+  openModal(
+
+    objective
       ?
       "ویرایش هدف"
       :
@@ -4715,14 +5655,16 @@ function editObjective(
       <div class="form-group">
 
         <label>
+
           عنوان هدف
+
         </label>
 
         <textarea
-          id="modalObjectiveTitle"
+          id="objectiveTitleInput"
           required
         >${escapeHTML(
-          item?.title ||
+          objective?.title ||
           ""
         )}</textarea>
 
@@ -4732,15 +5674,17 @@ function editObjective(
       <div class="form-group">
 
         <label>
+
           وضعیت
+
         </label>
 
-        <select id="modalObjectiveStatus">
+        <select id="objectiveStatusInput">
 
           <option
             value="in_progress"
             ${
-              item?.status ===
+              objective?.status ===
               "in_progress"
               ?
               "selected"
@@ -4748,13 +5692,15 @@ function editObjective(
               ""
             }
           >
+
             در حال انجام
+
           </option>
 
           <option
             value="completed"
             ${
-              item?.status ===
+              objective?.status ===
               "completed"
               ?
               "selected"
@@ -4762,13 +5708,15 @@ function editObjective(
               ""
             }
           >
+
             تکمیل
+
           </option>
 
           <option
             value="delayed"
             ${
-              item?.status ===
+              objective?.status ===
               "delayed"
               ?
               "selected"
@@ -4776,13 +5724,15 @@ function editObjective(
               ""
             }
           >
+
             تأخیر
+
           </option>
 
           <option
             value="cancelled"
             ${
-              item?.status ===
+              objective?.status ===
               "cancelled"
               ?
               "selected"
@@ -4790,7 +5740,9 @@ function editObjective(
               ""
             }
           >
+
             کنسل شده
+
           </option>
 
         </select>
@@ -4804,7 +5756,7 @@ function editObjective(
       const title =
         document
           .getElementById(
-            "modalObjectiveTitle"
+            "objectiveTitleInput"
           )
           .value
           .trim();
@@ -4813,24 +5765,13 @@ function editObjective(
       const status =
         document
           .getElementById(
-            "modalObjectiveStatus"
+            "objectiveStatusInput"
           )
           .value;
 
 
       if (
-        !title
-      ) {
-
-        throw new Error(
-          "عنوان خالی است."
-        );
-
-      }
-
-
-      if (
-        item
+        objective
       ) {
 
         const {
@@ -4841,12 +5782,15 @@ function editObjective(
               "objectives"
             )
             .update({
+
               title,
+
               status
+
             })
             .eq(
               "id",
-              item.id
+              objective.id
             );
 
 
@@ -4868,11 +5812,15 @@ function editObjective(
               "objectives"
             )
             .insert({
+
               title,
+
               status,
+
               sort_order:
                 objectives.length +
                 1
+
             });
 
 
@@ -4887,6 +5835,7 @@ function editObjective(
       }
 
     }
+
   );
 
 }
@@ -4925,595 +5874,36 @@ async function deleteObjective(
     error
   ) {
 
-    alert(
-      "حذف انجام نشد."
-    );
-
     console.error(
       error
     );
 
-    return;
-
-  }
-
-
-  await loadBoardData();
-
-  renderAdminObjectives();
-
-}
-
-
-/*
-==================================================
-ADMIN MEMBERS
-==================================================
-*/
-
-
-function renderAdminMembers() {
-
-  adminContent.innerHTML = `
-
-    <button
-      id="addMemberButton"
-      class="primary-button"
-      style="margin-bottom:12px;"
-    >
-      + عضو جدید
-    </button>
-
-    <div
-      style="
-        color:#8f969e;
-        font-size:9px;
-        margin-bottom:12px;
-      "
-    >
-
-      توجه: اضافه‌کردن عضو در این بخش
-      پروفایل برد را می‌سازد.
-      برای ورود با رمز، MEMBER_ACCOUNTS
-      در index.html نیز باید وجود داشته باشد.
-
-    </div>
-
-  `;
-
-
-  document
-    .getElementById(
-      "addMemberButton"
-    )
-    .onclick =
-      () =>
-        editMember(
-          null
-        );
-
-
-  members.forEach(
-    member => {
-
-      const div =
-        document.createElement(
-          "div"
-        );
-
-
-      div.className =
-        "admin-list-item";
-
-
-      div.innerHTML = `
-
-        <div>
-
-          <div class="admin-item-title">
-
-            ${escapeHTML(
-              member.display_name
-            )}
-
-          </div>
-
-          <div class="admin-item-sub">
-
-            ${escapeHTML(
-              member.username
-            )}
-
-            •
-
-            ${escapeHTML(
-              member.role
-            )}
-
-          </div>
-
-        </div>
-
-        <div class="row-actions">
-
-          <button
-            class="edit-button"
-          >
-            ویرایش
-          </button>
-
-          <button
-            class="delete-button"
-          >
-            حذف
-          </button>
-
-        </div>
-
-      `;
-
-
-      const buttons =
-        div.querySelectorAll(
-          "button"
-        );
-
-
-      buttons[0].onclick =
-        () =>
-          editMember(
-            member
-          );
-
-
-      buttons[1].onclick =
-        () =>
-          deactivateMember(
-            member.id
-          );
-
-
-      adminContent
-        .appendChild(
-          div
-        );
-
-    }
-  );
-
-}
-
-
-function editMember(
-  member
-) {
-
-  openGenericModal(
-    member
-      ?
-      "ویرایش عضو"
-      :
-      "عضو جدید",
-
-    `
-
-      <div class="form-group">
-
-        <label>
-          Username
-        </label>
-
-        <input
-          id="modalMemberUsername"
-          class="ltr"
-          value="${escapeHTML(
-            member?.username ||
-            ""
-          )}"
-          ${member ? "readonly" : ""}
-        >
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label>
-          نام نمایشی
-        </label>
-
-        <input
-          id="modalMemberName"
-          value="${escapeHTML(
-            member?.display_name ||
-            ""
-          )}"
-        >
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label>
-          نقش
-        </label>
-
-        <input
-          id="modalMemberRole"
-          value="${escapeHTML(
-            member?.role ||
-            "عضو"
-          )}"
-        >
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label>
-          حوزه فعالیت
-        </label>
-
-        <input
-          id="modalMemberArea"
-          value="${escapeHTML(
-            member?.activity_area ||
-            ""
-          )}"
-        >
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label>
-          روزهای فعالیت
-        </label>
-
-        <input
-          id="modalMemberDays"
-          value="${escapeHTML(
-            member?.active_days ||
-            ""
-          )}"
-        >
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label>
-          ظرفیت روزانه / ساعت
-        </label>
-
-        <input
-          id="modalMemberCapacity"
-          class="ltr"
-          type="number"
-          min="0"
-          max="24"
-          step="0.5"
-          value="${member?.daily_capacity_hours ?? 0}"
-        >
-
-      </div>
-
-    `,
-
-    async () => {
-
-      const username =
-        normalizeUsername(
-          document
-            .getElementById(
-              "modalMemberUsername"
-            )
-            .value
-        );
-
-
-      const display_name =
-        document
-          .getElementById(
-            "modalMemberName"
-          )
-          .value
-          .trim();
-
-
-      const role =
-        document
-          .getElementById(
-            "modalMemberRole"
-          )
-          .value
-          .trim();
-
-
-      const activity_area =
-        document
-          .getElementById(
-            "modalMemberArea"
-          )
-          .value
-          .trim();
-
-
-      const active_days =
-        document
-          .getElementById(
-            "modalMemberDays"
-          )
-          .value
-          .trim();
-
-
-      const daily_capacity_hours =
-        Number(
-          document
-            .getElementById(
-              "modalMemberCapacity"
-            )
-            .value
-        );
-
-
-      if (
-        !username ||
-        !display_name
-      ) {
-
-        throw new Error(
-          "نام و Username الزامی است."
-        );
-
-      }
-
-
-      if (
-        member
-      ) {
-
-        const {
-          error
-        } =
-          await supabase
-            .from(
-              "board_members"
-            )
-            .update({
-              display_name,
-              role,
-              activity_area,
-              active_days,
-              daily_capacity_hours
-            })
-            .eq(
-              "id",
-              member.id
-            );
-
-
-        if (
-          error
-        ) {
-
-          throw error;
-
-        }
-
-      } else {
-
-        const {
-          error
-        } =
-          await supabase
-            .from(
-              "board_members"
-            )
-            .insert({
-
-              username,
-
-              display_name,
-
-              role,
-
-              activity_area,
-
-              active_days,
-
-              daily_capacity_hours,
-
-              sort_order:
-                members.length +
-                1
-
-            });
-
-
-        if (
-          error
-        ) {
-
-          throw error;
-
-        }
-
-      }
-
-    }
-  );
-
-}
-
-
-async function deactivateMember(
-  id
-) {
-
-  if (
-    !confirm(
-      "این عضو از برد حذف شود؟"
-    )
-  ) {
-
-    return;
-
-  }
-
-
-  const {
-    error
-  } =
-    await supabase
-      .from(
-        "board_members"
-      )
-      .update({
-        is_active:false
-      })
-      .eq(
-        "id",
-        id
-      );
-
-
-  if (
-    error
-  ) {
 
     alert(
-      "حذف انجام نشد."
+      "حذف هدف انجام نشد."
     );
+
 
     return;
 
   }
 
 
-  await loadBoardData();
-
-  renderAdminMembers();
+  await loadData();
 
 }
 
 
-/*
-==================================================
-ADMIN NOTICES
-==================================================
-*/
+/* =====================================
+   NOTICE
+===================================== */
 
-
-function renderAdminNotices() {
-
-  adminContent.innerHTML = `
-
-    <button
-      id="addNoticeButton"
-      class="primary-button"
-      style="margin-bottom:12px;"
-    >
-      + تذکر جدید
-    </button>
-
-  `;
-
-
-  document
-    .getElementById(
-      "addNoticeButton"
-    )
-    .onclick =
-      () =>
-        editNotice(
-          null
-        );
-
-
-  notices.forEach(
-    notice => {
-
-      const div =
-        document.createElement(
-          "div"
-        );
-
-
-      div.className =
-        "admin-list-item";
-
-
-      div.innerHTML = `
-
-        <div class="admin-item-title">
-
-          ${escapeHTML(
-            notice.content
-          )}
-
-        </div>
-
-        <div class="row-actions">
-
-          <button
-            class="edit-button"
-          >
-            ویرایش
-          </button>
-
-          <button
-            class="delete-button"
-          >
-            حذف
-          </button>
-
-        </div>
-
-      `;
-
-
-      const buttons =
-        div.querySelectorAll(
-          "button"
-        );
-
-
-      buttons[0].onclick =
-        () =>
-          editNotice(
-            notice
-          );
-
-
-      buttons[1].onclick =
-        () =>
-          deleteNotice(
-            notice.id
-          );
-
-
-      adminContent
-        .appendChild(
-          div
-        );
-
-    }
-  );
-
-}
-
-
-function editNotice(
-  notice
+function openNoticeModal(
+  notice = null
 ) {
 
-  openGenericModal(
+  openModal(
+
     notice
       ?
       "ویرایش تذکر"
@@ -5525,11 +5915,14 @@ function editNotice(
       <div class="form-group">
 
         <label>
-          متن
+
+          متن تذکر
+
         </label>
 
         <textarea
-          id="modalNoticeContent"
+          id="noticeContentInput"
+          required
         >${escapeHTML(
           notice?.content ||
           ""
@@ -5544,21 +5937,10 @@ function editNotice(
       const content =
         document
           .getElementById(
-            "modalNoticeContent"
+            "noticeContentInput"
           )
           .value
           .trim();
-
-
-      if (
-        !content
-      ) {
-
-        throw new Error(
-          "متن خالی است."
-        );
-
-      }
 
 
       if (
@@ -5602,6 +5984,9 @@ function editNotice(
 
               content,
 
+              is_active:
+                true,
+
               sort_order:
                 notices.length +
                 1
@@ -5620,6 +6005,7 @@ function editNotice(
       }
 
     }
+
   );
 
 }
@@ -5648,7 +6034,8 @@ async function deleteNotice(
         "board_notices"
       )
       .update({
-        is_active:false
+        is_active:
+          false
       })
       .eq(
         "id",
@@ -5660,681 +6047,641 @@ async function deleteNotice(
     error
   ) {
 
-    alert(
-      "حذف انجام نشد."
-    );
-
-    return;
-
-  }
-
-
-  await loadBoardData();
-
-  renderAdminNotices();
-
-}
-
-
-/*
-==================================================
-SETTINGS
-==================================================
-*/
-
-
-function renderAdminSettings() {
-
-  adminContent.innerHTML = `
-
-    <div class="form-group">
-
-      <label>
-        وضعیت سامانه
-      </label>
-
-      <input
-        id="adminSystemStatus"
-        value="${escapeHTML(
-          settings.system_status ||
-          ""
-        )}"
-      >
-
-    </div>
-
-
-    <div class="form-group">
-
-      <label>
-        زیرعنوان انگلیسی
-      </label>
-
-      <input
-        id="adminBoardSubtitle"
-        class="ltr"
-        value="${escapeHTML(
-          settings.board_subtitle ||
-          ""
-        )}"
-      >
-
-    </div>
-
-
-    <div class="form-group">
-
-      <label>
-        ظرفیت هفتگی
-      </label>
-
-      <input
-        id="adminWeeklyCapacity"
-        class="ltr"
-        type="number"
-        value="${escapeHTML(
-          settings.weekly_capacity ||
-          "0"
-        )}"
-      >
-
-    </div>
-
-
-    <button
-      id="saveSettingsButton"
-      class="primary-button"
-    >
-      ذخیره تنظیمات
-    </button>
-
-
-    <div
-      id="settingsMessage"
-      class="form-message"
-    ></div>
-
-  `;
-
-
-  document
-    .getElementById(
-      "saveSettingsButton"
-    )
-    .onclick =
-      saveSettings;
-
-}
-
-
-async function saveSettings() {
-
-  const status =
-    document
-      .getElementById(
-        "adminSystemStatus"
-      )
-      .value
-      .trim();
-
-
-  const subtitle =
-    document
-      .getElementById(
-        "adminBoardSubtitle"
-      )
-      .value
-      .trim();
-
-
-  const capacity =
-    document
-      .getElementById(
-        "adminWeeklyCapacity"
-      )
-      .value;
-
-
-  const rows = [
-
-    {
-      setting_key:
-        "system_status",
-
-      setting_value:
-        status
-    },
-
-    {
-      setting_key:
-        "board_subtitle",
-
-      setting_value:
-        subtitle
-    },
-
-    {
-      setting_key:
-        "weekly_capacity",
-
-      setting_value:
-        capacity
-    }
-
-  ];
-
-
-  const {
-    error
-  } =
-    await supabase
-      .from(
-        "board_settings"
-      )
-      .upsert(
-        rows
-      );
-
-
-  const message =
-    document.getElementById(
-      "settingsMessage"
-    );
-
-
-  if (
-    error
-  ) {
-
-    message.textContent =
-      "ذخیره انجام نشد.";
-
-    message.className =
-      "form-message error";
-
     console.error(
       error
     );
 
+
+    alert(
+      "حذف تذکر انجام نشد."
+    );
+
+
     return;
 
   }
 
 
-  message.textContent =
-    "ذخیره شد.";
-
-  message.className =
-    "form-message success";
-
-
-  await loadBoardData();
+  await loadData();
 
 }
 
 
-/*
-==================================================
-GENERIC MODAL
-==================================================
-*/
+/* =====================================
+   SETTINGS
+===================================== */
+
+function openSettingsModal() {
+
+  openModal(
+
+    "تنظیمات برد",
+
+    `
+
+      <div class="form-group">
+
+        <label>
+
+          عنوان اصلی
+
+        </label>
+
+        <input
+          id="settingsTitleInput"
+          value="${escapeHTML(
+            settings.board_title ||
+            "🏛 دبیرخانه میلیتاریسم"
+          )}"
+        >
+
+      </div>
 
 
-function openGenericModal(
-  title,
-  html,
-  handler
-) {
+      <div class="form-group">
 
-  modalTitle.textContent =
-    title;
+        <label>
 
+          زیرعنوان
 
-  modalFields.innerHTML =
-    html;
+        </label>
 
+        <input
+          id="settingsSubtitleInput"
+          class="ltr"
+          value="${escapeHTML(
+            settings.board_subtitle ||
+            "STATUS BOARD"
+          )}"
+        >
 
-  modalMessage.textContent =
-    "";
-
-
-  modalSaveHandler =
-    handler;
+      </div>
 
 
-  modalOverlay
-    .classList
-    .remove(
-      "hidden"
-    );
+      <div class="form-group">
 
-}
+        <label>
 
+          وضعیت سامانه
 
-function closeGenericModal() {
+        </label>
 
-  modalOverlay
-    .classList
-    .add(
-      "hidden"
-    );
+        <input
+          id="settingsStatusInput"
+          value="${escapeHTML(
+            settings.system_status ||
+            "ستاد آنلاین و فعال است"
+          )}"
+        >
 
-
-  modalSaveHandler =
-    null;
-
-}
+      </div>
 
 
-cancelModal.onclick =
-  closeGenericModal;
+      <div class="form-group">
+
+        <label>
+
+          متن پایین صفحه
+
+        </label>
+
+        <input
+          id="settingsFooterInput"
+          class="ltr"
+          value="${escapeHTML(
+            settings.footer_text ||
+            "NIGP • MILITARISM HEADQUARTERS OFFICE"
+          )}"
+        >
+
+      </div>
 
 
-modalOverlay.onclick =
-  event => {
+      <div class="info-box">
 
-    if (
-      event.target ===
-      modalOverlay
-    ) {
+        ظرفیت هفتگی دیگر دستی تنظیم نمی‌شود.
+        این عدد مستقیماً از مجموع ظرفیت اعضای فعال محاسبه می‌شود.
 
-      closeGenericModal();
+      </div>
 
-    }
+    `,
 
-  };
+    async () => {
+
+      const rows = [
+
+        {
+          setting_key:
+            "board_title",
+
+          setting_value:
+            document
+              .getElementById(
+                "settingsTitleInput"
+              )
+              .value
+              .trim()
+        },
+
+        {
+          setting_key:
+            "board_subtitle",
+
+          setting_value:
+            document
+              .getElementById(
+                "settingsSubtitleInput"
+              )
+              .value
+              .trim()
+        },
+
+        {
+          setting_key:
+            "system_status",
+
+          setting_value:
+            document
+              .getElementById(
+                "settingsStatusInput"
+              )
+              .value
+              .trim()
+        },
+
+        {
+          setting_key:
+            "footer_text",
+
+          setting_value:
+            document
+              .getElementById(
+                "settingsFooterInput"
+              )
+              .value
+              .trim()
+        }
+
+      ];
 
 
-modalForm.onsubmit =
-  async event => {
-
-    event.preventDefault();
-
-
-    if (
-      !modalSaveHandler
-    ) {
-
-      return;
-
-    }
-
-
-    modalMessage.textContent =
-      "در حال ذخیره...";
-
-
-    modalMessage.className =
-      "form-message";
-
-
-    try {
-
-      await modalSaveHandler();
-
-
-      modalMessage.textContent =
-        "ذخیره شد.";
-
-
-      modalMessage.className =
-        "form-message success";
-
-
-      await loadBoardData();
-
-
-      setTimeout(
-        closeGenericModal,
-        250
-      );
-
-    } catch (
-      error
-    ) {
-
-      console.error(
+      const {
         error
-      );
+      } =
+        await supabase
+          .from(
+            "board_settings"
+          )
+          .upsert(
+            rows
+          );
 
 
-      modalMessage.textContent =
-        error.message ||
-        "ذخیره انجام نشد.";
+      if (
+        error
+      ) {
 
+        throw error;
 
-      modalMessage.className =
-        "form-message error";
-
-    }
-
-  };
-
-
-/*
-==================================================
-PROJECTS
-==================================================
-*/
-
-
-function populateProjectAssignees() {
-
-  projectAssignee.innerHTML = `
-
-    <option value="">
-      بدون مسئول
-    </option>
-
-  `;
-
-
-  members.forEach(
-    member => {
-
-      const option =
-        document.createElement(
-          "option"
-        );
-
-
-      option.value =
-        member.username;
-
-
-      option.textContent =
-        member.display_name;
-
-
-      projectAssignee
-        .appendChild(
-          option
-        );
+      }
 
     }
+
   );
 
 }
 
 
+/* =====================================
+   PROJECT MODAL
+===================================== */
+
 function openProjectModal(
   project = null
 ) {
 
-  if (
-    !isSecretary()
-  ) {
-
-    return;
-
-  }
-
-
-  projectForm.reset();
-
-
-  if (
-    project
-  ) {
-
-    projectModalTitle.textContent =
-      "ویرایش پروژه";
-
-
-    projectId.value =
-      project.id;
-
-
-    projectTitle.value =
-      project.title ||
-      "";
-
-
-    projectDescription.value =
-      project.description ||
-      "";
-
-
-    projectAssignee.value =
-      project.assigned_username ||
-      "";
-
-
-    projectDeadline.value =
-      project.deadline ||
-      "";
-
-
-    projectStatus.value =
-      project.status;
-
-
-    projectPriority.value =
-      project.priority;
-
-
-    projectProgress.value =
-      project.progress;
-
-  } else {
-
-    projectModalTitle.textContent =
-      "پروژه جدید";
-
-
-    projectId.value =
-      "";
-
-
-    projectStatus.value =
-      "assigned";
-
-
-    projectPriority.value =
-      "normal";
-
-
-    projectProgress.value =
-      "0";
-
-  }
-
-
-  projectMessage.textContent =
-    "";
-
-
-  projectModal
-    .classList
-    .remove(
-      "hidden"
-    );
-
-}
-
-
-function closeProjectModal() {
-
-  projectModal
-    .classList
-    .add(
-      "hidden"
-    );
-
-}
-
-
-newProjectButton.onclick =
-  () =>
-    openProjectModal();
-
-
-cancelProject.onclick =
-  closeProjectModal;
-
-
-projectModal.onclick =
-  event => {
-
-    if (
-      event.target ===
-      projectModal
-    ) {
-
-      closeProjectModal();
-
-    }
-
-  };
-
-
-projectForm.onsubmit =
-  async event => {
-
-    event.preventDefault();
-
-
-    if (
-      !isSecretary()
-    ) {
-
-      return;
-
-    }
-
-
-    const payload = {
-
-      title:
-        projectTitle
-          .value
-          .trim(),
-
-      description:
-        projectDescription
-          .value
-          .trim()
-        ||
-        null,
-
-      assigned_username:
-        projectAssignee.value
-        ||
-        null,
-
-      deadline:
-        projectDeadline.value
-        ||
-        null,
-
-      status:
-        projectStatus.value,
-
-      priority:
-        projectPriority.value,
-
-      progress:
-        Math.min(
-          100,
-          Math.max(
-            0,
-            Number(
-              projectProgress.value
-            ) ||
-            0
-          )
-        )
-
-    };
-
-
-    if (
-      !payload.title
-    ) {
-
-      return;
-
-    }
-
-
-    let result;
-
-
-    if (
-      projectId.value
-    ) {
-
-      result =
-        await supabase
-          .from(
-            "projects"
-          )
-          .update(
-            payload
-          )
-          .eq(
-            "id",
-            projectId.value
-          );
-
-    } else {
-
-      result =
-        await supabase
-          .from(
-            "projects"
-          )
-          .insert({
-
-            ...payload,
-
-            created_by:
-              currentUser.id
-
-          });
-
-    }
-
-
-    if (
-      result.error
-    ) {
-
-      projectMessage.textContent =
-        "ذخیره انجام نشد.";
-
-
-      projectMessage.className =
-        "form-message error";
-
-
-      console.error(
-        result.error
+  const memberOptions =
+    activeMembers()
+      .map(
+        member => {
+
+          const selected =
+            normalizeUsername(
+              member.username
+            ) ===
+            normalizeUsername(
+              project?.assigned_username
+            )
+            ?
+            "selected"
+            :
+            "";
+
+
+          return `
+
+            <option
+              value="${escapeHTML(
+                member.username
+              )}"
+              ${selected}
+            >
+
+              ${escapeHTML(
+                member.display_name
+              )}
+
+            </option>
+
+          `;
+
+        }
+      )
+      .join(
+        ""
       );
 
 
-      return;
+  openModal(
+
+    project
+      ?
+      "ویرایش پروژه"
+      :
+      "پروژه جدید",
+
+    `
+
+      <div class="modal-grid">
+
+
+        <div class="form-group full">
+
+          <label>
+
+            نام پروژه
+
+          </label>
+
+          <input
+            id="projectTitleInput"
+            value="${escapeHTML(
+              project?.title ||
+              ""
+            )}"
+            required
+          >
+
+        </div>
+
+
+        <div class="form-group full">
+
+          <label>
+
+            توضیحات
+
+          </label>
+
+          <textarea
+            id="projectDescriptionInput"
+          >${escapeHTML(
+            project?.description ||
+            ""
+          )}</textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+
+            مسئول
+
+          </label>
+
+          <select id="projectAssigneeInput">
+
+            <option value="">
+
+              بدون مسئول
+
+            </option>
+
+            ${memberOptions}
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+
+            مهلت
+
+          </label>
+
+          <input
+            id="projectDeadlineInput"
+            class="ltr"
+            type="date"
+            value="${escapeHTML(
+              project?.deadline ||
+              ""
+            )}"
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+
+            وضعیت
+
+          </label>
+
+          <select id="projectStatusInput">
+
+            ${[
+              [
+                "assigned",
+                "ابلاغ شده"
+              ],
+              [
+                "in_progress",
+                "در حال اجرا"
+              ],
+              [
+                "submitted",
+                "گزارش ارسال شده"
+              ],
+              [
+                "completed",
+                "تکمیل شده"
+              ],
+              [
+                "delayed",
+                "تأخیر"
+              ],
+              [
+                "cancelled",
+                "لغو شده"
+              ]
+            ]
+            .map(
+              item => {
+
+                return `
+
+                  <option
+                    value="${item[0]}"
+                    ${
+                      project?.status ===
+                      item[0]
+                      ?
+                      "selected"
+                      :
+                      ""
+                    }
+                  >
+
+                    ${item[1]}
+
+                  </option>
+
+                `;
+
+              }
+            )
+            .join(
+              ""
+            )}
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+
+            اولویت
+
+          </label>
+
+          <select id="projectPriorityInput">
+
+            ${[
+              [
+                "low",
+                "پایین"
+              ],
+              [
+                "normal",
+                "عادی"
+              ],
+              [
+                "high",
+                "بالا"
+              ],
+              [
+                "critical",
+                "حیاتی"
+              ]
+            ]
+            .map(
+              item => {
+
+                return `
+
+                  <option
+                    value="${item[0]}"
+                    ${
+                      (
+                        project?.priority ||
+                        "normal"
+                      ) ===
+                      item[0]
+                      ?
+                      "selected"
+                      :
+                      ""
+                    }
+                  >
+
+                    ${item[1]}
+
+                  </option>
+
+                `;
+
+              }
+            )
+            .join(
+              ""
+            )}
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group full">
+
+          <label>
+
+            درصد پیشرفت
+
+          </label>
+
+          <input
+            id="projectProgressInput"
+            class="ltr"
+            type="number"
+            min="0"
+            max="100"
+            value="${project?.progress ?? 0}"
+          >
+
+        </div>
+
+
+      </div>
+
+    `,
+
+    async () => {
+
+      const payload = {
+
+        title:
+          document
+            .getElementById(
+              "projectTitleInput"
+            )
+            .value
+            .trim(),
+
+        description:
+          document
+            .getElementById(
+              "projectDescriptionInput"
+            )
+            .value
+            .trim()
+          ||
+          null,
+
+        assigned_username:
+          document
+            .getElementById(
+              "projectAssigneeInput"
+            )
+            .value
+          ||
+          null,
+
+        deadline:
+          document
+            .getElementById(
+              "projectDeadlineInput"
+            )
+            .value
+          ||
+          null,
+
+        status:
+          document
+            .getElementById(
+              "projectStatusInput"
+            )
+            .value,
+
+        priority:
+          document
+            .getElementById(
+              "projectPriorityInput"
+            )
+            .value,
+
+        progress:
+          Math.min(
+            100,
+            Math.max(
+              0,
+              Number(
+                document
+                  .getElementById(
+                    "projectProgressInput"
+                  )
+                  .value
+              )
+              ||
+              0
+            )
+          )
+
+      };
+
+
+      let result;
+
+
+      if (
+        project
+      ) {
+
+        result =
+          await supabase
+            .from(
+              "projects"
+            )
+            .update(
+              payload
+            )
+            .eq(
+              "id",
+              project.id
+            );
+
+      } else {
+
+        result =
+          await supabase
+            .from(
+              "projects"
+            )
+            .insert({
+
+              ...payload,
+
+              created_by:
+                currentUser.id
+
+            });
+
+      }
+
+
+      if (
+        result.error
+      ) {
+
+        throw result.error;
+
+      }
 
     }
 
+  );
 
-    projectMessage.textContent =
-      "ذخیره شد.";
-
-
-    projectMessage.className =
-      "form-message success";
-
-
-    await loadBoardData();
-
-
-    setTimeout(
-      closeProjectModal,
-      250
-    );
-
-  };
+}
 
 
 async function deleteProject(
@@ -6343,7 +6690,7 @@ async function deleteProject(
 
   if (
     !confirm(
-      "پروژه حذف شود؟"
+      "این پروژه حذف شود؟"
     )
   ) {
 
@@ -6376,7 +6723,7 @@ async function deleteProject(
 
 
     alert(
-      "حذف انجام نشد."
+      "حذف پروژه انجام نشد."
     );
 
 
@@ -6385,17 +6732,209 @@ async function deleteProject(
   }
 
 
-  await loadBoardData();
+  await loadData();
 
 }
 
 
-/*
-==================================================
-LOGIN FORM
-==================================================
-*/
+/* =====================================
+   ADMIN BUTTONS
+===================================== */
 
+addMemberButton.onclick =
+  () =>
+    openMemberModal();
+
+
+addObjectiveButton.onclick =
+  () =>
+    openObjectiveModal();
+
+
+addProjectButton.onclick =
+  () =>
+    openProjectModal();
+
+
+addNoticeButton.onclick =
+  () =>
+    openNoticeModal();
+
+
+settingsButton.onclick =
+  openSettingsModal;
+
+
+/* =====================================
+   LOGIN
+===================================== */
+
+async function loginSecretary(
+  email,
+  password
+) {
+
+  const {
+    data,
+    error
+  } =
+    await supabase.auth
+      .signInWithPassword({
+
+        email,
+
+        password
+
+      });
+
+
+  if (
+    error
+  ) {
+
+    throw error;
+
+  }
+
+
+  const {
+    data: profile,
+    error: profileError
+  } =
+    await supabase
+      .from(
+        "profiles"
+      )
+      .select(
+        "username,display_name,role,is_active"
+      )
+      .eq(
+        "id",
+        data.user.id
+      )
+      .single();
+
+
+  if (
+    profileError
+  ) {
+
+    throw profileError;
+
+  }
+
+
+  if (
+    profile.role !==
+    "secretary"
+  ) {
+
+    await supabase.auth
+      .signOut();
+
+
+    throw new Error(
+      "این حساب دسترسی دبیر ندارد."
+    );
+
+  }
+
+
+  loginType =
+    "secretary";
+
+
+  currentUser =
+    data.user;
+
+
+  currentProfile = {
+
+    username:
+      profile.username ||
+      "SPOOKY",
+
+    displayName:
+      profile.display_name ||
+      "SPOOKY",
+
+    role:
+      "مدیر سامانه"
+
+  };
+
+
+  sessionStorage.removeItem(
+    "militarismMember"
+  );
+
+}
+
+
+function loginMember(
+  username,
+  password
+) {
+
+  const account =
+    MEMBER_ACCOUNTS.find(
+      item =>
+        normalizeUsername(
+          item.username
+        ) ===
+        normalizeUsername(
+          username
+        )
+        &&
+        item.password ===
+        password
+    );
+
+
+  if (
+    !account
+  ) {
+
+    throw new Error(
+      "نام کاربری یا رمز عبور اشتباه است."
+    );
+
+  }
+
+
+  loginType =
+    "member";
+
+
+  currentUser =
+    null;
+
+
+  currentProfile = {
+
+    username:
+      account.username,
+
+    displayName:
+      account.username,
+
+    role:
+      "عضو"
+
+  };
+
+
+  sessionStorage.setItem(
+    "militarismMember",
+    account.username
+  );
+
+}
+
+
+/* =====================================
+   LOGIN FORM
+===================================== */
 
 loginForm.onsubmit =
   async event => {
@@ -6422,6 +6961,10 @@ loginForm.onsubmit =
       "در حال ورود...";
 
 
+    loginMessage.className =
+      "";
+
+
     try {
 
       if (
@@ -6430,14 +6973,14 @@ loginForm.onsubmit =
         )
       ) {
 
-        await secretaryLogin(
+        await loginSecretary(
           identity,
           password
         );
 
       } else {
 
-        memberLogin(
+        loginMember(
           identity,
           password
         );
@@ -6445,14 +6988,45 @@ loginForm.onsubmit =
       }
 
 
-      await loadBoardData();
+      await loadData();
 
 
-      showBoard();
+      if (
+        loginType ===
+        "member"
+      ) {
+
+        const boardMember =
+          members.find(
+            member =>
+              normalizeUsername(
+                member.username
+              ) ===
+              normalizeUsername(
+                currentProfile.username
+              )
+          );
+
+
+        if (
+          !boardMember ||
+          !boardMember.is_active
+        ) {
+
+          throw new Error(
+            "این عضو در حال حاضر فعال نیست."
+          );
+
+        }
+
+      }
 
 
       loginMessage.textContent =
         "";
+
+
+      showBoard();
 
     } catch (
       error
@@ -6464,7 +7038,8 @@ loginForm.onsubmit =
 
 
       loginMessage.textContent =
-        "نام کاربری یا رمز عبور صحیح نیست.";
+        error.message ||
+        "ورود انجام نشد.";
 
 
       loginMessage.className =
@@ -6480,12 +7055,9 @@ loginForm.onsubmit =
   };
 
 
-/*
-==================================================
-LOGOUT
-==================================================
-*/
-
+/* =====================================
+   LOGOUT
+===================================== */
 
 logoutButton.onclick =
   async () => {
@@ -6521,20 +7093,14 @@ logoutButton.onclick =
     loginForm.reset();
 
 
-    closeAdmin();
-
-
     showLogin();
 
   };
 
 
-/*
-==================================================
-RESTORE SESSION
-==================================================
-*/
-
+/* =====================================
+   RESTORE SESSION
+===================================== */
 
 async function restoreSession() {
 
@@ -6549,10 +7115,6 @@ async function restoreSession() {
     data.session
   ) {
 
-    const user =
-      data.session.user;
-
-
     const {
       data: profile,
       error
@@ -6566,14 +7128,13 @@ async function restoreSession() {
         )
         .eq(
           "id",
-          user.id
+          data.session.user.id
         )
         .single();
 
 
     if (
-      !error
-      &&
+      !error &&
       profile.role ===
       "secretary"
     ) {
@@ -6583,24 +7144,26 @@ async function restoreSession() {
 
 
       currentUser =
-        user;
+        data.session.user;
 
 
       currentProfile = {
 
         username:
-          profile.username,
+          profile.username ||
+          "SPOOKY",
 
         displayName:
-          profile.display_name,
+          profile.display_name ||
+          "SPOOKY",
 
         role:
-          "دبیر"
+          "مدیر سامانه"
 
       };
 
 
-      await loadBoardData();
+      await loadData();
 
 
       showBoard();
@@ -6613,30 +7176,30 @@ async function restoreSession() {
   }
 
 
-  const savedMember =
+  const memberUsername =
     sessionStorage.getItem(
       "militarismMember"
     );
 
 
   if (
-    savedMember
+    memberUsername
   ) {
 
-    const exists =
+    const loginExists =
       MEMBER_ACCOUNTS.some(
         account =>
           normalizeUsername(
             account.username
           ) ===
           normalizeUsername(
-            savedMember
+            memberUsername
           )
       );
 
 
     if (
-      exists
+      loginExists
     ) {
 
       loginType =
@@ -6646,10 +7209,10 @@ async function restoreSession() {
       currentProfile = {
 
         username:
-          savedMember,
+          memberUsername,
 
         displayName:
-          savedMember,
+          memberUsername,
 
         role:
           "عضو"
@@ -6657,13 +7220,31 @@ async function restoreSession() {
       };
 
 
-      await loadBoardData();
+      await loadData();
 
 
-      showBoard();
+      const boardMember =
+        members.find(
+          member =>
+            normalizeUsername(
+              member.username
+            ) ===
+            normalizeUsername(
+              memberUsername
+            )
+        );
 
 
-      return;
+      if (
+        boardMember &&
+        boardMember.is_active
+      ) {
+
+        showBoard();
+
+        return;
+
+      }
 
     }
 
@@ -6675,12 +7256,9 @@ async function restoreSession() {
 }
 
 
-/*
-==================================================
-START
-==================================================
-*/
-
+/* =====================================
+   START
+===================================== */
 
 restoreSession();
 
